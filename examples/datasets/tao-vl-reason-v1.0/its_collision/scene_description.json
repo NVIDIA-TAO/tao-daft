@@ -1,0 +1,22 @@
+{
+  "format": "tao-vl-reason-v1.0",
+  "metadata": {
+    "type": "annotation",
+    "task": "scene_description",
+    "description": "ITS collision training samples for tao-vl-reason fine-tuning. Converted from DAFT metropolis-v3.0 scene covering open QA, BCQ/MCQ (short + open-ended), scene/video/temporal descriptions, temporal localization, and causal linkage.",
+    "license": "Apache-2.0"
+  },
+  "media_root": null,
+  "items": [
+    {
+      "video_id": "videos/video_001.mp4",
+      "question": "Describe the scene visible in this traffic camera footage.",
+      "answer": "An elevated view of a signalized four-way intersection in an urban setting. Multiple lanes of traffic converge at the junction with visible lane markings, crosswalks, and traffic signals. A white sedan, red sedan, and maroon sedan are the primary vehicles in frame. The intersection is surrounded by typical urban infrastructure."
+    },
+    {
+      "video_id": "videos/video_002.mp4",
+      "question": "Describe the scene visible in this traffic camera footage.",
+      "answer": "A multi-lane urban road captured from an elevated camera angle. At least five lanes of traffic flow in the same direction. The right side of the road is lined with mature trees and a sidewalk. A gray sedan occupies a middle lane while a white sedan travels in the outer lane. Daylight conditions with clear visibility."
+    }
+  ]
+}

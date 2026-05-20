@@ -1,0 +1,120 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://developer.nvidia.com/tao-daft/schemas/metropolis-v3.0/video_summarization.schema.json",
+  "title": "Video Summarization Task Annotation",
+  "description": "Captioning task for summarizing temporal events in a video. Each item provides a question prompt, an answer summary, optional reasoning, and an optional timestamp window.",
+  "type": "object",
+  "required": [
+    "version",
+    "metadata",
+    "items"
+  ],
+  "additionalProperties": false,
+  "properties": {
+    "version": {
+      "type": "string",
+      "const": "metropolis-v3.0",
+      "description": "Schema version - must be '3.0' for this schema"
+    },
+    "items": {
+      "type": "array",
+      "description": "Array of event summarization items, one per video or temporal segment",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "required": [
+          "question",
+          "answer"
+        ],
+        "additionalProperties": false,
+        "properties": {
+          "video_id": {
+            "type": "string",
+            "description": "Reference to video ID (matches directory name in contextual/)"
+          },
+          "question": {
+            "type": "string",
+            "description": "The summarization prompt or guidance for the event summary"
+          },
+          "answer": {
+            "type": "string",
+            "description": "Answer summary"
+          },
+          "reasoning": {
+            "type": "string",
+            "description": "Optional step-by-step reasoning trace"
+          },
+          "timestamp": {
+            "type": "object",
+            "description": "Optional temporal window of the event within the video",
+            "additionalProperties": false,
+            "properties": {
+              "start": {
+                "type": "number",
+                "description": "Start time in seconds",
+                "minimum": 0
+              },
+              "end": {
+                "type": "number",
+                "description": "End time in seconds",
+                "minimum": 0
+              }
+            }
+          },
+          "image_id": {
+            "type": "string",
+            "description": "Reference to image_id in image_*.json",
+            "minLength": 1
+          }
+        },
+        "oneOf": [
+          {
+            "required": [
+              "video_id"
+            ]
+          },
+          {
+            "required": [
+              "image_id"
+            ]
+          }
+        ]
+      }
+    },
+    "metadata": {
+      "type": "object",
+      "description": "File metadata for identification and cataloging",
+      "required": [
+        "type"
+      ],
+      "properties": {
+        "type": {
+          "type": "string",
+          "description": "Task type identifier (must be 'video_summarization')",
+          "const": "video_summarization"
+        },
+        "date": {
+          "type": "string",
+          "description": "Creation date in ISO 8601 format (YYYY-MM-DD)",
+          "format": "date"
+        },
+        "description": {
+          "type": "string",
+          "description": "Human-readable description of this annotation file"
+        },
+        "license": {
+          "type": "string",
+          "description": "License under which this annotation is distributed"
+        },
+        "tags": {
+          "type": "array",
+          "description": "List of tags for categorization and search",
+          "items": {
+            "type": "string"
+          }
+        }
+      },
+      "additionalProperties": false
+    }
+  }
+}

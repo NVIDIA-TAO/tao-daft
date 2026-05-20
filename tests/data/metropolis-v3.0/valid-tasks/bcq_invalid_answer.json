@@ -1,0 +1,13 @@
+{
+  "version": "metropolis-v3.0",
+  "metadata": {
+    "type": "bcq"
+  },
+  "items": [
+    {
+      "video_id": "cam1",
+      "question": "Did it crash?",
+      "answer": "Maybe"
+    }
+  ]
+}

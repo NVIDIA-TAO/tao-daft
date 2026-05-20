@@ -1,0 +1,161 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://github.com/NVIDIA/nvidia-tao-daft/schemas/metropolis-v3.0/image.schema.json",
+  "title": "Image Metadata Schema",
+  "description": "Schema for image.json - Global metadata for image assets in TAO DAFT format metropolis-v3.0",
+  "type": "object",
+  "required": [
+    "version",
+    "image_id",
+    "format",
+    "height",
+    "width",
+    "metadata"
+  ],
+  "properties": {
+    "version": {
+      "type": "string",
+      "const": "metropolis-v3.0",
+      "description": "Schema version - must be '3.0' for this schema"
+    },
+    "image_id": {
+      "type": "string",
+      "description": "Unique identifier for the image",
+      "minLength": 1,
+      "examples": [
+        "image_001",
+        "warehouse_cam1_20251115_093000"
+      ]
+    },
+    "format": {
+      "type": "string",
+      "description": "Image format",
+      "enum": [
+        "png",
+        "jpg",
+        "jpeg",
+        "bmp",
+        "tiff",
+        "webp"
+      ],
+      "examples": [
+        "png",
+        "jpg"
+      ]
+    },
+    "rectified": {
+      "type": "boolean",
+      "description": "Whether the image has been rectified (lens distortion corrected)",
+      "default": false
+    },
+    "scenario_info": {
+      "type": "string",
+      "description": "Information about the image capture scenario, environment, equipment, and purpose",
+      "examples": [
+        "Warehouse aisle - forklift inspection photo",
+        "Smart city intersection - traffic monitoring snapshot"
+      ]
+    },
+    "caption": {
+      "type": "string",
+      "description": "Textual description of the image content",
+      "examples": [
+        "Warehouse aisle with forklift carrying pallet, worker in high-visibility vest walking nearby",
+        "Urban intersection with stopped vehicles at red light, pedestrian crossing in crosswalk"
+      ]
+    },
+    "camera_id": {
+      "type": "string",
+      "description": "Reference to camera ID in calibration.json for accessing intrinsic/extrinsic parameters",
+      "examples": [
+        "cam_001",
+        "camera_overhead"
+      ]
+    },
+    "timestamp": {
+      "type": "string",
+      "description": "ISO 8601 timestamp when image was captured",
+      "format": "date-time",
+      "examples": [
+        "2025-11-15T14:30:00Z",
+        "2025-11-15T14:30:00.123+00:00"
+      ]
+    },
+    "metadata": {
+      "type": "object",
+      "description": "File metadata for identification and cataloging",
+      "required": [
+        "type"
+      ],
+      "properties": {
+        "type": {
+          "type": "string",
+          "description": "Annotation type identifier (must be 'image')",
+          "const": "image"
+        },
+        "date": {
+          "type": "string",
+          "description": "Creation date in ISO 8601 format (YYYY-MM-DD)",
+          "format": "date"
+        },
+        "description": {
+          "type": "string",
+          "description": "Human-readable description of this annotation file"
+        },
+        "license": {
+          "type": "string",
+          "description": "License under which this annotation is distributed"
+        },
+        "tags": {
+          "type": "array",
+          "description": "List of tags for categorization and search",
+          "items": {
+            "type": "string"
+          }
+        }
+      },
+      "additionalProperties": false
+    },
+    "height": {
+      "type": "integer",
+      "description": "Image height in pixels",
+      "minimum": 1,
+      "examples": [
+        720,
+        1080,
+        2160
+      ]
+    },
+    "width": {
+      "type": "integer",
+      "description": "Image width in pixels",
+      "minimum": 1,
+      "examples": [
+        1280,
+        1920,
+        3840
+      ]
+    }
+  },
+  "additionalProperties": false,
+  "examples": [
+    {
+      "version": 2.0,
+      "image_id": "warehouse_aisle_001",
+      "format": "png",
+      "rectified": false,
+      "scenario_info": "Warehouse operations - safety inspection photo captured from overhead camera",
+      "caption": "Wide view of warehouse aisle with yellow forklift carrying wooden pallet. Worker in orange vest and yellow hard hat walking perpendicular to forklift path. Multiple shelving units with boxes in background.",
+      "camera_id": "cam_overhead_01",
+      "timestamp": "2025-11-15T14:30:00Z"
+    },
+    {
+      "version": 2.0,
+      "image_id": "intersection_snap_042",
+      "format": "jpg",
+      "rectified": true,
+      "caption": "Four-way intersection with vehicles stopped at red light, pedestrian in crosswalk",
+      "camera_id": "traffic_cam_north"
+    }
+  ]
+}

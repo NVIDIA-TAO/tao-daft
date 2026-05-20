@@ -1,0 +1,149 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://github.com/NVIDIA/nvidia-tao-daft/schemas/metropolis-v3.0/msted.schema.json",
+  "title": "Multi-Scale Spatio-Temporal Event Description Schema (metropolis-v3.0)",
+  "description": "Schema for msted_*.json - Multi-Scale Spatio-Temporal Event Description (TAO DAFT metropolis-v3.0). MSTED is an auto-generated annotation that captures scene context, temporal/spatial localization, and structured event characterization at multiple scales.",
+  "type": "object",
+  "required": [
+    "version",
+    "metadata",
+    "video_id",
+    "scene_description",
+    "temporal_spatial_localization",
+    "event_description"
+  ],
+  "additionalProperties": false,
+  "properties": {
+    "version": {
+      "type": "string",
+      "const": "metropolis-v3.0",
+      "description": "Schema version - must be '3.0' for this schema"
+    },
+    "metadata": {
+      "type": "object",
+      "description": "File metadata for identification and cataloging",
+      "required": [
+        "type"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "type": {
+          "type": "string",
+          "const": "msted",
+          "description": "Contextual type identifier"
+        },
+        "date": {
+          "type": "string",
+          "description": "Creation date in ISO 8601 format (YYYY-MM-DD)",
+          "format": "date"
+        },
+        "description": {
+          "type": "string",
+          "description": "Human-readable description of this annotation file"
+        },
+        "license": {
+          "type": "string",
+          "description": "License under which this annotation is distributed"
+        },
+        "tags": {
+          "type": "array",
+          "description": "Dataset-level tags for categorization and search",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "video_id": {
+      "type": "string",
+      "description": "Reference to video file (matches video_id in video_*.json)"
+    },
+    "sources": {
+      "type": "array",
+      "description": "List of contextual files used to generate this MSTED (e.g. video_human.json, events_human.json, chunks_auto.json)",
+      "items": {
+        "type": "string"
+      }
+    },
+    "scene_description": {
+      "type": "string",
+      "description": "Holistic Scene Description: environment, weather, time of day, scene layout, and pre-event baseline behavior — establishing the normal operational context so that the event of focus can be accurately characterized relative to that baseline."
+    },
+    "temporal_spatial_localization": {
+      "type": "array",
+      "description": "Temporal and Spatial Localization: a chronological narrative of the event's progression with precise start/end times and spatial region, anchoring all downstream annotations to verifiable evidence in the video.",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "required": [
+          "start",
+          "end",
+          "description"
+        ],
+        "additionalProperties": false,
+        "properties": {
+          "start": {
+            "type": "string",
+            "description": "Segment start time in flexible timecode: MM:SS or HH:MM:SS with optional fractional seconds (e.g. '00:02', '00:02.70', '00:01:30')",
+            "pattern": "^(\\d{2}:)?\\d{2}:\\d{2}(\\.\\d+)?$"
+          },
+          "end": {
+            "type": "string",
+            "description": "Segment end time in flexible timecode: MM:SS or HH:MM:SS with optional fractional seconds (e.g. '00:04', '00:04.50', '00:01:35')",
+            "pattern": "^(\\d{2}:)?\\d{2}:\\d{2}(\\.\\d+)?$"
+          },
+          "description": {
+            "type": "string",
+            "description": "Chronological narrative of what occurs in this temporal segment"
+          },
+          "spatial_region": {
+            "type": "string",
+            "description": "Spatial location within the frame or scene where this segment occurs"
+          }
+        }
+      }
+    },
+    "event_description": {
+      "type": "object",
+      "description": "Event of Focus Description: a structured characterization of the salient event identified in the video. Key names are flexible — use whatever fields best describe the event. All values must be strings. Suggested fields: category, description, temporal_description, spatial_location, cause, consequence.",
+      "minProperties": 1,
+      "additionalProperties": {
+        "type": "string"
+      }
+    }
+  },
+  "examples": [
+    {
+      "version": "metropolis-v3.0",
+      "metadata": {
+        "type": "msted",
+        "date": "2026-03-27",
+        "description": "MSTED for ITS collision video"
+      },
+      "video_id": "collision_video_001",
+      "sources": ["video_auto.json", "events_auto.json", "chunks_auto.json"],
+      "scene_description": "The video captures a high-angle view of a busy urban arterial road on a sunny day. The scene features a five-lane, two-way thoroughfare with vehicles flowing in both directions.",
+      "temporal_spatial_localization": [
+        {
+          "start": "00:00",
+          "end": "00:02.70",
+          "description": "Traffic flows normally. A white sedan travels in lane 5, a gray sedan in lane 3."
+        },
+        {
+          "start": "00:02.70",
+          "end": "00:04.50",
+          "description": "The gray sedan initiates a left turn from lane 3, colliding with the white sedan in lane 5.",
+          "spatial_region": "Center of intersection, lanes 3-5"
+        }
+      ],
+      "event_description": {
+        "category": "Left-Turn Collision / Vehicle Stalled",
+        "description": "A gray sedan attempted a left turn from a middle lane, failing to yield to a white sedan traveling straight in the outer lane.",
+        "temporal_description": "The primary collision occurs between frames 81 and 135, with secondary impact immediately after.",
+        "spatial_location": "Travel lanes of Rainier Ave S near the intersection.",
+        "cause": "Improper left turn by the gray sedan, which failed to ensure the lane was clear.",
+        "consequence": "Property damage to both vehicles and a roadside tree. The white sedan was disabled on the sidewalk."
+      }
+    }
+  ]
+}

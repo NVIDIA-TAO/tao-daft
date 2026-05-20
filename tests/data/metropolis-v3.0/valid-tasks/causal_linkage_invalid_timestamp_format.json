@@ -1,0 +1,15 @@
+{
+  "version": "metropolis-v3.0",
+  "metadata": {
+    "type": "causal_linkage"
+  },
+  "items": [
+    {
+      "video_id": "cam1",
+      "t1": "1s",
+      "t2": "7s",
+      "question": "Why?",
+      "answer": "Because."
+    }
+  ]
+}

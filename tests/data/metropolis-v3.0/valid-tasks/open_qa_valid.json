@@ -1,0 +1,25 @@
+{
+  "version": "metropolis-v3.0",
+  "metadata": {
+    "type": "open_qa",
+    "date": "2026-03-26",
+    "description": "Test Open QA",
+    "license": "Apache-2.0",
+    "tags": [
+      "test"
+    ]
+  },
+  "items": [
+    {
+      "video_id": "cam1",
+      "question": "What is the consequence of the collision?",
+      "answer": "The sedan is pushed onto the sidewalk and hits a tree."
+    },
+    {
+      "video_id": "cam1",
+      "question": "Describe the traffic flow before the incident.",
+      "answer": "Normal flow on a 4-lane road.",
+      "reasoning": "Vehicles are moving at normal speed in all lanes."
+    }
+  ]
+}

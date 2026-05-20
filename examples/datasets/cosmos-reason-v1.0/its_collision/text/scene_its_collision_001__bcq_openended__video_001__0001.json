@@ -1,0 +1,39 @@
+{
+  "version": "cosmos-reason-v1.0",
+  "metadata": {
+    "type": "conversation",
+    "tags": [
+      "bcq_openended"
+    ]
+  },
+  "conversations": [
+    {
+      "role": "user",
+      "content": [
+        {
+          "type": "video",
+          "video": "video_0"
+        },
+        {
+          "type": "text",
+          "text": "Does the maroon sedan strike any other vehicle in the video?\n\nAnswer with Yes or No, followed by a brief explanation."
+        }
+      ]
+    },
+    {
+      "role": "assistant",
+      "reasoning_content": [
+        {
+          "type": "text",
+          "text": "The maroon sedan is positioned in the second lane from the left at the top of the frame. For the first 1.5 seconds of the video, it remains stationary while the white sedan in front of it begins to move. As the white sedan enters the intersection to perform its turn, the maroon sedan starts to roll forward toward the junction. However, it maintains a safe distance and does not reach the point of impact where the accident occurs.\n\nThe primary anomaly is strictly between the white sedan and the red sedan coming from the opposite direction. The maroon sedan continues its forward motion but stops or slows down as the collision unfolds in front of it. Because the maroon sedan is trailing the white sedan and does not enter the path of the red sedan, it avoids any physical involvement in the crash. Therefore, the maroon sedan is a witness vehicle rather than a participant in the accident."
+        }
+      ],
+      "content": [
+        {
+          "type": "text",
+          "text": "No. While the maroon sedan is present in the scene and moves toward the intersection, it does not make contact with any other vehicle. It remains behind the white sedan at the start of the video and begins to move forward only after the white sedan has already entered the intersection to turn. The collision solely involves the white sedan and the red sedan."
+        }
+      ]
+    }
+  ]
+}

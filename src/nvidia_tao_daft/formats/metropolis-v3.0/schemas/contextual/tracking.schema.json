@@ -1,0 +1,326 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://github.com/NVIDIA/nvidia-tao-daft/schemas/metropolis-v3.0/tracking.schema.json",
+  "title": "Multi-Object Tracking Schema",
+  "description": "Schema for tracking.json - 4D multi-object tracking across time and cameras (TAO DAFT metropolis-v3.0)",
+  "type": "object",
+  "required": [
+    "version",
+    "frames",
+    "metadata"
+  ],
+  "properties": {
+    "version": {
+      "type": "string",
+      "const": "metropolis-v3.0",
+      "description": "Schema version - must be '3.0' for this schema"
+    },
+    "frames": {
+      "type": "object",
+      "description": "Dictionary of frames with tracking data, keyed by frame_id",
+      "patternProperties": {
+        "^.*$": {
+          "type": "array",
+          "description": "List of tracked objects in this frame",
+          "items": {
+            "type": "object",
+            "required": [
+              "object_id",
+              "3d_location"
+            ],
+            "properties": {
+              "object_id": {
+                "type": "string",
+                "description": "Reference to object_id in instances.json",
+                "examples": [
+                  "forklift_13",
+                  "worker_01",
+                  "car_05"
+                ]
+              },
+              "3d_location": {
+                "type": "array",
+                "description": "3D coordinates [x, y, z] of object center in meters",
+                "items": {
+                  "type": "number"
+                },
+                "minItems": 3,
+                "maxItems": 3,
+                "examples": [
+                  [
+                    5.2,
+                    10.3,
+                    0.0
+                  ],
+                  [
+                    12.5,
+                    8.1,
+                    1.2
+                  ]
+                ]
+              },
+              "3d_bounding_box_scale": {
+                "type": "array",
+                "description": "3D bounding box dimensions [width, length, height] in meters",
+                "items": {
+                  "type": "number",
+                  "minimum": 0
+                },
+                "minItems": 3,
+                "maxItems": 3,
+                "examples": [
+                  [
+                    2.0,
+                    3.5,
+                    2.0
+                  ],
+                  [
+                    0.6,
+                    0.4,
+                    1.8
+                  ]
+                ]
+              },
+              "3d_bounding_box_rotation": {
+                "type": "array",
+                "description": "3D bounding box rotation [roll, pitch, yaw] in radians",
+                "items": {
+                  "type": "number"
+                },
+                "minItems": 3,
+                "maxItems": 3,
+                "examples": [
+                  [
+                    0,
+                    0,
+                    0
+                  ],
+                  [
+                    0,
+                    0,
+                    1.57
+                  ],
+                  [
+                    0.1,
+                    -0.05,
+                    3.14
+                  ]
+                ]
+              },
+              "2d_bounding_box_visible": {
+                "type": "object",
+                "description": "2D bounding boxes projected in each camera view where object is visible",
+                "patternProperties": {
+                  "^.*$": {
+                    "type": "array",
+                    "description": "2D bounding box [xmin, ymin, xmax, ymax] in camera's image coordinates",
+                    "items": {
+                      "type": "number"
+                    },
+                    "minItems": 4,
+                    "maxItems": 4,
+                    "examples": [
+                      [
+                        100,
+                        200,
+                        300,
+                        500
+                      ],
+                      [
+                        450.5,
+                        320.8,
+                        680.2,
+                        550.1
+                      ]
+                    ]
+                  }
+                },
+                "examples": [
+                  {
+                    "cam_001": [
+                      100,
+                      200,
+                      300,
+                      500
+                    ],
+                    "cam_002": [
+                      450,
+                      320,
+                      680,
+                      550
+                    ]
+                  }
+                ]
+              }
+            },
+            "additionalProperties": false
+          }
+        }
+      },
+      "additionalProperties": false
+    },
+    "metadata": {
+      "type": "object",
+      "description": "File metadata for identification and cataloging",
+      "required": [
+        "type"
+      ],
+      "properties": {
+        "type": {
+          "type": "string",
+          "description": "Annotation type identifier (must be 'tracking')",
+          "const": "tracking"
+        },
+        "date": {
+          "type": "string",
+          "description": "Creation date in ISO 8601 format (YYYY-MM-DD)",
+          "format": "date"
+        },
+        "description": {
+          "type": "string",
+          "description": "Human-readable description of this annotation file"
+        },
+        "license": {
+          "type": "string",
+          "description": "License under which this annotation is distributed"
+        },
+        "tags": {
+          "type": "array",
+          "description": "List of tags for categorization and search",
+          "items": {
+            "type": "string"
+          }
+        }
+      },
+      "additionalProperties": false
+    }
+  },
+  "additionalProperties": false,
+  "examples": [
+    {
+      "version": 2.0,
+      "frames": {
+        "frame_000042": [
+          {
+            "object_id": "forklift_13",
+            "3d_location": [
+              5.2,
+              10.3,
+              0.0
+            ],
+            "3d_bounding_box_scale": [
+              2.0,
+              3.5,
+              2.0
+            ],
+            "3d_bounding_box_rotation": [
+              0,
+              0,
+              1.57
+            ],
+            "2d_bounding_box_visible": {
+              "cam_001": [
+                450,
+                300,
+                650,
+                550
+              ],
+              "cam_002": [
+                120,
+                280,
+                280,
+                480
+              ]
+            }
+          },
+          {
+            "object_id": "worker_01",
+            "3d_location": [
+              3.5,
+              11.8,
+              0.0
+            ],
+            "3d_bounding_box_scale": [
+              0.6,
+              0.4,
+              1.8
+            ],
+            "3d_bounding_box_rotation": [
+              0,
+              0,
+              3.14
+            ],
+            "2d_bounding_box_visible": {
+              "cam_001": [
+                150,
+                200,
+                220,
+                400
+              ]
+            }
+          }
+        ],
+        "frame_000043": [
+          {
+            "object_id": "forklift_13",
+            "3d_location": [
+              5.7,
+              10.3,
+              0.0
+            ],
+            "3d_bounding_box_scale": [
+              2.0,
+              3.5,
+              2.0
+            ],
+            "3d_bounding_box_rotation": [
+              0,
+              0,
+              1.57
+            ],
+            "2d_bounding_box_visible": {
+              "cam_001": [
+                470,
+                305,
+                670,
+                555
+              ],
+              "cam_002": [
+                140,
+                285,
+                300,
+                485
+              ]
+            }
+          },
+          {
+            "object_id": "worker_01",
+            "3d_location": [
+              3.5,
+              13.0,
+              0.0
+            ],
+            "3d_bounding_box_scale": [
+              0.6,
+              0.4,
+              1.8
+            ],
+            "3d_bounding_box_rotation": [
+              0,
+              0,
+              3.14
+            ],
+            "2d_bounding_box_visible": {
+              "cam_001": [
+                148,
+                180,
+                218,
+                380
+              ]
+            }
+          }
+        ]
+      }
+    }
+  ]
+}

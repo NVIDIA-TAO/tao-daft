@@ -1,0 +1,15 @@
+{
+  "version": "metropolis-v3.0",
+  "metadata": {
+    "type": "bcq"
+  },
+  "items": [
+    {
+      "video_id": "cam1",
+      "t1": "00:00:01",
+      "t2": "00:00:07",
+      "question": "Why?",
+      "answer": "Because."
+    }
+  ]
+}

@@ -1,0 +1,33 @@
+{
+  "version": "cosmos-reason-v1.0",
+  "metadata": {
+    "type": "conversation",
+    "tags": [
+      "video_summarization"
+    ]
+  },
+  "conversations": [
+    {
+      "role": "user",
+      "content": [
+        {
+          "type": "video",
+          "video": "video_0"
+        },
+        {
+          "type": "text",
+          "text": "Summarize the key events in this traffic video."
+        }
+      ]
+    },
+    {
+      "role": "assistant",
+      "content": [
+        {
+          "type": "text",
+          "text": "A white sedan fails to yield while making a left turn at a signalized intersection, resulting in a T-bone collision with a red sedan traveling straight. Both vehicles end up immobilized in the intersection, with the white sedan pushed across a marked crosswalk. A maroon sedan behind the white sedan stops safely without involvement."
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,18 @@
+{
+  "version": "metropolis-v3.0",
+  "video_id": "camera_01",
+  "format": "mp4",
+  "fps": 30,
+  "duration": 1.5,
+  "height": 480,
+  "width": 640,
+  "metadata": {
+    "type": "video",
+    "date": "2026-03-25",
+    "description": "Test",
+    "license": "Apache-2.0",
+    "tags": [
+      "test"
+    ]
+  }
+}

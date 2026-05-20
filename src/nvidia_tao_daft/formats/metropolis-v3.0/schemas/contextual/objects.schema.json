@@ -1,0 +1,285 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://github.com/NVIDIA/nvidia-tao-daft/schemas/metropolis-v3.0/objects.schema.json",
+  "title": "Object Detection Annotations Schema",
+  "description": "Schema for objects.json - Per-frame object detection annotations (TAO DAFT metropolis-v3.0)",
+  "type": "object",
+  "required": [
+    "version",
+    "frames",
+    "metadata"
+  ],
+  "properties": {
+    "version": {
+      "type": "string",
+      "const": "metropolis-v3.0",
+      "description": "Schema version - must be '3.0' for this schema"
+    },
+    "frames": {
+      "type": "object",
+      "description": "Dictionary of frames with detections, keyed by frame_id",
+      "patternProperties": {
+        "^.*$": {
+          "type": "object",
+          "description": "Detection annotations for a single frame",
+          "required": [
+            "format",
+            "frame_number",
+            "instances"
+          ],
+          "properties": {
+            "format": {
+              "type": "string",
+              "description": "Image format of the frame",
+              "enum": [
+                "png",
+                "jpg",
+                "jpeg",
+                "bmp"
+              ],
+              "examples": [
+                "png"
+              ]
+            },
+            "frame_number": {
+              "type": "integer",
+              "description": "Sequential frame number (0-indexed)",
+              "minimum": 0,
+              "examples": [
+                0,
+                11,
+                250
+              ]
+            },
+            "instances": {
+              "type": "array",
+              "description": "List of object instances detected in this frame",
+              "items": {
+                "type": "object",
+                "required": [
+                  "object_id",
+                  "bounding_box_2d_tight"
+                ],
+                "properties": {
+                  "object_id": {
+                    "type": "string",
+                    "description": "Reference to object_id in instances.json",
+                    "examples": [
+                      "forklift_13",
+                      "worker_01",
+                      "pallet_a12"
+                    ]
+                  },
+                  "bounding_box_2d_tight": {
+                    "type": "array",
+                    "description": "Tight 2D bounding box [xmin, ymin, xmax, ymax] in pixels",
+                    "items": {
+                      "type": "number"
+                    },
+                    "minItems": 4,
+                    "maxItems": 4,
+                    "examples": [
+                      [
+                        5,
+                        5,
+                        10,
+                        10
+                      ],
+                      [
+                        100.5,
+                        200.3,
+                        350.8,
+                        450.2
+                      ]
+                    ]
+                  },
+                  "bounding_box_2d_loose": {
+                    "type": "array",
+                    "description": "Loose 2D bounding box [xmin, ymin, xmax, ymax] with context padding",
+                    "items": {
+                      "type": "number"
+                    },
+                    "minItems": 4,
+                    "maxItems": 4,
+                    "examples": [
+                      [
+                        0,
+                        0,
+                        15,
+                        15
+                      ],
+                      [
+                        90,
+                        190,
+                        360,
+                        460
+                      ]
+                    ]
+                  },
+                  "mask": {
+                    "type": "array",
+                    "description": "Instance segmentation mask in RLE (Run-Length Encoding) format",
+                    "items": {
+                      "type": "number"
+                    },
+                    "examples": [
+                      [
+                        376.97,
+                        176.91,
+                        398.81,
+                        176.91,
+                        401.24,
+                        312.82
+                      ]
+                    ]
+                  },
+                  "occluded": {
+                    "type": "boolean",
+                    "description": "Whether the object is partially occluded",
+                    "examples": [
+                      false,
+                      true
+                    ]
+                  },
+                  "truncated": {
+                    "type": "boolean",
+                    "description": "Whether the object extends beyond frame boundaries",
+                    "examples": [
+                      false,
+                      true
+                    ]
+                  }
+                },
+                "additionalProperties": false
+              }
+            }
+          },
+          "additionalProperties": false
+        }
+      },
+      "additionalProperties": false
+    },
+    "metadata": {
+      "type": "object",
+      "description": "File metadata for identification and cataloging",
+      "required": [
+        "type"
+      ],
+      "properties": {
+        "type": {
+          "type": "string",
+          "description": "Annotation type identifier (must be 'objects')",
+          "const": "objects"
+        },
+        "date": {
+          "type": "string",
+          "description": "Creation date in ISO 8601 format (YYYY-MM-DD)",
+          "format": "date"
+        },
+        "description": {
+          "type": "string",
+          "description": "Human-readable description of this annotation file"
+        },
+        "license": {
+          "type": "string",
+          "description": "License under which this annotation is distributed"
+        },
+        "tags": {
+          "type": "array",
+          "description": "List of tags for categorization and search",
+          "items": {
+            "type": "string"
+          }
+        }
+      },
+      "additionalProperties": false
+    },
+    "video_id": {
+      "type": "string",
+      "description": "Reference to video_id in the corresponding video annotation file",
+      "examples": [
+        "camera_01",
+        "camera_02"
+      ]
+    },
+    "instances_source": {
+      "type": "string",
+      "description": "Filename of the instances annotation file containing object definitions",
+      "examples": [
+        "instances_annot1.json",
+        "instances_human.json"
+      ]
+    }
+  },
+  "additionalProperties": false,
+  "examples": [
+    {
+      "version": 2.0,
+      "frames": {
+        "frame_000011": {
+          "format": "png",
+          "frame_number": 11,
+          "instances": [
+            {
+              "object_id": "forklift_13",
+              "bounding_box_2d_tight": [
+                450,
+                300,
+                650,
+                550
+              ],
+              "bounding_box_2d_loose": [
+                440,
+                290,
+                660,
+                560
+              ],
+              "mask": [
+                376.97,
+                176.91,
+                398.81,
+                176.91,
+                401.24,
+                312.82
+              ],
+              "occluded": false,
+              "truncated": false
+            },
+            {
+              "object_id": "worker_01",
+              "bounding_box_2d_tight": [
+                150,
+                200,
+                220,
+                400
+              ],
+              "bounding_box_2d_loose": [
+                140,
+                190,
+                230,
+                410
+              ],
+              "occluded": false,
+              "truncated": false
+            }
+          ]
+        },
+        "frame_000012": {
+          "format": "png",
+          "frame_number": 12,
+          "instances": [
+            {
+              "object_id": "forklift_13",
+              "bounding_box_2d_tight": [
+                470,
+                305,
+                670,
+                555
+              ]
+            }
+          ]
+        }
+      }
+    }
+  ]
+}

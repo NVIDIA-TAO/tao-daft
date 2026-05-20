@@ -1,0 +1,36 @@
+{
+  "format": "tao-vl-reason-v1.0",
+  "metadata": {
+    "type": "annotation",
+    "task": "bcq",
+    "description": "ITS collision training samples for tao-vl-reason fine-tuning. Converted from DAFT metropolis-v3.0 scene covering open QA, BCQ/MCQ (short + open-ended), scene/video/temporal descriptions, temporal localization, and causal linkage.",
+    "license": "Apache-2.0"
+  },
+  "media_root": null,
+  "items": [
+    {
+      "video_id": "videos/video_001.mp4",
+      "question": "Does the white sedan collide with a red sedan while making a left turn?\n\nAnswer with only Yes or No.",
+      "answer": "Yes",
+      "reasoning": "The video shows a clear sequence of events leading to a T-bone collision at a signalized intersection. Initially, the white sedan is seen approaching from the top of the frame and begins its left-turn maneuver across the intersection. At the same time, a red sedan is moving straight from the bottom right of the frame. The two vehicles' paths intersect, and between the 3.8-second and 4.9-second marks, the red sedan strikes the side of the white sedan.\n\nThe collision is the result of a failure to yield the right-of-way during a turn. The white sedan does not wait for the oncoming red sedan to pass before proceeding with its left turn. After the impact, the white sedan is deflected toward the crosswalk on the right, and the red sedan comes to a halt nearby. Both vehicles sustain visible damage and end up obstructing the flow of traffic within the intersection."
+    },
+    {
+      "video_id": "videos/video_001.mp4",
+      "question": "Does the maroon sedan strike any other vehicle in the video?\n\nAnswer with only Yes or No.",
+      "answer": "No",
+      "reasoning": "The maroon sedan is positioned in the second lane from the left at the top of the frame. For the first 1.5 seconds of the video, it remains stationary while the white sedan in front of it begins to move. As the white sedan enters the intersection to perform its turn, the maroon sedan starts to roll forward toward the junction. However, it maintains a safe distance and does not reach the point of impact where the accident occurs.\n\nThe primary anomaly is strictly between the white sedan and the red sedan coming from the opposite direction. The maroon sedan continues its forward motion but stops or slows down as the collision unfolds in front of it. Because the maroon sedan is trailing the white sedan and does not enter the path of the red sedan, it avoids any physical involvement in the crash. Therefore, the maroon sedan is a witness vehicle rather than a participant in the accident."
+    },
+    {
+      "video_id": "videos/video_002.mp4",
+      "question": "Does the white sedan collide with a tree after being hit by the gray sedan?\n\nAnswer with only Yes or No.",
+      "answer": "Yes",
+      "reasoning": "The video begins with a white sedan and a gray sedan traveling in the same direction on a multi-lane urban road. The white sedan is positioned in the fifth lane from the left, while the gray sedan is in the third lane. Around the 2.7-second mark, the gray sedan suddenly initiates a left-turn maneuver across the path of the white sedan. This results in a side-impact collision that redirects the white sedan's momentum toward the right-hand curb.\n\nAs the white sedan loses control due to the impact, it moves toward the sidewalk area lined with trees. Between 4.5 and 4.9 seconds, the front of the white sedan makes direct contact with one of the trees. The vehicle remains stalled against this tree for the remainder of the video. This secondary impact is a direct consequence of the initial collision caused by the gray sedan's improper turn. The clear daylight and high-angle view allow for a distinct observation of the white sedan's trajectory from the roadway to the tree."
+    },
+    {
+      "video_id": "videos/video_002.mp4",
+      "question": "Does the gray sedan remain stationary at the scene after the collision?\n\nAnswer with only Yes or No.",
+      "answer": "No",
+      "reasoning": "The video captures the entire sequence of the collision and its immediate aftermath. When the gray sedan attempts its left turn from the middle lane, it strikes the white sedan traveling in the outer lane. While the white sedan is forced off the road and suffers a secondary collision with a tree that causes it to stall, the gray sedan maintains its mobility. \n\nFollowing the impact, the gray sedan does not pull over or stop to assess the damage. Instead, from 4.1 seconds to 8.9 seconds, the video shows the gray sedan continuing to move forward. It eventually disappears from the camera's field of view on the right side of the frame. This contrast in the vehicles' states\u2014one disabled on the sidewalk and the other driving away\u2014is a key observation in the temporal progression of the event. Therefore, the gray sedan does not remain stationary at the scene."
+    }
+  ]
+}

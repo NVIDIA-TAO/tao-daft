@@ -1,0 +1,33 @@
+{
+  "version": "cosmos-reason-v1.0",
+  "metadata": {
+    "type": "conversation",
+    "tags": [
+      "scene_description"
+    ]
+  },
+  "conversations": [
+    {
+      "role": "user",
+      "content": [
+        {
+          "type": "video",
+          "video": "video_0"
+        },
+        {
+          "type": "text",
+          "text": "Describe the scene visible in this traffic camera footage."
+        }
+      ]
+    },
+    {
+      "role": "assistant",
+      "content": [
+        {
+          "type": "text",
+          "text": "An elevated view of a signalized four-way intersection in an urban setting. Multiple lanes of traffic converge at the junction with visible lane markings, crosswalks, and traffic signals. A white sedan, red sedan, and maroon sedan are the primary vehicles in frame. The intersection is surrounded by typical urban infrastructure."
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,32 @@
+{
+  "version": "metropolis-v3.0",
+  "metadata": {
+    "type": "chunks",
+    "date": "2026-04-01",
+    "description": "Dense temporal chunks for ITS collision video",
+    "tags": ["aetc", "test"]
+  },
+  "video_id": "main",
+  "chunks": [
+    {
+      "chunk_id": "chunk_001",
+      "start": "00:00",
+      "end": "00:05",
+      "description": "Traffic flows normally. Vehicles travel in both directions.",
+      "tags": ["normal_flow"]
+    },
+    {
+      "chunk_id": "chunk_002",
+      "start": "00:05",
+      "end": "00:09.50",
+      "description": "A gray sedan initiates a left turn from the center lane, striking an oncoming white sedan.",
+      "tags": ["collision", "left_turn_violation"]
+    },
+    {
+      "chunk_id": "chunk_003",
+      "start": "00:09.50",
+      "end": "00:15",
+      "description": "Both vehicles come to a stop. The white sedan is displaced onto the sidewalk."
+    }
+  ]
+}

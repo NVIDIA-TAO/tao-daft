@@ -1,0 +1,44 @@
+{
+  "version": "metropolis-v3.0",
+  "instances": {
+    "vehicle_01": {
+      "object_type": "car",
+      "instance_id": 1,
+      "semantic_id": 3,
+      "color": [255, 0, 0],
+      "caption": "Red 2024 Toyota Camry sedan, stopped behind stop line at north approach, brake lights illuminated",
+      "videos": ["camera_01"]
+    },
+    "vehicle_02": {
+      "object_type": "bus",
+      "instance_id": 2,
+      "semantic_id": 4,
+      "color": [0, 0, 255],
+      "caption": "MTA city bus #42, eastbound, decelerating on approach to intersection",
+      "videos": ["camera_01"]
+    },
+    "traffic_light_01": {
+      "object_type": "traffic_light",
+      "instance_id": 3,
+      "semantic_id": 8,
+      "color": [0, 255, 0],
+      "caption": "Standard 3-phase traffic signal on north side, showing red throughout clip",
+      "videos": ["camera_01"]
+    },
+    "pedestrian_01": {
+      "object_type": "pedestrian",
+      "instance_id": 4,
+      "semantic_id": 1,
+      "color": [255, 165, 0],
+      "caption": "Person in dark jacket waiting on east sidewalk near crosswalk",
+      "videos": ["camera_01"]
+    }
+  },
+  "metadata": {
+    "type": "instances",
+    "date": "2026-03-25",
+    "description": "Instance definitions from human annotation (Data Factory team)",
+    "license": "Apache-2.0",
+    "tags": ["transportation", "intersection", "human-verified"]
+  }
+}

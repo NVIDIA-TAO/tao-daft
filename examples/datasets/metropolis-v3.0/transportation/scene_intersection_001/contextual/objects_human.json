@@ -1,0 +1,74 @@
+{
+  "version": "metropolis-v3.0",
+  "video_id": "camera_01",
+  "instances_source": "instances_human.json",
+  "frames": {
+    "frame_000000": {
+      "format": "png",
+      "frame_number": 0,
+      "instances": [
+        {
+          "object_id": "vehicle_01",
+          "bounding_box_2d_tight": [448, 318, 652, 522],
+          "occluded": false,
+          "truncated": false
+        },
+        {
+          "object_id": "vehicle_02",
+          "bounding_box_2d_tight": [798, 248, 1102, 502],
+          "occluded": false,
+          "truncated": false
+        },
+        {
+          "object_id": "traffic_light_01",
+          "bounding_box_2d_tight": [848, 178, 922, 282],
+          "occluded": false,
+          "truncated": false
+        },
+        {
+          "object_id": "pedestrian_01",
+          "bounding_box_2d_tight": [1200, 350, 1250, 480],
+          "occluded": false,
+          "truncated": false
+        }
+      ]
+    },
+    "frame_000015": {
+      "format": "png",
+      "frame_number": 15,
+      "instances": [
+        {
+          "object_id": "vehicle_01",
+          "bounding_box_2d_tight": [448, 318, 652, 522],
+          "occluded": false,
+          "truncated": false
+        },
+        {
+          "object_id": "vehicle_02",
+          "bounding_box_2d_tight": [698, 258, 1002, 512],
+          "occluded": false,
+          "truncated": false
+        },
+        {
+          "object_id": "traffic_light_01",
+          "bounding_box_2d_tight": [848, 178, 922, 282],
+          "occluded": false,
+          "truncated": false
+        },
+        {
+          "object_id": "pedestrian_01",
+          "bounding_box_2d_tight": [1200, 350, 1250, 480],
+          "occluded": false,
+          "truncated": true
+        }
+      ]
+    }
+  },
+  "metadata": {
+    "type": "objects",
+    "date": "2026-03-25",
+    "description": "Object detections from human annotation (Data Factory team) - includes pedestrian missed by auto pipeline",
+    "license": "Apache-2.0",
+    "tags": ["transportation", "intersection", "human-verified"]
+  }
+}

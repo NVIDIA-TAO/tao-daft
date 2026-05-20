@@ -1,0 +1,104 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://developer.nvidia.com/tao-daft/schemas/metropolis-v3.0/bcq_openended.schema.json",
+  "title": "Event Verification Open-Ended Task Annotation",
+  "description": "Binary classification QA task annotation where the answer begins with 'Yes' or 'No' followed by an open-ended explanation. Each item asks a yes/no question about a video or image identified by video_id or image_id.",
+  "type": "object",
+  "required": [
+    "version",
+    "metadata",
+    "items"
+  ],
+  "additionalProperties": false,
+  "properties": {
+    "version": {
+      "type": "string",
+      "const": "metropolis-v3.0",
+      "description": "Schema version - must be '3.0' for this schema"
+    },
+    "items": {
+      "type": "array",
+      "description": "Array of verification items, one per event to verify",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "required": [
+          "question",
+          "answer"
+        ],
+        "additionalProperties": false,
+        "properties": {
+          "video_id": {
+            "type": "string",
+            "description": "Reference to video ID (matches directory name in contextual/)"
+          },
+          "question": {
+            "type": "string",
+            "description": "Yes/no question about whether a specific event occurs in the video"
+          },
+          "answer": {
+            "type": "string",
+            "pattern": "^(Yes|No)\\. [\\s\\S]+",
+            "description": "Answer starting with 'Yes' or 'No' followed by a period, a space, and an open-ended explanation (e.g. 'Yes. The car turns left at the intersection.')"
+          },
+          "reasoning": {
+            "type": "string",
+            "description": "Optional step-by-step reasoning trace leading to the answer"
+          },
+          "image_id": {
+            "type": "string",
+            "description": "Reference to image_id in image_*.json",
+            "minLength": 1
+          }
+        },
+        "oneOf": [
+          {
+            "required": [
+              "video_id"
+            ]
+          },
+          {
+            "required": [
+              "image_id"
+            ]
+          }
+        ]
+      }
+    },
+    "metadata": {
+      "type": "object",
+      "description": "File metadata for identification and cataloging",
+      "required": [
+        "type"
+      ],
+      "properties": {
+        "type": {
+          "type": "string",
+          "description": "Task type identifier (must be 'bcq_openended')",
+          "const": "bcq_openended"
+        },
+        "date": {
+          "type": "string",
+          "description": "Creation date in ISO 8601 format (YYYY-MM-DD)",
+          "format": "date"
+        },
+        "description": {
+          "type": "string",
+          "description": "Human-readable description of this annotation file"
+        },
+        "license": {
+          "type": "string",
+          "description": "License under which this annotation is distributed"
+        },
+        "tags": {
+          "type": "array",
+          "description": "List of tags for categorization and search",
+          "items": {
+            "type": "string"
+          }
+        }
+      },
+      "additionalProperties": false
+    }
+  }
+}

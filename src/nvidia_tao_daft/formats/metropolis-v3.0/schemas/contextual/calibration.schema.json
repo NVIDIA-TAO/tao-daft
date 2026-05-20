@@ -1,0 +1,419 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://github.com/NVIDIA/nvidia-tao-daft/schemas/metropolis-v3.0/calibration.schema.json",
+  "title": "Camera Calibration Schema",
+  "description": "Schema for calibration.json - Camera calibration parameters for spatial understanding (TAO DAFT metropolis-v3.0)",
+  "type": "object",
+  "required": [
+    "version",
+    "calibrationType",
+    "sensors",
+    "metadata"
+  ],
+  "properties": {
+    "version": {
+      "type": "string",
+      "const": "metropolis-v3.0",
+      "description": "Schema version - must be '3.0' for this schema"
+    },
+    "calibrationType": {
+      "type": "string",
+      "description": "Type of calibration coordinate system",
+      "enum": [
+        "cartesian",
+        "polar",
+        "spherical"
+      ],
+      "default": "cartesian"
+    },
+    "sensors": {
+      "type": "object",
+      "description": "Dictionary of sensor calibrations, keyed by sensor_id",
+      "patternProperties": {
+        "^.*$": {
+          "type": "object",
+          "description": "Calibration parameters for a single sensor (camera)",
+          "required": [
+            "type"
+          ],
+          "properties": {
+            "type": {
+              "type": "string",
+              "description": "Type of sensor",
+              "enum": [
+                "camera",
+                "lidar",
+                "radar",
+                "depth"
+              ],
+              "examples": [
+                "camera"
+              ]
+            },
+            "coordinates": {
+              "type": "object",
+              "description": "2D coordinates of the sensor in the scene",
+              "properties": {
+                "x": {
+                  "type": "number",
+                  "description": "X coordinate"
+                },
+                "y": {
+                  "type": "number",
+                  "description": "Y coordinate"
+                }
+              },
+              "required": [
+                "x",
+                "y"
+              ]
+            },
+            "scaleFactor": {
+              "type": "number",
+              "description": "Scale factor for coordinate transformation",
+              "examples": [
+                1.0,
+                0.5,
+                2.0
+              ]
+            },
+            "translationToGlobalCoordinates": {
+              "type": "object",
+              "description": "Translation vector to global coordinate system",
+              "properties": {
+                "x": {
+                  "type": "number",
+                  "description": "X translation"
+                },
+                "y": {
+                  "type": "number",
+                  "description": "Y translation"
+                }
+              },
+              "required": [
+                "x",
+                "y"
+              ]
+            },
+            "attributes": {
+              "type": "object",
+              "description": "Additional sensor-specific attributes",
+              "properties": {
+                "fps": {
+                  "type": "number",
+                  "description": "Frames per second (for cameras)",
+                  "minimum": 0,
+                  "examples": [
+                    24,
+                    30,
+                    60
+                  ]
+                },
+                "direction": {
+                  "type": "number",
+                  "description": "2D direction angle in degrees",
+                  "minimum": 0,
+                  "maximum": 360
+                },
+                "direction3d": {
+                  "type": "array",
+                  "description": "3D orientation [roll, pitch, yaw] in radians",
+                  "items": {
+                    "type": "number"
+                  },
+                  "minItems": 3,
+                  "maxItems": 3,
+                  "examples": [
+                    [
+                      0,
+                      0,
+                      0
+                    ],
+                    [
+                      0.1,
+                      -0.2,
+                      1.57
+                    ]
+                  ]
+                },
+                "frameWidth": {
+                  "type": "integer",
+                  "description": "Frame width in pixels",
+                  "minimum": 1,
+                  "examples": [
+                    1920,
+                    1280,
+                    640
+                  ]
+                },
+                "frameHeight": {
+                  "type": "integer",
+                  "description": "Frame height in pixels",
+                  "minimum": 1,
+                  "examples": [
+                    1080,
+                    720,
+                    480
+                  ]
+                }
+              }
+            },
+            "intrinsicMatrix": {
+              "type": "array",
+              "description": "3x3 camera intrinsic matrix [[fx, 0, cx], [0, fy, cy], [0, 0, 1]]",
+              "items": {
+                "type": "array",
+                "items": {
+                  "type": "number"
+                },
+                "minItems": 3,
+                "maxItems": 3
+              },
+              "minItems": 3,
+              "maxItems": 3,
+              "examples": [
+                [
+                  [
+                    1000,
+                    0,
+                    960
+                  ],
+                  [
+                    0,
+                    1000,
+                    540
+                  ],
+                  [
+                    0,
+                    0,
+                    1
+                  ]
+                ]
+              ]
+            },
+            "extrinsicMatrix": {
+              "type": "array",
+              "description": "3\u00d74 or 4\u00d74 camera extrinsic matrix [R|t]",
+              "items": {
+                "type": "array",
+                "items": {
+                  "type": "number"
+                },
+                "minItems": 4,
+                "maxItems": 4
+              },
+              "minItems": 3,
+              "maxItems": 4,
+              "examples": [
+                [
+                  [
+                    1,
+                    0,
+                    0,
+                    0
+                  ],
+                  [
+                    0,
+                    1,
+                    0,
+                    0
+                  ],
+                  [
+                    0,
+                    0,
+                    1,
+                    0
+                  ]
+                ]
+              ]
+            },
+            "cameraMatrix": {
+              "type": "array",
+              "description": "3x4 camera projection matrix P = K[R|t]",
+              "items": {
+                "type": "array",
+                "items": {
+                  "type": "number"
+                },
+                "minItems": 4,
+                "maxItems": 4
+              },
+              "minItems": 3,
+              "maxItems": 3
+            },
+            "homography": {
+              "type": "array",
+              "description": "3x3 homography matrix for ground plane projection",
+              "items": {
+                "type": "array",
+                "items": {
+                  "type": "number"
+                },
+                "minItems": 3,
+                "maxItems": 3
+              },
+              "minItems": 3,
+              "maxItems": 3
+            },
+            "distortionCoefficients": {
+              "type": "array",
+              "description": "Lens distortion coefficients [k1, k2, p1, p2, k3, ...]",
+              "items": {
+                "type": "number"
+              },
+              "examples": [
+                [
+                  0.1,
+                  -0.05,
+                  0.001,
+                  0.002,
+                  0.01
+                ]
+              ]
+            }
+          },
+          "additionalProperties": false
+        }
+      }
+    },
+    "metadata": {
+      "type": "object",
+      "description": "File metadata for identification and cataloging",
+      "required": [
+        "type"
+      ],
+      "properties": {
+        "type": {
+          "type": "string",
+          "description": "Annotation type identifier (must be 'calibration')",
+          "const": "calibration"
+        },
+        "date": {
+          "type": "string",
+          "description": "Creation date in ISO 8601 format (YYYY-MM-DD)",
+          "format": "date"
+        },
+        "description": {
+          "type": "string",
+          "description": "Human-readable description of this annotation file"
+        },
+        "license": {
+          "type": "string",
+          "description": "License under which this annotation is distributed"
+        },
+        "tags": {
+          "type": "array",
+          "description": "List of tags for categorization and search",
+          "items": {
+            "type": "string"
+          }
+        }
+      },
+      "additionalProperties": false
+    }
+  },
+  "additionalProperties": false,
+  "examples": [
+    {
+      "version": 2.0,
+      "calibrationType": "cartesian",
+      "sensors": {
+        "cam_001": {
+          "type": "camera",
+          "coordinates": {
+            "x": 10.5,
+            "y": 20.3
+          },
+          "scaleFactor": 1.0,
+          "translationToGlobalCoordinates": {
+            "x": 0.0,
+            "y": 0.0
+          },
+          "attributes": {
+            "fps": 30,
+            "direction": 90,
+            "direction3d": [
+              0,
+              0,
+              1.57
+            ],
+            "frameWidth": 1920,
+            "frameHeight": 1080
+          },
+          "intrinsicMatrix": [
+            [
+              1000,
+              0,
+              960
+            ],
+            [
+              0,
+              1000,
+              540
+            ],
+            [
+              0,
+              0,
+              1
+            ]
+          ],
+          "extrinsicMatrix": [
+            [
+              1,
+              0,
+              0,
+              0
+            ],
+            [
+              0,
+              1,
+              0,
+              0
+            ],
+            [
+              0,
+              0,
+              1,
+              5
+            ]
+          ],
+          "distortionCoefficients": [
+            0.1,
+            -0.05,
+            0.001,
+            0.002
+          ]
+        },
+        "cam_002": {
+          "type": "camera",
+          "coordinates": {
+            "x": 25.0,
+            "y": 20.3
+          },
+          "attributes": {
+            "fps": 30,
+            "frameWidth": 1920,
+            "frameHeight": 1080
+          },
+          "intrinsicMatrix": [
+            [
+              1000,
+              0,
+              960
+            ],
+            [
+              0,
+              1000,
+              540
+            ],
+            [
+              0,
+              0,
+              1
+            ]
+          ]
+        }
+      }
+    }
+  ]
+}

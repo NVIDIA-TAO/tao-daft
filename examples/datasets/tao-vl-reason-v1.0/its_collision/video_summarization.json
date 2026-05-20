@@ -1,0 +1,22 @@
+{
+  "format": "tao-vl-reason-v1.0",
+  "metadata": {
+    "type": "annotation",
+    "task": "video_summarization",
+    "description": "ITS collision training samples for tao-vl-reason fine-tuning. Converted from DAFT metropolis-v3.0 scene covering open QA, BCQ/MCQ (short + open-ended), scene/video/temporal descriptions, temporal localization, and causal linkage.",
+    "license": "Apache-2.0"
+  },
+  "media_root": null,
+  "items": [
+    {
+      "video_id": "videos/video_001.mp4",
+      "question": "Summarize the key events in this traffic video.",
+      "answer": "A white sedan fails to yield while making a left turn at a signalized intersection, resulting in a T-bone collision with a red sedan traveling straight. Both vehicles end up immobilized in the intersection, with the white sedan pushed across a marked crosswalk. A maroon sedan behind the white sedan stops safely without involvement."
+    },
+    {
+      "video_id": "videos/video_002.mp4",
+      "question": "Summarize the key events in this traffic video.",
+      "answer": "A gray sedan makes an improper left turn from a middle lane on a multi-lane road, striking a white sedan traveling straight in the outer lane. The collision pushes the white sedan off the road and into a tree on the sidewalk, where it becomes disabled. The gray sedan continues driving and leaves the scene without stopping."
+    }
+  ]
+}

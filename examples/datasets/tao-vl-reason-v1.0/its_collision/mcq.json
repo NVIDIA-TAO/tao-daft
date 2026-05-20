@@ -1,0 +1,24 @@
+{
+  "format": "tao-vl-reason-v1.0",
+  "metadata": {
+    "type": "annotation",
+    "task": "mcq",
+    "description": "ITS collision training samples for tao-vl-reason fine-tuning. Converted from DAFT metropolis-v3.0 scene covering open QA, BCQ/MCQ (short + open-ended), scene/video/temporal descriptions, temporal localization, and causal linkage.",
+    "license": "Apache-2.0"
+  },
+  "media_root": null,
+  "items": [
+    {
+      "video_id": "videos/video_002.mp4",
+      "question": "What is the root cause of the collision between the gray and white sedans?\n\nA) The white sedan in lane 5 failed to yield to the gray sedan while the gray sedan was making a legal left turn from the far-left lane.\nB) The white sedan was traveling at an excessive speed in the bus-only lane, making it impossible for the gray sedan to see it before turning.\nC) A mechanical failure in the gray sedan's steering system caused it to veer sharply into the white sedan's path in lane 5.\nD) The gray sedan initiated a left turn from a middle lane (lane 3) without ensuring the outer lane (lane 5) was clear of oncoming or straight-moving traffic.\n\nChoose the correct option by letter only.",
+      "answer": "D) The gray sedan initiated a left turn from a middle lane (lane 3) without ensuring the outer lane (lane 5) was clear of oncoming or straight-moving traffic.",
+      "reasoning": "The video shows a multi-lane thoroughfare where traffic is moving in both directions. Initially, a white sedan is traveling straight in the fifth lane from the left, which is an outer travel lane. Simultaneously, a gray sedan is traveling in the third lane from the left, which is a middle lane rather than a dedicated left-turn lane or the lane closest to the opposing traffic flow for a standard turn.\n\nAt approximately 2.7 seconds, the gray sedan begins to turn left directly from this middle lane. By doing so, it must cross the path of any vehicles traveling straight in the lanes to its right. The gray sedan fails to yield the right-of-way to the white sedan, which is proceeding straight in lane 5. Because the gray sedan attempted a turn from an improper lane and failed to check for clear passage across the outer lanes, it struck the white sedan. This improper maneuver and failure to yield is the fundamental error that initiated the sequence of events."
+    },
+    {
+      "video_id": "videos/video_001.mp4",
+      "question": "What is the root cause of the collision between the white sedan and the red sedan?\n\nA) The red sedan failed to stop for a red light while traveling straight through the intersection.\nB) The maroon sedan obstructed the white sedan's view, causing it to pull out into the path of the red sedan.\nC) The white sedan suffered a mechanical failure that caused it to stall in the middle of the intersection.\nD) The white sedan failed to yield the right-of-way to oncoming traffic while performing a left-hand turn.\n\nChoose the correct option by letter only.",
+      "answer": "D) The white sedan failed to yield the right-of-way to oncoming traffic while performing a left-hand turn.",
+      "reasoning": "The video shows a white sedan traveling from the top of the frame toward the center of the intersection. As it reaches the middle of the junction, it initiates a left-hand turn across the lanes of oncoming traffic. At the same time, a red sedan is traveling straight from the bottom right of the frame toward the top left. In a signalized intersection, a vehicle turning left must generally yield to oncoming traffic traveling straight unless a protected green arrow is present. \n\nThe white sedan continues its turn despite the approach of the red sedan. Because the white sedan crosses directly into the path of the oncoming vehicle without sufficient clearance, the red sedan strikes the passenger side of the white sedan. The maroon sedan remains behind the white sedan's original position and does not interfere with the line of sight or the path of the vehicles involved. There is no evidence of the white sedan stalling; rather, it is moving throughout the turn until the moment of impact. Therefore, the root cause is the white sedan's failure to yield the right-of-way to the oncoming red sedan during a left-turn maneuver."
+    }
+  ]
+}

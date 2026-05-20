@@ -1,0 +1,25 @@
+{
+  "version": "metropolis-v3.0",
+  "items": [
+    {
+      "video_id": "camera_01",
+      "timestamp": {
+        "start": 0.0,
+        "end": 1.0
+      },
+      "question": "Summarize the key traffic events that occur in this video clip.",
+      "answer": "A red sedan remains stopped at the red traffic light throughout the clip. A city bus approaches the intersection from the east lane, gradually decelerating as it nears the stop line. No collisions, violations, or pedestrian activity are observed."
+    }
+  ],
+  "metadata": {
+    "type": "video_summarization",
+    "date": "2026-03-25",
+    "description": "Summarization of traffic events observed at the intersection",
+    "license": "Apache-2.0",
+    "tags": [
+      "transportation",
+      "intersection",
+      "example"
+    ]
+  }
+}

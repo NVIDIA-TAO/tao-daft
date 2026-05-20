@@ -1,0 +1,30 @@
+{
+  "version": "metropolis-v3.0",
+  "metadata": {
+    "type": "causal_linkage",
+    "date": "2026-03-26",
+    "description": "Test Causal Linkage",
+    "license": "Apache-2.0",
+    "tags": [
+      "test"
+    ]
+  },
+  "items": [
+    {
+      "video_id": "cam1",
+      "t1": "00:00:01.00",
+      "t2": "00:00:07.00",
+      "question": "Explain the relationship between the event at 00:00:01 and the situation at 00:00:07.",
+      "answer": "At 00:00:01 a truck runs a red light, by 00:00:07 it has collided with a sedan."
+    },
+    {
+      "video_id": "cam1",
+      "video_type": "anomaly",
+      "t1": "00:00:02.00",
+      "t2": "00:00:10.00",
+      "question": "What caused the situation at 00:00:10?",
+      "answer": "The sedan's failure to yield at 00:00:02 caused a chain reaction.",
+      "reasoning": "Step by step..."
+    }
+  ]
+}

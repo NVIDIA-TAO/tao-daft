@@ -1,0 +1,24 @@
+{
+  "format": "tao-vl-reason-v1.0",
+  "metadata": {
+    "type": "annotation",
+    "task": "open_qa",
+    "description": "ITS collision training samples for tao-vl-reason fine-tuning. Converted from DAFT metropolis-v3.0 scene covering open QA, BCQ/MCQ (short + open-ended), scene/video/temporal descriptions, temporal localization, and causal linkage.",
+    "license": "Apache-2.0"
+  },
+  "media_root": null,
+  "items": [
+    {
+      "video_id": "videos/video_002.mp4",
+      "question": "What is the direct consequence of the anomaly involving the gray and white sedans?",
+      "answer": "The direct consequence of the collision is that the white sedan is forced off the roadway and onto the right-side sidewalk, where it strikes a mature tree. This secondary impact causes the white sedan to become disabled and stall against the tree, where it remains stationary. Additionally, while the gray sedan is able to continue moving and exit the frame, the incident results in property damage to both vehicles and the tree, while creating a significant physical hazard for any pedestrians in the sidewalk area.",
+      "reasoning": "The sequence of events begins with the gray sedan striking the white sedan in the middle of the roadway. The physics of the impact, coming from the gray sedan's left-turn trajectory, transfers momentum to the white sedan, pushing it toward the right side of the frame. Because the white sedan loses directional control following the side-impact, it deviates from its lane and crosses the curb.\n\nBetween 4.5 and 4.9 seconds, the white sedan's trajectory terminates when it hits a tree located on the sidewalk. This impact with a fixed object provides the final force necessary to disable the vehicle. The video shows the white sedan coming to a complete stop and stalling at this location for the remainder of the duration. Therefore, the consequence is a chain reaction starting from the initial vehicle-to-vehicle contact, leading to a vehicle-to-object collision, resulting in a disabled vehicle on a pedestrian walkway and localized property damage."
+    },
+    {
+      "video_id": "videos/video_001.mp4",
+      "question": "What is the direct consequence of the anomaly observed in the video?",
+      "answer": "The collision results in a high-energy T-bone impact that causes significant structural damage to the passenger side of the white sedan and the front end of the red sedan. As a direct result of the force, the white sedan is deflected from its intended path and pushed toward the right corner of the frame, eventually coming to rest across a marked crosswalk. Both vehicles end up immobilized in the middle of the intersection and the pedestrian crossing area, effectively blocking the flow of westbound traffic and creating a secondary hazard for other road users.",
+      "reasoning": "The anomaly begins when the white sedan turns left into the path of the oncoming red sedan. The immediate physical consequence is a violent T-bone collision occurring between 3.8 and 4.9 seconds. By observing the movement of the vehicles post-impact, it is clear that the momentum of the red sedan is transferred to the white sedan, forcing it to slide sideways toward the right side of the intersection.\n\nBy the end of the video at 6.0 seconds, the white sedan has come to a complete stop, but its final resting position is partially over the crosswalk and within the travel lanes of the intersecting street. The red sedan also remains stationary in the middle of the junction. This positioning means that the intersection is no longer clear for other motorists, specifically those attempting to travel westbound. The structural damage visible on both vehicles and their final positions across traffic lanes and pedestrian zones constitute the direct physical and operational consequences of the crash."
+    }
+  ]
+}

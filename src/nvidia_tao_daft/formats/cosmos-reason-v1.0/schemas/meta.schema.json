@@ -1,0 +1,86 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://developer.nvidia.com/tao-daft/schemas/cosmos-reason-v1.0/meta.schema.json",
+  "title": "Cosmos Reason Dataset Index",
+  "description": "Index file for a Cosmos Reason v1.0 dataset. Maps each training sample to its conversation file and associated media file.",
+  "type": "object",
+  "required": [
+    "version",
+    "metadata",
+    "samples"
+  ],
+  "additionalProperties": false,
+  "properties": {
+    "version": {
+      "type": "string",
+      "const": "cosmos-reason-v1.0",
+      "description": "Format version - must be 'cosmos-reason-v1.0' for this schema"
+    },
+    "metadata": {
+      "type": "object",
+      "description": "File metadata for identification and cataloging",
+      "required": [
+        "type"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "type": {
+          "type": "string",
+          "const": "meta",
+          "description": "File type identifier (must be 'meta')"
+        },
+        "date": {
+          "type": "string",
+          "description": "Creation date in ISO 8601 format (YYYY-MM-DD)",
+          "format": "date"
+        },
+        "description": {
+          "type": "string",
+          "description": "Human-readable description of this dataset"
+        },
+        "license": {
+          "type": "string",
+          "description": "License under which this dataset is distributed"
+        },
+        "tags": {
+          "type": "array",
+          "description": "List of tags for categorization and search",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "samples": {
+      "type": "array",
+      "description": "List of training samples, each linking a unique ID to a conversation file and a media file",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "required": [
+          "id",
+          "conversation",
+          "media"
+        ],
+        "additionalProperties": false,
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "Unique identifier for this training sample",
+            "minLength": 1
+          },
+          "conversation": {
+            "type": "string",
+            "description": "Relative path from dataset root to the conversation JSON file (e.g. 'text/sample_001.json')",
+            "pattern": "^text/.+\\.json$"
+          },
+          "media": {
+            "type": "string",
+            "description": "Relative path from dataset root to the associated media file (e.g. 'media/video_001.mp4')",
+            "pattern": "^media/.+"
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,53 @@
+{
+  "version": "metropolis-v3.0",
+  "metadata": {
+    "type": "msted",
+    "date": "2026-03-27",
+    "description": "Multi-Scale Spatio-Temporal Event Description for ITS collision clip 5",
+    "license": "Apache-2.0",
+    "tags": [
+      "its",
+      "collision",
+      "hit_and_run",
+      "msted"
+    ]
+  },
+  "video_id": "video_002",
+  "sources": [
+    "video_5.json",
+    "chunks_5.json"
+  ],
+  "scene_description": "The video captures an elevated view of a multi-lane urban road identified as Rainier Ave S near S Alaska St. At least five lanes of traffic flow in the same direction. The right side of the road is lined with mature trees and a sidewalk. A dedicated bus lane marked with red paint and 'BUS ONLY' text is visible. The weather is sunny with clear visibility. Traffic is initially flowing steadily.",
+  "temporal_spatial_localization": [
+    {
+      "start": "00:00",
+      "end": "00:02.70",
+      "description": "Traffic flows normally. A white sedan is traveling in lane 5 (outer lane), while a gray sedan moves in lane 3 (middle lane). Both vehicles are heading in the same direction."
+    },
+    {
+      "start": "00:02.70",
+      "end": "00:04.50",
+      "description": "The gray sedan suddenly initiates a left turn from the middle lane (lane 3), cutting across the path of the white sedan in lane 5. A side-impact collision occurs.",
+      "spatial_region": "Lanes 3-5 of the multi-lane road, near the intersection"
+    },
+    {
+      "start": "00:04.50",
+      "end": "00:04.90",
+      "description": "The white sedan is deflected off the roadway, crosses the curb, and strikes a mature tree on the sidewalk.",
+      "spatial_region": "Right-side sidewalk, against a tree"
+    },
+    {
+      "start": "00:04.90",
+      "end": "00:08.97",
+      "description": "The white sedan remains stalled against the tree on the sidewalk, disabled. The gray sedan continues driving forward and exits the camera's field of view to the right without stopping (hit-and-run). Other vehicles slow down in response."
+    }
+  ],
+  "event_description": {
+    "category": "Improper Left-Turn Collision / Hit-and-Run / Vehicle Stalled",
+    "description": "A gray sedan made an improper left turn from a middle lane (lane 3) on a multi-lane road, striking a white sedan traveling straight in the outer lane (lane 5). The collision pushed the white sedan off the road and into a tree on the sidewalk, where it became disabled. The gray sedan fled the scene without stopping.",
+    "temporal_description": "The gray sedan begins its turn at frame 81 (2.7s). The primary collision occurs between frames 90-105 (3.0-3.5s). The white sedan strikes the tree at frame 135 (4.5s) and is fully stopped by frame 147 (4.9s). The gray sedan exits the frame by frame 267 (8.9s).",
+    "spatial_location": "The initial collision occurs in the travel lanes (lanes 3-5) of Rainier Ave S. The secondary impact and final resting position of the white sedan are on the sidewalk on the right side of the frame, against a tree.",
+    "cause": "The gray sedan attempted a left turn from a middle lane (not a designated turning lane), failing to check or yield to the white sedan traveling straight in the adjacent outer lane. This improper maneuver from the wrong lane is the primary cause.",
+    "consequence": "The collision resulted in property damage to both vehicles and a roadside tree. The white sedan was forced off the road and disabled on the sidewalk, creating a significant hazard for pedestrians. The gray sedan committed a hit-and-run by continuing to drive away without stopping. Traffic flow in the rightmost lanes was disrupted as other vehicles slowed to avoid the accident scene."
+  }
+}

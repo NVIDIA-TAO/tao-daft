@@ -1,0 +1,118 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://developer.nvidia.com/tao-daft/schemas/metropolis-v3.0/mcq.schema.json",
+  "title": "Video MCQ Task Annotation",
+  "description": "Multiple-choice question task annotation for videos. Each item poses a question (optionally with explicit options) and records a single-letter answer for the video identified by video_id.",
+  "type": "object",
+  "required": [
+    "version",
+    "metadata",
+    "items"
+  ],
+  "additionalProperties": false,
+  "properties": {
+    "version": {
+      "type": "string",
+      "const": "metropolis-v3.0",
+      "description": "Schema version - must be '3.0' for this schema"
+    },
+    "items": {
+      "type": "array",
+      "description": "Array of classification items, one per video",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "required": [
+          "question",
+          "answer"
+        ],
+        "additionalProperties": false,
+        "properties": {
+          "video_id": {
+            "type": "string",
+            "description": "Reference to video ID (matches directory name in contextual/)"
+          },
+          "question": {
+            "type": "string",
+            "description": "Classification question. May embed the options inline (e.g. 'A) car B) truck ...')"
+          },
+          "options": {
+            "type": "object",
+            "description": "Optional mapping of answer letter to choice text (e.g. {\"A\": \"passenger car\", \"B\": \"truck\"}). Use when choices are not embedded in the question.",
+            "minProperties": 2,
+            "additionalProperties": {
+              "type": "string",
+              "minLength": 1
+            }
+          },
+          "answer": {
+            "type": "string",
+            "pattern": "^[A-Za-z]$",
+            "description": "Single-letter answer key identifying the correct option (e.g. 'A')"
+          },
+          "reasoning": {
+            "type": "string",
+            "description": "Optional step-by-step reasoning trace leading to the answer"
+          },
+          "item_metadata": {
+            "type": "object",
+            "description": "Optional additional metadata for this item",
+            "additionalProperties": true
+          },
+          "image_id": {
+            "type": "string",
+            "description": "Reference to image_id in image_*.json",
+            "minLength": 1
+          }
+        },
+        "oneOf": [
+          {
+            "required": [
+              "video_id"
+            ]
+          },
+          {
+            "required": [
+              "image_id"
+            ]
+          }
+        ]
+      }
+    },
+    "metadata": {
+      "type": "object",
+      "description": "File metadata for identification and cataloging",
+      "required": [
+        "type"
+      ],
+      "properties": {
+        "type": {
+          "type": "string",
+          "description": "Task type identifier (must be 'mcq')",
+          "const": "mcq"
+        },
+        "date": {
+          "type": "string",
+          "description": "Creation date in ISO 8601 format (YYYY-MM-DD)",
+          "format": "date"
+        },
+        "description": {
+          "type": "string",
+          "description": "Human-readable description of this annotation file"
+        },
+        "license": {
+          "type": "string",
+          "description": "License under which this annotation is distributed"
+        },
+        "tags": {
+          "type": "array",
+          "description": "List of tags for categorization and search",
+          "items": {
+            "type": "string"
+          }
+        }
+      },
+      "additionalProperties": false
+    }
+  }
+}

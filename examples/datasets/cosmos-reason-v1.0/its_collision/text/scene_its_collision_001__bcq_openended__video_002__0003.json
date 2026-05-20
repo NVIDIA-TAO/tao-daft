@@ -1,0 +1,39 @@
+{
+  "version": "cosmos-reason-v1.0",
+  "metadata": {
+    "type": "conversation",
+    "tags": [
+      "bcq_openended"
+    ]
+  },
+  "conversations": [
+    {
+      "role": "user",
+      "content": [
+        {
+          "type": "video",
+          "video": "video_0"
+        },
+        {
+          "type": "text",
+          "text": "Does the gray sedan remain stationary at the scene after the collision?\n\nAnswer with Yes or No, followed by a brief explanation."
+        }
+      ]
+    },
+    {
+      "role": "assistant",
+      "reasoning_content": [
+        {
+          "type": "text",
+          "text": "The video captures the entire sequence of the collision and its immediate aftermath. When the gray sedan attempts its left turn from the middle lane, it strikes the white sedan traveling in the outer lane. While the white sedan is forced off the road and suffers a secondary collision with a tree that causes it to stall, the gray sedan maintains its mobility.\n\nFollowing the impact, the gray sedan does not pull over or stop to assess the damage. Instead, from 4.1 seconds to 8.9 seconds, the video shows the gray sedan continuing to move forward. It eventually disappears from the camera's field of view on the right side of the frame. This contrast in the vehicles' states\u2014one disabled on the sidewalk and the other driving away\u2014is a key observation in the temporal progression of the event. Therefore, the gray sedan does not remain stationary at the scene."
+        }
+      ],
+      "content": [
+        {
+          "type": "text",
+          "text": "No. Although the gray sedan is the primary cause of the accident, it does not stop or stall. After striking the white sedan between 2.7 and 4.5 seconds, the gray sedan continues its forward momentum and exits the frame to the right while the white sedan is left disabled against a tree."
+        }
+      ]
+    }
+  ]
+}

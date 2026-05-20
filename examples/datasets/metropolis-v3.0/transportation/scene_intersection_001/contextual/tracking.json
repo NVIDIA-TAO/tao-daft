@@ -1,0 +1,176 @@
+{
+  "version": "metropolis-v3.0",
+  "frames": {
+    "frame_000000": [
+      {
+        "object_id": "vehicle_01",
+        "3d_location": [
+          8.0,
+          12.0,
+          0.0
+        ],
+        "3d_bounding_box_scale": [
+          4.5,
+          2.0,
+          1.5
+        ],
+        "3d_bounding_box_rotation": [
+          0,
+          0,
+          0.785
+        ],
+        "2d_bounding_box_visible": {
+          "camera_01": [
+            450,
+            320,
+            650,
+            520
+          ]
+        }
+      },
+      {
+        "object_id": "vehicle_02",
+        "3d_location": [
+          20.0,
+          15.0,
+          0.0
+        ],
+        "3d_bounding_box_scale": [
+          10.0,
+          3.0,
+          3.5
+        ],
+        "3d_bounding_box_rotation": [
+          0,
+          0,
+          1.57
+        ],
+        "2d_bounding_box_visible": {
+          "camera_01": [
+            800,
+            250,
+            1100,
+            500
+          ]
+        }
+      },
+      {
+        "object_id": "traffic_light_01",
+        "3d_location": [
+          5.0,
+          18.0,
+          3.5
+        ],
+        "3d_bounding_box_scale": [
+          0.5,
+          0.3,
+          1.2
+        ],
+        "3d_bounding_box_rotation": [
+          0,
+          0,
+          0
+        ],
+        "2d_bounding_box_visible": {
+          "camera_01": [
+            850,
+            180,
+            920,
+            280
+          ]
+        }
+      }
+    ],
+    "frame_000015": [
+      {
+        "object_id": "vehicle_01",
+        "3d_location": [
+          8.0,
+          12.0,
+          0.0
+        ],
+        "3d_bounding_box_scale": [
+          4.5,
+          2.0,
+          1.5
+        ],
+        "3d_bounding_box_rotation": [
+          0,
+          0,
+          0.785
+        ],
+        "2d_bounding_box_visible": {
+          "camera_01": [
+            450,
+            320,
+            650,
+            520
+          ]
+        }
+      },
+      {
+        "object_id": "vehicle_02",
+        "3d_location": [
+          15.0,
+          15.0,
+          0.0
+        ],
+        "3d_bounding_box_scale": [
+          10.0,
+          3.0,
+          3.5
+        ],
+        "3d_bounding_box_rotation": [
+          0,
+          0,
+          1.57
+        ],
+        "2d_bounding_box_visible": {
+          "camera_01": [
+            700,
+            260,
+            1000,
+            510
+          ]
+        }
+      },
+      {
+        "object_id": "traffic_light_01",
+        "3d_location": [
+          5.0,
+          18.0,
+          3.5
+        ],
+        "3d_bounding_box_scale": [
+          0.5,
+          0.3,
+          1.2
+        ],
+        "3d_bounding_box_rotation": [
+          0,
+          0,
+          0
+        ],
+        "2d_bounding_box_visible": {
+          "camera_01": [
+            850,
+            180,
+            920,
+            280
+          ]
+        }
+      }
+    ]
+  },
+  "metadata": {
+    "type": "tracking",
+    "date": "2026-03-25",
+    "description": "Example tracking annotation for intersection scene",
+    "license": "Apache-2.0",
+    "tags": [
+      "transportation",
+      "intersection",
+      "example"
+    ]
+  }
+}

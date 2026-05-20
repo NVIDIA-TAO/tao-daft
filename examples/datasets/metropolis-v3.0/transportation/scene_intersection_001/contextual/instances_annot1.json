@@ -1,0 +1,36 @@
+{
+  "version": "metropolis-v3.0",
+  "instances": {
+    "vehicle_01": {
+      "object_type": "car",
+      "instance_id": 1,
+      "semantic_id": 3,
+      "color": [255, 0, 0],
+      "caption": "Red sedan stopped at intersection",
+      "videos": ["camera_01"]
+    },
+    "vehicle_02": {
+      "object_type": "bus",
+      "instance_id": 2,
+      "semantic_id": 4,
+      "color": [0, 0, 255],
+      "caption": "City bus approaching from the east lane",
+      "videos": ["camera_01"]
+    },
+    "traffic_light_01": {
+      "object_type": "traffic_light",
+      "instance_id": 3,
+      "semantic_id": 8,
+      "color": [0, 255, 0],
+      "caption": "Traffic signal at north side of intersection",
+      "videos": ["camera_01"]
+    }
+  },
+  "metadata": {
+    "type": "instances",
+    "date": "2026-03-25",
+    "description": "Instance definitions from auto-annotation pipeline",
+    "license": "Apache-2.0",
+    "tags": ["transportation", "intersection", "auto-pipeline"]
+  }
+}

@@ -1,0 +1,215 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://github.com/NVIDIA/nvidia-tao-daft/schemas/metropolis-v3.0/instances.schema.json",
+  "title": "Object Instances Schema",
+  "description": "Schema for instances.json - Definitions of all unique object instances in the scene (TAO DAFT metropolis-v3.0)",
+  "type": "object",
+  "required": [
+    "version",
+    "instances",
+    "metadata"
+  ],
+  "properties": {
+    "version": {
+      "type": "string",
+      "const": "metropolis-v3.0",
+      "description": "Schema version - must be '3.0' for this schema"
+    },
+    "instances": {
+      "type": "object",
+      "description": "Dictionary of object instances, keyed by unique object_id",
+      "patternProperties": {
+        "^.*$": {
+          "type": "object",
+          "description": "Single object instance definition",
+          "required": [
+            "object_type",
+            "instance_id",
+            "semantic_id"
+          ],
+          "properties": {
+            "object_type": {
+              "type": "string",
+              "description": "Category/type of the object",
+              "examples": [
+                "person",
+                "forklift",
+                "car",
+                "truck",
+                "pallet",
+                "traffic_light",
+                "pedestrian"
+              ]
+            },
+            "instance_id": {
+              "type": "integer",
+              "description": "Unique instance ID corresponding to pixel value in instance segmentation images",
+              "minimum": 0,
+              "examples": [
+                1,
+                32,
+                110
+              ]
+            },
+            "semantic_id": {
+              "type": "integer",
+              "description": "Semantic category ID corresponding to pixel value in semantic segmentation images",
+              "minimum": 0,
+              "examples": [
+                1,
+                10,
+                31
+              ]
+            },
+            "color": {
+              "type": "array",
+              "description": "RGB color for visualization [r, g, b]",
+              "items": {
+                "type": "integer",
+                "minimum": 0,
+                "maximum": 255
+              },
+              "minItems": 3,
+              "maxItems": 3,
+              "examples": [
+                [
+                  255,
+                  0,
+                  0
+                ],
+                [
+                  0,
+                  255,
+                  0
+                ],
+                [
+                  0,
+                  0,
+                  255
+                ]
+              ]
+            },
+            "caption": {
+              "type": "string",
+              "description": "Textual description of the object instance",
+              "examples": [
+                "Yellow forklift with extended forks",
+                "Worker wearing high-visibility vest",
+                "Red sedan stopped at traffic light"
+              ]
+            },
+            "images": {
+              "type": "array",
+              "description": "List of image IDs (matching directory names in contextual/) where this instance is present",
+              "items": {
+                "type": "string"
+              },
+              "examples": [
+                [
+                  "image_000001",
+                  "image_000005"
+                ]
+              ]
+            },
+            "videos": {
+              "type": "array",
+              "description": "List of video IDs (matching directory names in contextual/) where this instance is present",
+              "items": {
+                "type": "string"
+              },
+              "examples": [
+                [
+                  "camera_01",
+                  "camera_02"
+                ]
+              ]
+            }
+          },
+          "additionalProperties": false
+        }
+      },
+      "additionalProperties": false
+    },
+    "metadata": {
+      "type": "object",
+      "description": "File metadata for identification and cataloging",
+      "required": [
+        "type"
+      ],
+      "properties": {
+        "type": {
+          "type": "string",
+          "description": "Annotation type identifier (must be 'instances')",
+          "const": "instances"
+        },
+        "date": {
+          "type": "string",
+          "description": "Creation date in ISO 8601 format (YYYY-MM-DD)",
+          "format": "date"
+        },
+        "description": {
+          "type": "string",
+          "description": "Human-readable description of this annotation file"
+        },
+        "license": {
+          "type": "string",
+          "description": "License under which this annotation is distributed"
+        },
+        "tags": {
+          "type": "array",
+          "description": "List of tags for categorization and search",
+          "items": {
+            "type": "string"
+          }
+        }
+      },
+      "additionalProperties": false
+    }
+  },
+  "additionalProperties": false,
+  "examples": [
+    {
+      "version": "metropolis-v3.0",
+      "metadata": {
+        "type": "instances",
+        "date": "2026-03-25",
+        "description": "Instance definitions for intersection scene",
+        "license": "Apache-2.0",
+        "tags": [
+          "transportation"
+        ]
+      },
+      "instances": {
+        "vehicle_01": {
+          "object_type": "car",
+          "instance_id": 1,
+          "semantic_id": 3,
+          "color": [
+            255,
+            0,
+            0
+          ],
+          "caption": "Red sedan stopped at intersection",
+          "videos": [
+            "camera_01"
+          ]
+        },
+        "vehicle_02": {
+          "object_type": "bus",
+          "instance_id": 2,
+          "semantic_id": 4,
+          "color": [
+            0,
+            0,
+            255
+          ],
+          "caption": "City bus approaching from east",
+          "videos": [
+            "camera_01",
+            "camera_02"
+          ]
+        }
+      }
+    }
+  ]
+}

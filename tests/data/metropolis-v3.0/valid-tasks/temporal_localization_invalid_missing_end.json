@@ -1,0 +1,17 @@
+{
+  "version": "metropolis-v3.0",
+  "metadata": {
+    "type": "temporal_localization"
+  },
+  "items": [
+    {
+      "video_id": "cam1",
+      "t1": "00:00:02.00",
+      "question": "When?",
+      "answer": {
+        "start": "00:00:02",
+        "end": "00:00:04"
+      }
+    }
+  ]
+}

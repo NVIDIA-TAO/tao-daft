@@ -1,0 +1,63 @@
+{
+  "version": "metropolis-v3.0",
+  "video_id": "camera_01",
+  "instances_source": "instances_human.json",
+  "groups": [
+    {
+      "group_id": "red_light_wait_01",
+      "description": "Events related to vehicles waiting at red light"
+    },
+    {
+      "group_id": "pedestrian_activity_01",
+      "description": "Pedestrian presence and waiting behavior"
+    }
+  ],
+  "events": [
+    {
+      "event_id": "vehicle_waiting_01",
+      "category": "vehicle_stop",
+      "start_time": "00:00",
+      "end_time": "00:28",
+      "group_id": "red_light_wait_01",
+      "instances": [
+        "vehicle_01"
+      ],
+      "event_caption": "Red sedan {vehicle_01} stationary at red light, brake lights on throughout clip"
+    },
+    {
+      "event_id": "bus_approach_01",
+      "category": "vehicle_approach",
+      "start_time": "00:05",
+      "end_time": "00:28",
+      "group_id": "red_light_wait_01",
+      "instances": [
+        "vehicle_02"
+      ],
+      "event_caption": "City bus {vehicle_02} approaching from east, decelerating from ~30mph to ~10mph",
+      "severity": "low"
+    },
+    {
+      "event_id": "pedestrian_waiting_01",
+      "category": "pedestrian_waiting",
+      "start_time": "00:08",
+      "end_time": "00:28",
+      "group_id": "pedestrian_activity_01",
+      "instances": [
+        "pedestrian_01"
+      ],
+      "event_caption": "Pedestrian {pedestrian_01} standing at east sidewalk near crosswalk, waiting to cross",
+      "severity": "low"
+    }
+  ],
+  "metadata": {
+    "type": "events",
+    "date": "2026-03-25",
+    "description": "Event annotations from human annotation (Data Factory team) - includes pedestrian events missed by auto pipeline",
+    "license": "Apache-2.0",
+    "tags": [
+      "transportation",
+      "intersection",
+      "human-verified"
+    ]
+  }
+}

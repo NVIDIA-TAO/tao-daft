@@ -1,0 +1,147 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://github.com/NVIDIA/nvidia-tao-daft/schemas/metropolis-v3.0/chunks.schema.json",
+  "title": "Video Chunks Annotation Schema (metropolis-v3.0)",
+  "description": "Schema for chunks_*.json - Dense temporal video chunks with captions (TAO DAFT metropolis-v3.0). Each chunk describes a consecutive segment of a video using frame numbers, with optional semantic tags.",
+  "type": "object",
+  "required": [
+    "version",
+    "metadata",
+    "video_id",
+    "chunks"
+  ],
+  "additionalProperties": false,
+  "properties": {
+    "version": {
+      "type": "string",
+      "const": "metropolis-v3.0",
+      "description": "Schema version - must be '3.0' for this schema"
+    },
+    "metadata": {
+      "type": "object",
+      "description": "File metadata for identification and cataloging",
+      "required": [
+        "type"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "type": {
+          "type": "string",
+          "const": "chunks",
+          "description": "Contextual type identifier"
+        },
+        "date": {
+          "type": "string",
+          "description": "Creation date in ISO 8601 format (YYYY-MM-DD)",
+          "format": "date"
+        },
+        "description": {
+          "type": "string",
+          "description": "Human-readable description of this annotation file"
+        },
+        "license": {
+          "type": "string",
+          "description": "License under which this annotation is distributed"
+        },
+        "tags": {
+          "type": "array",
+          "description": "Dataset-level tags for categorization and search",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "video_id": {
+      "type": "string",
+      "description": "Reference to video file (matches video_id in video_*.json)"
+    },
+    "chunks": {
+      "type": "array",
+      "description": "Ordered list of consecutive temporal video chunks. Chunks may overlap at boundaries but should not be identical in time range.",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "required": [
+          "chunk_id",
+          "start",
+          "end",
+          "description"
+        ],
+        "additionalProperties": false,
+        "properties": {
+          "chunk_id": {
+            "type": "string",
+            "description": "Unique identifier for this chunk within the file",
+            "examples": [
+              "chunk_001",
+              "chunk_002"
+            ]
+          },
+          "start": {
+            "type": "string",
+            "description": "Chunk start time in flexible timecode: MM:SS or HH:MM:SS with optional fractional seconds (e.g. '00:02', '00:02.70', '00:01:30')",
+            "pattern": "^(\\d{2}:)?\\d{2}:\\d{2}(\\.\\d+)?$",
+            "examples": ["00:00", "00:02", "00:02.70"]
+          },
+          "end": {
+            "type": "string",
+            "description": "Chunk end time in flexible timecode: MM:SS or HH:MM:SS with optional fractional seconds (e.g. '00:04', '00:04.50', '00:01:35')",
+            "pattern": "^(\\d{2}:)?\\d{2}:\\d{2}(\\.\\d+)?$",
+            "examples": ["00:02", "00:03.80", "00:04.50"]
+          },
+          "description": {
+            "type": "string",
+            "description": "Dense caption describing what happens in this temporal segment"
+          },
+          "tags": {
+            "type": "array",
+            "description": "Semantic tags for this chunk (e.g. normal_flow, collision, aftermath)",
+            "items": {
+              "type": "string"
+            },
+            "examples": [
+              ["normal_flow"],
+              ["collision", "left_turn_violation"],
+              ["aftermath", "vehicle_stalled"]
+            ]
+          }
+        }
+      }
+    }
+  },
+  "examples": [
+    {
+      "version": "metropolis-v3.0",
+      "metadata": {
+        "type": "chunks",
+        "date": "2026-03-27",
+        "description": "Dense temporal chunks for ITS collision video"
+      },
+      "video_id": "collision_video_001",
+      "chunks": [
+        {
+          "chunk_id": "chunk_001",
+          "start": "00:00",
+          "end": "00:02.70",
+          "description": "Traffic flows normally. A white sedan travels in lane 5, a gray sedan in lane 3.",
+          "tags": ["normal_flow"]
+        },
+        {
+          "chunk_id": "chunk_002",
+          "start": "00:02.70",
+          "end": "00:04.50",
+          "description": "The gray sedan initiates a left turn from lane 3, colliding with the white sedan in lane 5.",
+          "tags": ["collision", "left_turn_violation"]
+        },
+        {
+          "chunk_id": "chunk_003",
+          "start": "00:04.50",
+          "end": "00:09.00",
+          "description": "The white sedan strikes a tree on the sidewalk and stalls. The gray sedan exits the frame.",
+          "tags": ["aftermath", "vehicle_stalled"]
+        }
+      ]
+    }
+  ]
+}

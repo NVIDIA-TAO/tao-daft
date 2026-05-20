@@ -1,0 +1,26 @@
+{
+  "version": "metropolis-v3.0",
+  "metadata": {
+    "type": "video_summarization",
+    "date": "2026-03-26",
+    "description": "Video-level summaries of ITS collision clips",
+    "license": "Apache-2.0",
+    "tags": [
+      "its",
+      "collision",
+      "summary"
+    ]
+  },
+  "items": [
+    {
+      "video_id": "video_001",
+      "question": "Summarize the key events in this traffic video.",
+      "answer": "A white sedan fails to yield while making a left turn at a signalized intersection, resulting in a T-bone collision with a red sedan traveling straight. Both vehicles end up immobilized in the intersection, with the white sedan pushed across a marked crosswalk. A maroon sedan behind the white sedan stops safely without involvement."
+    },
+    {
+      "video_id": "video_002",
+      "question": "Summarize the key events in this traffic video.",
+      "answer": "A gray sedan makes an improper left turn from a middle lane on a multi-lane road, striking a white sedan traveling straight in the outer lane. The collision pushes the white sedan off the road and into a tree on the sidewalk, where it becomes disabled. The gray sedan continues driving and leaves the scene without stopping."
+    }
+  ]
+}

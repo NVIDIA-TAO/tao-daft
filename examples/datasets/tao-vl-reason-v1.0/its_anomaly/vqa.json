@@ -1,0 +1,28 @@
+{
+  "format": "tao-vl-reason-v1.0",
+  "metadata": {
+    "type": "annotation",
+    "task": "vqa",
+    "date": "2026-04-10",
+    "description": "Multi-turn VQA \u2014 wrong-way driver on highway ramp. Each item is one (question, answer) pair from the original conversation; the system prompt is inlined into the first item's question.",
+    "license": "Apache-2.0",
+    "tags": [
+      "transportation",
+      "anomaly-detection",
+      "vqa"
+    ]
+  },
+  "media_root": null,
+  "items": [
+    {
+      "video_id": "videos/video_002.mp4",
+      "question": "[System] You are an expert traffic analyst. Answer questions about the provided video concisely and accurately.\n\nHow many vehicles are visible in this clip?",
+      "answer": "Four vehicles are visible: three traveling in the correct direction on the highway ramp and one traveling in the wrong direction against oncoming traffic."
+    },
+    {
+      "video_id": "videos/video_002.mp4",
+      "question": "Is there an anomalous event? If so, describe it and estimate when it occurs.",
+      "answer": "Yes. Starting at approximately 00:02, a light-colored SUV is driving the wrong way on the highway on-ramp, heading directly toward oncoming vehicles. The event persists until the end of the clip at 00:09. The other drivers swerve to avoid a collision. This constitutes a wrong-way driving violation."
+    }
+  ]
+}

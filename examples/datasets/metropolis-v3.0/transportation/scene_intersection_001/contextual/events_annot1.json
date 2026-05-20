@@ -1,0 +1,47 @@
+{
+  "version": "metropolis-v3.0",
+  "video_id": "camera_01",
+  "instances_source": "instances_annot1.json",
+  "groups": [
+    {
+      "group_id": "red_light_wait_01",
+      "description": "Events related to vehicles waiting at red light"
+    }
+  ],
+  "events": [
+    {
+      "event_id": "vehicle_waiting_01",
+      "category": "vehicle_stop",
+      "start_time": "00:00",
+      "end_time": "00:28",
+      "group_id": "red_light_wait_01",
+      "instances": [
+        "vehicle_01"
+      ],
+      "event_caption": "Red sedan {vehicle_01} stopped and waiting at red traffic light"
+    },
+    {
+      "event_id": "bus_approach_01",
+      "category": "vehicle_approach",
+      "start_time": "00:05",
+      "end_time": "00:28",
+      "group_id": "red_light_wait_01",
+      "instances": [
+        "vehicle_02"
+      ],
+      "event_caption": "City bus {vehicle_02} approaching intersection from east lane, decelerating",
+      "severity": "low"
+    }
+  ],
+  "metadata": {
+    "type": "events",
+    "date": "2026-03-25",
+    "description": "Event annotations from auto-annotation pipeline",
+    "license": "Apache-2.0",
+    "tags": [
+      "transportation",
+      "intersection",
+      "auto-pipeline"
+    ]
+  }
+}

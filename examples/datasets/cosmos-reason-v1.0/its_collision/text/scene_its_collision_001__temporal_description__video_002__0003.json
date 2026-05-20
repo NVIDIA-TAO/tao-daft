@@ -1,0 +1,33 @@
+{
+  "version": "cosmos-reason-v1.0",
+  "metadata": {
+    "type": "conversation",
+    "tags": [
+      "temporal_description"
+    ]
+  },
+  "conversations": [
+    {
+      "role": "user",
+      "content": [
+        {
+          "type": "video",
+          "video": "video_0"
+        },
+        {
+          "type": "text",
+          "text": "What happened in the video between 00:00:05 and 00:00:09?"
+        }
+      ]
+    },
+    {
+      "role": "assistant",
+      "content": [
+        {
+          "type": "text",
+          "text": "The aftermath of the collision: the white sedan remains stalled against the tree on the sidewalk, disabled and obstructing the pedestrian area. The gray sedan, despite being the cause of the collision, continues driving forward and exits the camera's field of view to the right without stopping. Other vehicles on the road slow down in response to the accident."
+        }
+      ]
+    }
+  ]
+}

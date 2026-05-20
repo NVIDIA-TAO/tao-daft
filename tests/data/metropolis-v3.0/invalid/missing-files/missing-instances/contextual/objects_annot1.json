@@ -1,0 +1,31 @@
+{
+  "version": "metropolis-v3.0",
+  "video_id": "camera_01",
+  "instances_source": "instances_annot1.json",
+  "frames": {
+    "frame_000000": {
+      "format": "png",
+      "frame_number": 0,
+      "instances": [
+        {
+          "object_id": "car_01",
+          "bounding_box_2d_tight": [
+            100,
+            100,
+            200,
+            200
+          ]
+        }
+      ]
+    }
+  },
+  "metadata": {
+    "type": "objects",
+    "date": "2026-03-25",
+    "description": "Test",
+    "license": "Apache-2.0",
+    "tags": [
+      "test"
+    ]
+  }
+}

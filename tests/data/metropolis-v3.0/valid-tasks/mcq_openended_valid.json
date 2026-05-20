@@ -1,0 +1,31 @@
+{
+  "version": "metropolis-v3.0",
+  "metadata": {
+    "type": "mcq_openended",
+    "date": "2026-04-12",
+    "description": "Test MCQ Open-Ended",
+    "license": "Apache-2.0",
+    "tags": [
+      "test"
+    ]
+  },
+  "items": [
+    {
+      "video_id": "cam1",
+      "question": "What caused the collision?",
+      "answer": "D. The driver failed to yield the right-of-way when making a left turn across oncoming traffic, resulting in a T-bone collision in the center of the intersection.",
+      "options": {
+        "A": "Speeding",
+        "B": "Red light",
+        "C": "Distraction",
+        "D": "Failure to yield"
+      }
+    },
+    {
+      "video_id": "cam1",
+      "question": "How many vehicles are involved?\nA) 1\nB) 2\nC) 3",
+      "answer": "B. Two vehicles are involved: the white sedan that initiated the left turn and the red sedan traveling straight through the intersection.",
+      "reasoning": "Both vehicles are clearly visible in the footage and both sustain damage from the impact."
+    }
+  ]
+}

@@ -1,0 +1,39 @@
+{
+  "version": "cosmos-reason-v1.0",
+  "metadata": {
+    "type": "conversation",
+    "tags": [
+      "causal_linkage"
+    ]
+  },
+  "conversations": [
+    {
+      "role": "user",
+      "content": [
+        {
+          "type": "video",
+          "video": "video_0"
+        },
+        {
+          "type": "text",
+          "text": "Explain the relationship between the event at 00:00:03 and the situation at 00:00:05."
+        }
+      ]
+    },
+    {
+      "role": "assistant",
+      "reasoning_content": [
+        {
+          "type": "text",
+          "text": "The gray sedan's turn from a non-turning lane is the root cause. The white sedan, traveling straight in its proper lane, has no time to react. The impact angle directs the white sedan toward the curb, and the tree provides the final stopping force."
+        }
+      ],
+      "content": [
+        {
+          "type": "text",
+          "text": "At 00:00:03, the gray sedan attempts an improper left turn from a middle lane (lane 3), cutting across the path of the white sedan in lane 5. By 00:00:05, this lane-crossing maneuver has caused a side-impact collision that pushes the white sedan off the roadway and onto the sidewalk where it strikes a tree."
+        }
+      ]
+    }
+  ]
+}

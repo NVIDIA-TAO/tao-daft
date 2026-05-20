@@ -1,0 +1,39 @@
+{
+  "version": "cosmos-reason-v1.0",
+  "metadata": {
+    "type": "conversation",
+    "tags": [
+      "mcq_openended"
+    ]
+  },
+  "conversations": [
+    {
+      "role": "user",
+      "content": [
+        {
+          "type": "video",
+          "video": "video_0"
+        },
+        {
+          "type": "text",
+          "text": "What is the root cause of the collision between the white sedan and the red sedan?\n\nA) The red sedan failed to stop for a red light while traveling straight through the intersection.\nB) The maroon sedan obstructed the white sedan's view, causing it to pull out into the path of the red sedan.\nC) The white sedan suffered a mechanical failure that caused it to stall in the middle of the intersection.\nD) The white sedan failed to yield the right-of-way to oncoming traffic while performing a left-hand turn.\n\nChoose the correct option and provide a brief explanation."
+        }
+      ]
+    },
+    {
+      "role": "assistant",
+      "reasoning_content": [
+        {
+          "type": "text",
+          "text": "The video shows a white sedan traveling from the top of the frame toward the center of the intersection. As it reaches the middle of the junction, it initiates a left-hand turn across the lanes of oncoming traffic. At the same time, a red sedan is traveling straight from the bottom right of the frame toward the top left. In a signalized intersection, a vehicle turning left must generally yield to oncoming traffic traveling straight unless a protected green arrow is present.\n\nThe white sedan continues its turn despite the approach of the red sedan. Because the white sedan crosses directly into the path of the oncoming vehicle without sufficient clearance, the red sedan strikes the passenger side of the white sedan. The maroon sedan remains behind the white sedan's original position and does not interfere with the line of sight or the path of the vehicles involved. There is no evidence of the white sedan stalling; rather, it is moving throughout the turn until the moment of impact."
+        }
+      ],
+      "content": [
+        {
+          "type": "text",
+          "text": "D. The white sedan failed to yield the right-of-way to the oncoming red sedan while executing a left-hand turn. It proceeded through the turn without allowing sufficient clearance for the approaching red sedan, resulting in a T-bone collision in the center of the intersection."
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,27 @@
+{
+  "version": "cosmos-reason-v1.0",
+  "metadata": {
+    "type": "conversation",
+    "date": "2026-04-10",
+    "description": "2D grounding — vehicle bounding box in overhead intersection image",
+    "tags": ["transportation", "grounding", "bbox", "image"]
+  },
+  "conversations": [
+    {
+      "role": "user",
+      "content": [
+        {"type": "image", "image": "image_0"},
+        {"type": "text", "text": "Locate all vehicles in this overhead intersection image. Return JSON-formatted bounding boxes and labels for each detected vehicle."}
+      ]
+    },
+    {
+      "role": "assistant",
+      "content": [
+        {
+          "type": "text",
+          "text": "```json\n[\n  {\"bbox_2d\": [112, 340, 285, 420], \"label\": \"sedan\"},\n  {\"bbox_2d\": [430, 210, 620, 310], \"label\": \"pickup_truck\"},\n  {\"bbox_2d\": [290, 480, 450, 560], \"label\": \"bus\"}\n]\n```"
+        }
+      ]
+    }
+  ]
+}

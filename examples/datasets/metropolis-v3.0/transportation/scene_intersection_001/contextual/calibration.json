@@ -1,0 +1,72 @@
+{
+  "version": "metropolis-v3.0",
+  "calibrationType": "cartesian",
+  "sensors": {
+    "camera_01": {
+      "type": "camera",
+      "coordinates": {
+        "x": 10.0,
+        "y": 15.0
+      },
+      "scaleFactor": 1.0,
+      "translationToGlobalCoordinates": {
+        "x": 0.0,
+        "y": 0.0
+      },
+      "attributes": {
+        "fps": 30,
+        "direction": 45,
+        "frameWidth": 1920,
+        "frameHeight": 1080
+      },
+      "intrinsicMatrix": [
+        [
+          1000,
+          0,
+          960
+        ],
+        [
+          0,
+          1000,
+          540
+        ],
+        [
+          0,
+          0,
+          1
+        ]
+      ],
+      "extrinsicMatrix": [
+        [
+          1,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          1,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          1,
+          5
+        ]
+      ]
+    }
+  },
+  "metadata": {
+    "type": "calibration",
+    "date": "2026-03-25",
+    "description": "Example calibration annotation for intersection scene",
+    "license": "Apache-2.0",
+    "tags": [
+      "transportation",
+      "intersection",
+      "example"
+    ]
+  }
+}

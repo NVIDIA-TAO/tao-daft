@@ -1,0 +1,39 @@
+{
+  "version": "cosmos-reason-v1.0",
+  "metadata": {
+    "type": "conversation",
+    "tags": [
+      "temporal_description"
+    ]
+  },
+  "conversations": [
+    {
+      "role": "user",
+      "content": [
+        {
+          "type": "video",
+          "video": "video_0"
+        },
+        {
+          "type": "text",
+          "text": "What happened in the video between 00:00:03 and 00:00:06?"
+        }
+      ]
+    },
+    {
+      "role": "assistant",
+      "reasoning_content": [
+        {
+          "type": "text",
+          "text": "The critical 3-second window captures the entire collision sequence from initiation of the turn to final resting positions of both vehicles."
+        }
+      ],
+      "content": [
+        {
+          "type": "text",
+          "text": "The white sedan initiates a left-hand turn and crosses into the path of the oncoming red sedan. A violent T-bone collision occurs at approximately 3.8 seconds. The impact pushes the white sedan sideways toward the right corner of the frame. Both vehicles come to rest in the intersection, blocking traffic. The maroon sedan behind has stopped safely without involvement."
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,30 @@
+{
+  "version": "metropolis-v3.0",
+  "metadata": {
+    "type": "mcq",
+    "date": "2026-03-26",
+    "description": "Test MCQ",
+    "license": "Apache-2.0",
+    "tags": [
+      "test"
+    ]
+  },
+  "items": [
+    {
+      "video_id": "cam1",
+      "question": "What caused the collision?",
+      "answer": "D",
+      "options": {
+        "A": "Speeding",
+        "B": "Red light",
+        "C": "Distraction",
+        "D": "Failure to yield"
+      }
+    },
+    {
+      "video_id": "cam1",
+      "question": "How many vehicles are involved?\nA) 1\nB) 2\nC) 3",
+      "answer": "B"
+    }
+  ]
+}

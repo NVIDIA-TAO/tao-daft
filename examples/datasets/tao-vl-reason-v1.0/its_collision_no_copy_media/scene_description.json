@@ -1,0 +1,22 @@
+{
+  "format": "tao-vl-reason-v1.0",
+  "metadata": {
+    "type": "annotation",
+    "task": "scene_description",
+    "description": "ITS collision training samples \u2014 same content as its_collision/, but media is referenced in place instead of copied. media_root is a relative path back to the source metropolis-v3.0 scene; items are file paths under that root.",
+    "license": "Apache-2.0"
+  },
+  "media_root": "../../metropolis-v3.0/its_collision/scene_its_collision_001",
+  "items": [
+    {
+      "video_id": "raw/video_001.mp4",
+      "question": "Describe the scene visible in this traffic camera footage.",
+      "answer": "An elevated view of a signalized four-way intersection in an urban setting. Multiple lanes of traffic converge at the junction with visible lane markings, crosswalks, and traffic signals. A white sedan, red sedan, and maroon sedan are the primary vehicles in frame. The intersection is surrounded by typical urban infrastructure."
+    },
+    {
+      "video_id": "raw/video_002.mp4",
+      "question": "Describe the scene visible in this traffic camera footage.",
+      "answer": "A multi-lane urban road captured from an elevated camera angle. At least five lanes of traffic flow in the same direction. The right side of the road is lined with mature trees and a sidewalk. A gray sedan occupies a middle lane while a white sedan travels in the outer lane. Daylight conditions with clear visibility."
+    }
+  ]
+}

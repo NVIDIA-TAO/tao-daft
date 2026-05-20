@@ -1,0 +1,127 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://developer.nvidia.com/tao-daft/schemas/metropolis-v3.0/causal_linkage.schema.json",
+  "title": "Causal Linkage Task Annotation",
+  "description": "Causal reasoning task for videos: given two timestamps t1 and t2, explain the causal relationship between the event observed at t1 and the resulting situation at t2.",
+  "type": "object",
+  "required": [
+    "version",
+    "metadata",
+    "items"
+  ],
+  "additionalProperties": false,
+  "properties": {
+    "version": {
+      "type": "string",
+      "const": "metropolis-v3.0",
+      "description": "Schema version - must be '3.0' for this schema"
+    },
+    "items": {
+      "type": "array",
+      "description": "Array of causal linkage items, one per question-answer pair",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "required": [
+          "video_id",
+          "t1",
+          "t2",
+          "question",
+          "answer"
+        ],
+        "additionalProperties": false,
+        "properties": {
+          "video_id": {
+            "type": "string",
+            "description": "Reference to video ID (matches directory name in contextual/)"
+          },
+          "video_type": {
+            "type": "string",
+            "enum": [
+              "anomaly",
+              "normal"
+            ],
+            "description": "High-level content classification of the video"
+          },
+          "t1": {
+            "type": "string",
+            "pattern": "^(\\d{2}:)?\\d{2}:\\d{2}(\\.\\d+)?$",
+            "description": "Timestamp of the causal event in flexible timecode: MM:SS or HH:MM:SS with optional fractional seconds (e.g. '01:30', '00:01:30', '01:30.5')"
+          },
+          "t2": {
+            "type": "string",
+            "pattern": "^(\\d{2}:)?\\d{2}:\\d{2}(\\.\\d+)?$",
+            "description": "Timestamp of the resulting situation in flexible timecode: MM:SS or HH:MM:SS with optional fractional seconds (e.g. '01:30', '00:01:30', '01:30.5')"
+          },
+          "question": {
+            "type": "string",
+            "description": "Full natural-language question asking to explain the causal relationship between t1 and t2"
+          },
+          "answer": {
+            "type": "string",
+            "description": "Free-text causal explanation of how the event at t1 led to the situation at t2"
+          },
+          "reasoning": {
+            "type": "string",
+            "description": "Optional step-by-step reasoning trace leading to the answer"
+          }
+        }
+      }
+    },
+    "metadata": {
+      "type": "object",
+      "description": "File metadata for identification and cataloging",
+      "required": [
+        "type"
+      ],
+      "properties": {
+        "type": {
+          "type": "string",
+          "description": "Task type identifier (must be 'causal_linkage')",
+          "const": "causal_linkage"
+        },
+        "date": {
+          "type": "string",
+          "description": "Creation date in ISO 8601 format (YYYY-MM-DD)",
+          "format": "date"
+        },
+        "description": {
+          "type": "string",
+          "description": "Human-readable description of this annotation file"
+        },
+        "license": {
+          "type": "string",
+          "description": "License under which this annotation is distributed"
+        },
+        "tags": {
+          "type": "array",
+          "description": "List of tags for categorization and search",
+          "items": {
+            "type": "string"
+          }
+        }
+      },
+      "additionalProperties": false
+    }
+  },
+  "examples": [
+    {
+      "version": "metropolis-v3.0",
+      "items": [
+        {
+          "video_id": "Accident-Bench_land_space_NgN5FWA3yGs",
+          "video_type": "anomaly",
+          "t1": "00:00:01.00",
+          "t2": "00:00:07.00",
+          "question": "Explain the relationship between the event at 00:00:01 and the situation at 00:00:07.",
+          "answer": "At 00:00:01, a dark pickup truck enters the intersection from the right to initiate a left-hand turn, while at 00:00:07, a silver sedan has come to a complete halt in the center of the intersection, facing the opposite direction of its original travel. The relationship between these two moments is a direct causal link resulting from a failure to yield right-of-way.",
+          "reasoning": "The video begins by establishing a baseline of normal traffic flow at a busy intersection. At 00:00:01, several vehicles including a white utility van and a tan minivan are stopped at a red light..."
+        }
+      ],
+      "metadata": {
+        "type": "causal_linkage",
+        "description": "Causal linkage between traffic events and resulting situations in anomalous ITS videos"
+      }
+    }
+  ]
+}

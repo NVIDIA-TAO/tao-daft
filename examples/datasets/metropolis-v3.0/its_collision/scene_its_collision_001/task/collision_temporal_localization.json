@@ -1,0 +1,40 @@
+{
+  "version": "metropolis-v3.0",
+  "metadata": {
+    "type": "temporal_localization",
+    "date": "2026-03-26",
+    "description": "Temporal localization of collision events in ITS intersection videos",
+    "license": "Apache-2.0",
+    "tags": [
+      "its",
+      "collision",
+      "temporal"
+    ]
+  },
+  "items": [
+    {
+      "video_id": "video_001",
+      "video_type": "anomaly",
+      "t1": "00:00:03.80",
+      "t2": "00:00:04.90",
+      "question": "When does the T-bone collision between the white sedan and the red sedan occur?",
+      "answer": {
+        "start": "00:00:03",
+        "end": "00:00:04"
+      },
+      "reasoning": "The white sedan begins its left turn at approximately 2.5s. The red sedan approaches from the bottom right. Contact occurs at 3.8s when the red sedan strikes the passenger side of the white sedan. The collision impact and vehicle separation complete by 4.9s."
+    },
+    {
+      "video_id": "video_002",
+      "video_type": "anomaly",
+      "t1": "00:00:02.70",
+      "t2": "00:00:04.50",
+      "question": "When does the gray sedan collide with the white sedan?",
+      "answer": {
+        "start": "00:00:02",
+        "end": "00:00:04"
+      },
+      "reasoning": "At 2.7s the gray sedan initiates its left turn from the middle lane directly into the path of the white sedan. The side-impact occurs between 3.0-3.5s. By 4.5s the white sedan has been redirected toward the sidewalk."
+    }
+  ]
+}

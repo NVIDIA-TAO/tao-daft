@@ -1,0 +1,52 @@
+{
+  "version": "metropolis-v3.0",
+  "metadata": {
+    "type": "msted",
+    "date": "2026-03-27",
+    "description": "Multi-Scale Spatio-Temporal Event Description for ITS collision clip 3",
+    "license": "Apache-2.0",
+    "tags": [
+      "its",
+      "collision",
+      "msted"
+    ]
+  },
+  "video_id": "video_001",
+  "sources": [
+    "video_3.json",
+    "chunks_3.json"
+  ],
+  "scene_description": "The video captures a high-angle view of a signalized four-way intersection in an urban setting. Multiple lanes of traffic converge at the junction with visible lane markings, crosswalks, and traffic signals. Three vehicles are visible: a white sedan preparing to turn left, a red sedan approaching straight through the intersection, and a maroon sedan waiting behind the white sedan. The weather is clear with good visibility.",
+  "temporal_spatial_localization": [
+    {
+      "start": "00:00",
+      "end": "00:02",
+      "description": "Normal traffic flow at the signalized intersection. The white sedan at the top of the frame begins moving forward. The maroon sedan behind it remains stationary. A red sedan approaches from the bottom right traveling straight."
+    },
+    {
+      "start": "00:02",
+      "end": "00:03.80",
+      "description": "The white sedan initiates a left-hand turn across oncoming traffic without yielding to the red sedan, which continues straight through the intersection.",
+      "spatial_region": "Center of intersection, left-turn conflict zone"
+    },
+    {
+      "start": "00:03.80",
+      "end": "00:04.90",
+      "description": "T-bone collision: the red sedan strikes the passenger side of the white sedan. Both vehicles lose momentum. The white sedan is pushed across the crosswalk.",
+      "spatial_region": "Center-right of intersection, across marked crosswalk"
+    },
+    {
+      "start": "00:04.90",
+      "end": "00:05.97",
+      "description": "Both vehicles come to rest in the intersection, blocking traffic. The maroon sedan has stopped safely without involvement."
+    }
+  ],
+  "event_description": {
+    "category": "Left-Turn Collision / Intersection Stall",
+    "description": "A white sedan failed to yield while making a left turn at a signalized intersection, resulting in a T-bone collision with a red sedan traveling straight. Both vehicles ended up immobilized in the intersection, with the white sedan pushed across a marked crosswalk.",
+    "temporal_description": "The left turn initiates at approximately frame 60 (2.0s). Contact occurs at frame 114 (3.8s). Both vehicles are at rest by frame 147 (4.9s). Total event duration: approximately 2.9 seconds.",
+    "spatial_location": "Center of the signalized four-way intersection, with the white sedan's final position across the pedestrian crosswalk on the right side of the frame.",
+    "cause": "The white sedan initiated a left-hand turn across oncoming traffic without yielding the right-of-way to the red sedan, which had priority traveling straight through the intersection.",
+    "consequence": "Both vehicles sustained significant damage and became immobilized in the intersection, blocking multiple lanes of traffic. The white sedan was pushed into the pedestrian crossing area, creating a hazard for pedestrians. The maroon sedan behind was forced to remain stationary."
+  }
+}

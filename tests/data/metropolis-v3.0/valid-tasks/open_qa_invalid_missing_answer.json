@@ -1,0 +1,12 @@
+{
+  "version": "metropolis-v3.0",
+  "metadata": {
+    "type": "open_qa"
+  },
+  "items": [
+    {
+      "video_id": "cam1",
+      "question": "What happened?"
+    }
+  ]
+}

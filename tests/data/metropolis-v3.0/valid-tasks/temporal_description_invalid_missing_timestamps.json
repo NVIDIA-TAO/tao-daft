@@ -1,0 +1,13 @@
+{
+  "version": "metropolis-v3.0",
+  "metadata": {
+    "type": "temporal_description"
+  },
+  "items": [
+    {
+      "video_id": "cam1",
+      "question": "What happened?",
+      "answer": "Stuff."
+    }
+  ]
+}

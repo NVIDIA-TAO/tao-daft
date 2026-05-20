@@ -1,0 +1,19 @@
+{
+  "version": "metropolis-v3.0",
+  "metadata": {
+    "type": "video_summarization",
+    "date": "2026-03-25",
+    "description": "Test task",
+    "license": "Apache-2.0",
+    "tags": [
+      "test"
+    ]
+  },
+  "items": [
+    {
+      "video_id": "nonexistent_camera",
+      "question": "Summarize events",
+      "answer": "Nothing happened"
+    }
+  ]
+}

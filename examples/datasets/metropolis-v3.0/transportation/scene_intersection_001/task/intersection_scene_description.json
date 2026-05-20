@@ -1,0 +1,21 @@
+{
+  "version": "metropolis-v3.0",
+  "items": [
+    {
+      "video_id": "camera_01",
+      "question": "Describe the scene visible in this traffic camera footage, including the road layout, vehicles, and infrastructure.",
+      "answer": "A four-way urban intersection viewed from a pole-mounted traffic camera. A red sedan is stopped at the north approach behind the stop line. A city bus is approaching from the east lane. Traffic lights are visible at the north side, currently showing red. Crosswalks and lane markings are clearly visible on the road surface."
+    }
+  ],
+  "metadata": {
+    "type": "scene_description",
+    "date": "2026-03-25",
+    "description": "Scene description captions for urban intersection monitoring footage",
+    "license": "Apache-2.0",
+    "tags": [
+      "transportation",
+      "intersection",
+      "example"
+    ]
+  }
+}

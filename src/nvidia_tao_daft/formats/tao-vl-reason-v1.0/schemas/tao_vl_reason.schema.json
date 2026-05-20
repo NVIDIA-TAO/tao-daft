@@ -1,0 +1,90 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://nvidia.com/schemas/tao-vl-reason-v1.0/tao_vl_reason.schema.json",
+  "title": "tao-vl-reason-v1.0 annotation file",
+  "description": "A single tao-vl-reason-v1.0 annotation file. The file contains a flat list of training items. metadata.type is the schema discriminator (always 'annotation'); metadata.task is an optional free-form label (typically the task name when produced by the metropolis-v3.0 converter). question, answer, and reasoning are free-form strings — the format does not impose per-task structure.",
+  "type": "object",
+  "required": ["format", "metadata", "items"],
+  "additionalProperties": false,
+  "properties": {
+    "format": {
+      "type": "string",
+      "const": "tao-vl-reason-v1.0"
+    },
+    "metadata": {
+      "type": "object",
+      "required": ["type", "license"],
+      "additionalProperties": false,
+      "properties": {
+        "type": {
+          "type": "string",
+          "const": "annotation",
+          "description": "Schema discriminator. Always 'annotation' for tao-vl-reason-v1.0 annotation files."
+        },
+        "task": {
+          "type": "string",
+          "description": "Optional free-form label for the items in this file. Encouraged to be meaningful — the metropolis-v3.0 converter writes the source task name here (e.g. 'bcq', 'mcq', 'open_qa')."
+        },
+        "date": {
+          "type": "string",
+          "description": "ISO 8601 date string."
+        },
+        "description": {
+          "type": "string"
+        },
+        "license": {
+          "type": "string"
+        },
+        "tags": {
+          "type": "array",
+          "items": {"type": "string"}
+        }
+      }
+    },
+    "media_root": {
+      "description": "Root for resolving each item's video_id / image_id. null → resolve relative to the dataset root. A relative string → resolved as a subdirectory under the dataset root. An absolute path → used as-is (useful for shared media stores).",
+      "oneOf": [
+        {"type": "null"},
+        {"type": "string"}
+      ]
+    },
+    "items": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["question", "answer"],
+        "additionalProperties": true,
+        "oneOf": [
+          {"required": ["video_id"]},
+          {"required": ["image_id"]}
+        ],
+        "properties": {
+          "video_id": {
+            "type": "string",
+            "description": "Path to the video file relative to media_root (or to the dataset root if media_root is null)."
+          },
+          "image_id": {
+            "type": "string",
+            "description": "Path to the image file relative to media_root (or to the dataset root if media_root is null)."
+          },
+          "question": {
+            "type": "string",
+            "description": "Free-form prompt presented to the model. May embed task-specific framing (multiple-choice options, format instructions, etc.) directly."
+          },
+          "answer": {
+            "type": "string",
+            "description": "Free-form expected answer."
+          },
+          "reasoning": {
+            "type": "string",
+            "description": "Optional chain-of-thought / rationale. Free-form."
+          },
+          "item_index": {
+            "type": "string",
+            "description": "Optional per-item identifier."
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,13 @@
+{
+  "version": "metropolis-v3.0",
+  "metadata": {
+    "type": "mcq_openended"
+  },
+  "items": [
+    {
+      "video_id": "cam1",
+      "question": "What caused the collision?",
+      "answer": "AB. Multiple factors contributed."
+    }
+  ]
+}

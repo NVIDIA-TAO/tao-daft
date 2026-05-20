@@ -1,0 +1,24 @@
+{
+  "format": "tao-vl-reason-v1.0",
+  "metadata": {
+    "type": "annotation",
+    "task": "video_description",
+    "date": "2026-04-10",
+    "description": "Video description \u2014 red-light violation at intersection.",
+    "license": "Apache-2.0",
+    "tags": [
+      "transportation",
+      "anomaly-detection",
+      "video-description"
+    ]
+  },
+  "media_root": null,
+  "items": [
+    {
+      "video_id": "videos/video_001.mp4",
+      "question": "Describe any anomalous traffic events visible in this video.",
+      "answer": "At approximately 00:04, a dark sedan enters the intersection from the left lane against a red light. The vehicle accelerates through without stopping, narrowly missing a pedestrian who had begun crossing from the right. No collision occurs, but the pedestrian is forced to halt abruptly. The traffic light remains red throughout the vehicle's passage.",
+      "reasoning": "I need to scan the video for anomalous traffic behavior \u2014 violations of traffic laws, unexpected vehicle movements, or dangerous situations. Around the 4-second mark I observe a dark sedan approaching the intersection from the left lane while the signal is clearly red. The vehicle does not decelerate; it accelerates through the intersection. A pedestrian had already started crossing from the right and is forced to stop abruptly. The light remains red throughout the vehicle's passage. No physical collision occurs, but this constitutes a red-light violation and a near-miss with a pedestrian."
+    }
+  ]
+}

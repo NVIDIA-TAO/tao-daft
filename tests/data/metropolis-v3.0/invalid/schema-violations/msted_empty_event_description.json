@@ -1,0 +1,10 @@
+{
+  "version": "metropolis-v3.0",
+  "metadata": {"type": "msted"},
+  "video_id": "main",
+  "scene_description": "Urban intersection.",
+  "temporal_spatial_localization": [
+    {"start": "00:00", "end": "00:05", "description": "Traffic flows normally."}
+  ],
+  "event_description": {}
+}

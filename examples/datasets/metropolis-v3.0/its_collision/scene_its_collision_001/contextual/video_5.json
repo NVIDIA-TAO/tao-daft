@@ -1,0 +1,22 @@
+{
+  "version": "metropolis-v3.0",
+  "video_id": "video_002",
+  "format": "mp4",
+  "fps": 30,
+  "duration": 8.976,
+  "height": 1080,
+  "width": 1920,
+  "scenario_info": "Urban intersection - ITS collision verification dataset",
+  "scene_description": "Urban signalized intersection captured from overhead or elevated camera angle.",
+  "metadata": {
+    "type": "video",
+    "date": "2026-03-26",
+    "description": "Video metadata for ITS collision clip (video 5)",
+    "license": "Apache-2.0",
+    "tags": [
+      "its",
+      "collision",
+      "intersection"
+    ]
+  }
+}

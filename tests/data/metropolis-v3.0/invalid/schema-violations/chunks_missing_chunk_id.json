@@ -1,0 +1,12 @@
+{
+  "version": "metropolis-v3.0",
+  "metadata": {"type": "chunks"},
+  "video_id": "main",
+  "chunks": [
+    {
+      "start": "00:00",
+      "end": "00:05",
+      "description": "Normal traffic — missing required chunk_id field."
+    }
+  ]
+}

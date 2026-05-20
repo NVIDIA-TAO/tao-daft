@@ -1,0 +1,24 @@
+{
+  "format": "tao-vl-reason-v1.0",
+  "metadata": {
+    "type": "annotation",
+    "task": "causal_linkage",
+    "description": "ITS collision training samples \u2014 same content as its_collision/, but media is referenced in place instead of copied. media_root is a relative path back to the source metropolis-v3.0 scene; items are file paths under that root.",
+    "license": "Apache-2.0"
+  },
+  "media_root": "../../metropolis-v3.0/its_collision/scene_its_collision_001",
+  "items": [
+    {
+      "video_id": "raw/video_001.mp4",
+      "question": "Explain the relationship between the event at 00:00:02 and the situation at 00:00:05.",
+      "answer": "At 00:00:02, the white sedan begins a left-hand turn across oncoming traffic without yielding. By 00:00:05, this failure to yield has resulted in a T-bone collision with the red sedan, leaving both vehicles immobilized in the intersection \u2014 the white sedan pushed across the crosswalk and the red sedan stopped in the middle of the junction.",
+      "reasoning": "The causal chain begins with the white sedan's decision to turn left without adequate clearance. The red sedan, traveling straight with right-of-way, cannot stop in time. The momentum transfer from the collision pushes the white sedan sideways into the pedestrian crossing area."
+    },
+    {
+      "video_id": "raw/video_002.mp4",
+      "question": "Explain the relationship between the event at 00:00:03 and the situation at 00:00:05.",
+      "answer": "At 00:00:03, the gray sedan attempts an improper left turn from a middle lane (lane 3), cutting across the path of the white sedan in lane 5. By 00:00:05, this lane-crossing maneuver has caused a side-impact collision that pushes the white sedan off the roadway and onto the sidewalk where it strikes a tree.",
+      "reasoning": "The gray sedan's turn from a non-turning lane is the root cause. The white sedan, traveling straight in its proper lane, has no time to react. The impact angle directs the white sedan toward the curb, and the tree provides the final stopping force."
+    }
+  ]
+}

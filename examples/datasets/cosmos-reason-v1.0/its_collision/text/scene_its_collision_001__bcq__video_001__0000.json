@@ -1,0 +1,39 @@
+{
+  "version": "cosmos-reason-v1.0",
+  "metadata": {
+    "type": "conversation",
+    "tags": [
+      "bcq"
+    ]
+  },
+  "conversations": [
+    {
+      "role": "user",
+      "content": [
+        {
+          "type": "video",
+          "video": "video_0"
+        },
+        {
+          "type": "text",
+          "text": "Does the white sedan collide with a red sedan while making a left turn?\n\nAnswer with only Yes or No."
+        }
+      ]
+    },
+    {
+      "role": "assistant",
+      "reasoning_content": [
+        {
+          "type": "text",
+          "text": "The video shows a clear sequence of events leading to a T-bone collision at a signalized intersection. Initially, the white sedan is seen approaching from the top of the frame and begins its left-turn maneuver across the intersection. At the same time, a red sedan is moving straight from the bottom right of the frame. The two vehicles' paths intersect, and between the 3.8-second and 4.9-second marks, the red sedan strikes the side of the white sedan.\n\nThe collision is the result of a failure to yield the right-of-way during a turn. The white sedan does not wait for the oncoming red sedan to pass before proceeding with its left turn. After the impact, the white sedan is deflected toward the crosswalk on the right, and the red sedan comes to a halt nearby. Both vehicles sustain visible damage and end up obstructing the flow of traffic within the intersection."
+        }
+      ],
+      "content": [
+        {
+          "type": "text",
+          "text": "Yes"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,35 @@
+{
+  "version": "metropolis-v3.0",
+  "metadata": {
+    "type": "temporal_localization",
+    "date": "2026-03-26",
+    "description": "Test Temporal Loc",
+    "license": "Apache-2.0",
+    "tags": [
+      "test"
+    ]
+  },
+  "items": [
+    {
+      "video_id": "cam1",
+      "t1": "00:00:02.00",
+      "t2": "00:00:06.00",
+      "question": "When does the collision occur?",
+      "answer": {
+        "start": "00:00:02",
+        "end": "00:00:06"
+      }
+    },
+    {
+      "video_id": "cam1",
+      "video_type": "anomaly",
+      "t1": "00:00:01.50",
+      "t2": "00:00:03.00",
+      "question": "When does the car run the red light?",
+      "answer": {
+        "start": "00:00:01",
+        "end": "00:00:03"
+      }
+    }
+  ]
+}

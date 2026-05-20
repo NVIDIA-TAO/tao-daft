@@ -1,0 +1,25 @@
+{
+  "version": "metropolis-v3.0",
+  "metadata": {
+    "type": "bcq_openended",
+    "date": "2026-04-12",
+    "description": "Test BCQ Open-Ended",
+    "license": "Apache-2.0",
+    "tags": [
+      "test"
+    ]
+  },
+  "items": [
+    {
+      "video_id": "cam1",
+      "question": "Does a car crash occur?",
+      "answer": "Yes. A sedan collides with a truck at 3.2s after the sedan fails to yield at the intersection."
+    },
+    {
+      "video_id": "cam1",
+      "question": "Does a pedestrian cross the road?",
+      "answer": "No. No pedestrian is visible crossing the road at any point during the video clip.",
+      "reasoning": "The sidewalks are empty throughout the clip and the crosswalk signal remains red."
+    }
+  ]
+}

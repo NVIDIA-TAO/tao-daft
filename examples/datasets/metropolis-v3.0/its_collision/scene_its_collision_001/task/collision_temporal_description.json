@@ -1,0 +1,50 @@
+{
+  "version": "metropolis-v3.0",
+  "metadata": {
+    "type": "temporal_description",
+    "date": "2026-03-26",
+    "description": "Dense temporal descriptions of collision events in ITS intersection videos",
+    "license": "Apache-2.0",
+    "tags": [
+      "its",
+      "collision",
+      "temporal",
+      "description"
+    ]
+  },
+  "items": [
+    {
+      "video_id": "video_001",
+      "video_type": "anomaly",
+      "t1": "00:00:00.00",
+      "t2": "00:00:02.00",
+      "question": "What happened in the video between 00:00:00 and 00:00:02?",
+      "answer": "Normal traffic flow at a signalized intersection. A white sedan at the top of the frame begins moving forward, while a maroon sedan behind it remains stationary. A red sedan approaches from the bottom right of the frame traveling straight through the intersection."
+    },
+    {
+      "video_id": "video_001",
+      "video_type": "anomaly",
+      "t1": "00:00:03.00",
+      "t2": "00:00:06.00",
+      "question": "What happened in the video between 00:00:03 and 00:00:06?",
+      "answer": "The white sedan initiates a left-hand turn and crosses into the path of the oncoming red sedan. A violent T-bone collision occurs at approximately 3.8 seconds. The impact pushes the white sedan sideways toward the right corner of the frame. Both vehicles come to rest in the intersection, blocking traffic. The maroon sedan behind has stopped safely without involvement.",
+      "reasoning": "The critical 3-second window captures the entire collision sequence from initiation of the turn to final resting positions of both vehicles."
+    },
+    {
+      "video_id": "video_002",
+      "video_type": "anomaly",
+      "t1": "00:00:02.00",
+      "t2": "00:00:05.00",
+      "question": "What happened in the video between 00:00:02 and 00:00:05?",
+      "answer": "The gray sedan suddenly turns left from the middle lane, colliding with the white sedan in the outer lane. The impact redirects the white sedan toward the sidewalk where it crosses the curb and strikes a tree at approximately 4.5 seconds. The white sedan becomes disabled against the tree while the gray sedan continues moving forward."
+    },
+    {
+      "video_id": "video_002",
+      "video_type": "anomaly",
+      "t1": "00:00:05.00",
+      "t2": "00:00:09.00",
+      "question": "What happened in the video between 00:00:05 and 00:00:09?",
+      "answer": "The aftermath of the collision: the white sedan remains stalled against the tree on the sidewalk, disabled and obstructing the pedestrian area. The gray sedan, despite being the cause of the collision, continues driving forward and exits the camera's field of view to the right without stopping. Other vehicles on the road slow down in response to the accident."
+    }
+  ]
+}

@@ -1,0 +1,27 @@
+{
+  "version": "cosmos-reason-v1.0",
+  "metadata": {
+    "type": "meta",
+    "date": "2026-04-10",
+    "description": "ITS anomaly detection training samples for Cosmos Reason fine-tuning. Covers video description, multi-turn VQA, and 2D grounding tasks on intersection and highway footage.",
+    "license": "Apache-2.0",
+    "tags": ["transportation", "anomaly-detection", "its", "intersection", "highway"]
+  },
+  "samples": [
+    {
+      "id": "sample_001",
+      "conversation": "text/sample_001.json",
+      "media": "media/video_001.mp4"
+    },
+    {
+      "id": "sample_002",
+      "conversation": "text/sample_002.json",
+      "media": "media/video_002.mp4"
+    },
+    {
+      "id": "sample_003",
+      "conversation": "text/sample_003.json",
+      "media": "media/image_001.jpg"
+    }
+  ]
+}

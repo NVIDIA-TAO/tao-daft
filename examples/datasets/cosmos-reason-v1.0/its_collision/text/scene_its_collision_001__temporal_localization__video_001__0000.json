@@ -1,0 +1,39 @@
+{
+  "version": "cosmos-reason-v1.0",
+  "metadata": {
+    "type": "conversation",
+    "tags": [
+      "temporal_localization"
+    ]
+  },
+  "conversations": [
+    {
+      "role": "user",
+      "content": [
+        {
+          "type": "video",
+          "video": "video_0"
+        },
+        {
+          "type": "text",
+          "text": "When does the T-bone collision between the white sedan and the red sedan occur?\n\nProvide the result in json format with 'mm:ss' for time depiction. Use keywords 'start', 'end' in the json output."
+        }
+      ]
+    },
+    {
+      "role": "assistant",
+      "reasoning_content": [
+        {
+          "type": "text",
+          "text": "The white sedan begins its left turn at approximately 2.5s. The red sedan approaches from the bottom right. Contact occurs at 3.8s when the red sedan strikes the passenger side of the white sedan. The collision impact and vehicle separation complete by 4.9s."
+        }
+      ],
+      "content": [
+        {
+          "type": "text",
+          "text": "```json\n{\n  \"start\": \"00:00:03\",\n  \"end\": \"00:00:04\"\n}\n```"
+        }
+      ]
+    }
+  ]
+}

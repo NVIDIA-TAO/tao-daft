@@ -1,0 +1,21 @@
+{
+  "version": "metropolis-v3.0",
+  "video_id": "camera_01",
+  "format": "mp4",
+  "fps": 30,
+  "duration": 30.0,
+  "height": 480,
+  "width": 640,
+  "rectified": false,
+  "camera_id": "camera_01",
+  "scenario_info": "Urban intersection monitoring - traffic camera mounted on pole",
+  "scene_description": "Four-way intersection with traffic lights, crosswalks, and marked lanes. Red sedan stopped at north approach, city bus approaching from east.",
+  "event_summary": "Red sedan waiting at red light, bus approaching intersection and decelerating. No pedestrian activity during observation period.",
+  "metadata": {
+    "type": "video",
+    "date": "2026-03-25",
+    "description": "Video metadata from auto-annotation pipeline",
+    "license": "Apache-2.0",
+    "tags": ["transportation", "intersection", "auto-pipeline"]
+  }
+}

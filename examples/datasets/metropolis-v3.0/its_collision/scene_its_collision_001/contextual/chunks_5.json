@@ -1,0 +1,58 @@
+{
+  "version": "metropolis-v3.0",
+  "metadata": {
+    "type": "chunks",
+    "date": "2026-03-27",
+    "description": "Dense temporal chunks for ITS collision clip 5",
+    "license": "Apache-2.0",
+    "tags": [
+      "its",
+      "collision",
+      "hit_and_run"
+    ]
+  },
+  "video_id": "video_002",
+  "chunks": [
+    {
+      "chunk_id": "chunk_001",
+      "start": "00:00",
+      "end": "00:02.70",
+      "description": "Traffic flows normally on a multi-lane road. A white sedan travels in lane 5 (outer lane), while a gray sedan moves in lane 3 (middle lane).",
+      "tags": [
+        "normal_flow"
+      ]
+    },
+    {
+      "chunk_id": "chunk_002",
+      "start": "00:02.70",
+      "end": "00:04.50",
+      "description": "The gray sedan initiates a left turn from the middle lane, crossing into the path of the white sedan. A side-impact collision occurs between 3.0 and 3.5 seconds.",
+      "tags": [
+        "collision",
+        "improper_lane_change",
+        "left_turn_violation"
+      ]
+    },
+    {
+      "chunk_id": "chunk_003",
+      "start": "00:04.50",
+      "end": "00:04.90",
+      "description": "The white sedan is deflected off the roadway and crosses the curb, striking a mature tree on the sidewalk.",
+      "tags": [
+        "secondary_impact",
+        "off_road"
+      ]
+    },
+    {
+      "chunk_id": "chunk_004",
+      "start": "00:04.90",
+      "end": "00:08.97",
+      "description": "The white sedan remains stalled against the tree on the sidewalk, disabled. The gray sedan continues driving forward and exits the camera's field of view without stopping.",
+      "tags": [
+        "aftermath",
+        "vehicle_stalled",
+        "hit_and_run"
+      ]
+    }
+  ]
+}

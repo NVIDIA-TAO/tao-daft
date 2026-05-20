@@ -1,0 +1,30 @@
+{
+  "version": "metropolis-v3.0",
+  "metadata": {
+    "type": "temporal_description",
+    "date": "2026-03-26",
+    "description": "Test Temporal Desc",
+    "license": "Apache-2.0",
+    "tags": [
+      "test"
+    ]
+  },
+  "items": [
+    {
+      "video_id": "cam1",
+      "t1": "00:00:02.00",
+      "t2": "00:00:06.00",
+      "question": "What happened between 00:00:02 and 00:00:06?",
+      "answer": "A silver sedan turns left without yielding, causing a T-bone collision."
+    },
+    {
+      "video_id": "cam1",
+      "video_type": "anomaly",
+      "t1": "00:00:00.00",
+      "t2": "00:00:03.00",
+      "question": "Describe the events from 00:00:00 to 00:00:03.",
+      "answer": "Normal traffic flow with vehicles proceeding through intersection.",
+      "reasoning": "Baseline period."
+    }
+  ]
+}

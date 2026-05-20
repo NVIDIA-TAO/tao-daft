@@ -1,0 +1,102 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://developer.nvidia.com/tao-daft/schemas/metropolis-v3.0/scene_description.schema.json",
+  "title": "Scene Description Task Annotation",
+  "description": "Captioning task for describing the visual scene or environment. Supports both image and video raw types. Each item provides a question prompt, an answer caption, and optional reasoning.",
+  "type": "object",
+  "required": [
+    "version",
+    "metadata",
+    "items"
+  ],
+  "additionalProperties": false,
+  "properties": {
+    "version": {
+      "type": "string",
+      "const": "metropolis-v3.0",
+      "description": "Schema version - must be '3.0' for this schema"
+    },
+    "items": {
+      "type": "array",
+      "description": "Array of scene description items, one per image or video",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "required": [
+          "question",
+          "answer"
+        ],
+        "additionalProperties": false,
+        "properties": {
+          "image_id": {
+            "type": "string",
+            "description": "Reference to image ID (matches directory name in contextual/). Required when raw_type is image."
+          },
+          "video_id": {
+            "type": "string",
+            "description": "Reference to video ID (matches directory name in contextual/). Required when raw_type is video."
+          },
+          "question": {
+            "type": "string",
+            "description": "The captioning prompt or guidance for the scene description"
+          },
+          "answer": {
+            "type": "string",
+            "description": "Scene description"
+          },
+          "reasoning": {
+            "type": "string",
+            "description": "Optional step-by-step reasoning trace"
+          }
+        },
+        "oneOf": [
+          {
+            "required": [
+              "video_id"
+            ]
+          },
+          {
+            "required": [
+              "image_id"
+            ]
+          }
+        ]
+      }
+    },
+    "metadata": {
+      "type": "object",
+      "description": "File metadata for identification and cataloging",
+      "required": [
+        "type"
+      ],
+      "properties": {
+        "type": {
+          "type": "string",
+          "description": "Task type identifier (must be 'scene_description')",
+          "const": "scene_description"
+        },
+        "date": {
+          "type": "string",
+          "description": "Creation date in ISO 8601 format (YYYY-MM-DD)",
+          "format": "date"
+        },
+        "description": {
+          "type": "string",
+          "description": "Human-readable description of this annotation file"
+        },
+        "license": {
+          "type": "string",
+          "description": "License under which this annotation is distributed"
+        },
+        "tags": {
+          "type": "array",
+          "description": "List of tags for categorization and search",
+          "items": {
+            "type": "string"
+          }
+        }
+      },
+      "additionalProperties": false
+    }
+  }
+}

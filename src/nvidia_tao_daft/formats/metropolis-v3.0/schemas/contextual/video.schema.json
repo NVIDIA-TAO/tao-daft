@@ -1,0 +1,173 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://github.com/NVIDIA/nvidia-tao-daft/schemas/metropolis-v3.0/video.schema.json",
+  "title": "Video Metadata Schema",
+  "description": "Schema for video.json - Global metadata for video assets in TAO DAFT format metropolis-v3.0",
+  "type": "object",
+  "required": [
+    "version",
+    "video_id",
+    "format",
+    "fps",
+    "duration",
+    "height",
+    "width",
+    "metadata"
+  ],
+  "properties": {
+    "version": {
+      "type": "string",
+      "const": "metropolis-v3.0",
+      "description": "Schema version - must be '3.0' for this schema"
+    },
+    "video_id": {
+      "type": "string",
+      "description": "Unique identifier for the video",
+      "minLength": 1,
+      "examples": [
+        "video_001",
+        "cam1_20251115_093000"
+      ]
+    },
+    "format": {
+      "type": "string",
+      "description": "Video container format",
+      "enum": [
+        "mp4",
+        "avi",
+        "mov",
+        "mkv",
+        "webm"
+      ],
+      "examples": [
+        "mp4"
+      ]
+    },
+    "rectified": {
+      "type": "boolean",
+      "description": "Whether the video has been rectified (lens distortion corrected)",
+      "default": false
+    },
+    "scenario_info": {
+      "type": "string",
+      "description": "Information about the video creation scenario, environment, equipment, and purpose",
+      "examples": [
+        "Warehouse operations - forklift safety monitoring",
+        "Smart city intersection - traffic flow analysis"
+      ]
+    },
+    "scene_description": {
+      "type": "string",
+      "description": "Spatial characteristics and layout of the scene (environment, lighting, objects, spatial arrangement)",
+      "examples": [
+        "Large warehouse with high ceilings, fluorescent lighting, multiple aisles with shelving units, concrete floor",
+        "Four-way intersection in urban setting, traffic lights at all corners, crosswalks, moderate vehicle and pedestrian traffic"
+      ]
+    },
+    "event_summary": {
+      "type": "string",
+      "description": "Temporal overview of key actions, occurrences, or changes throughout the video duration",
+      "examples": [
+        "Forklift approaches worker, worker steps aside, forklift passes safely",
+        "Vehicles stop at red light, pedestrian crosses, light turns green, traffic resumes"
+      ]
+    },
+    "camera_id": {
+      "type": "string",
+      "description": "Reference to camera ID in calibration.json for accessing intrinsic/extrinsic parameters",
+      "examples": [
+        "cam_001",
+        "camera_front_left"
+      ]
+    },
+    "metadata": {
+      "type": "object",
+      "description": "File metadata for identification and cataloging",
+      "required": [
+        "type"
+      ],
+      "properties": {
+        "type": {
+          "type": "string",
+          "description": "Annotation type identifier (must be 'video')",
+          "const": "video"
+        },
+        "date": {
+          "type": "string",
+          "description": "Creation date in ISO 8601 format (YYYY-MM-DD)",
+          "format": "date"
+        },
+        "description": {
+          "type": "string",
+          "description": "Human-readable description of this annotation file"
+        },
+        "license": {
+          "type": "string",
+          "description": "License under which this annotation is distributed"
+        },
+        "tags": {
+          "type": "array",
+          "description": "List of tags for categorization and search",
+          "items": {
+            "type": "string"
+          }
+        }
+      },
+      "additionalProperties": false
+    },
+    "fps": {
+      "type": "integer",
+      "description": "Frames per second (frame rate)",
+      "minimum": 1,
+      "maximum": 240,
+      "examples": [
+        24,
+        30,
+        60
+      ]
+    },
+    "duration": {
+      "type": "number",
+      "description": "Total duration of the video in seconds",
+      "exclusiveMinimum": 0,
+      "examples": [
+        10.5,
+        30.0,
+        120.5
+      ]
+    },
+    "height": {
+      "type": "integer",
+      "description": "Video frame height in pixels",
+      "minimum": 1,
+      "examples": [
+        720,
+        1080,
+        2160
+      ]
+    },
+    "width": {
+      "type": "integer",
+      "description": "Video frame width in pixels",
+      "minimum": 1,
+      "examples": [
+        1280,
+        1920,
+        3840
+      ]
+    }
+  },
+  "additionalProperties": false,
+  "examples": [
+    {
+      "version": 2.0,
+      "video_id": "warehouse_forklift_001",
+      "format": "mp4",
+      "rectified": false,
+      "scenario_info": "Warehouse operations - forklift near-miss scenario from IsaacSim",
+      "scene_description": "Large warehouse with high ceilings and fluorescent lighting. Multiple rows of industrial shelving with pallets. Concrete floor with yellow safety markings. Forklift operating in center aisle.",
+      "event_summary": "Forklift approaches intersection, worker walking perpendicular path, worker notices forklift and stops, forklift passes through intersection, worker continues walking.",
+      "camera_id": "cam_overhead_01"
+    }
+  ]
+}

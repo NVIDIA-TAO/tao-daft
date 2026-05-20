@@ -1,0 +1,42 @@
+{
+  "version": "cosmos-reason-v1.0",
+  "metadata": {
+    "type": "conversation",
+    "date": "2026-04-10",
+    "description": "Multi-turn VQA — wrong-way driver on highway ramp",
+    "tags": ["transportation", "anomaly-detection", "vqa", "multi-turn"]
+  },
+  "conversations": [
+    {
+      "role": "system",
+      "content": [
+        {"type": "text", "text": "You are an expert traffic analyst. Answer questions about the provided video concisely and accurately."}
+      ]
+    },
+    {
+      "role": "user",
+      "content": [
+        {"type": "video", "video": "video_0"},
+        {"type": "text", "text": "How many vehicles are visible in this clip?"}
+      ]
+    },
+    {
+      "role": "assistant",
+      "content": [
+        {"type": "text", "text": "Four vehicles are visible: three traveling in the correct direction on the highway ramp and one traveling in the wrong direction against oncoming traffic."}
+      ]
+    },
+    {
+      "role": "user",
+      "content": [
+        {"type": "text", "text": "Is there an anomalous event? If so, describe it and estimate when it occurs."}
+      ]
+    },
+    {
+      "role": "assistant",
+      "content": [
+        {"type": "text", "text": "Yes. Starting at approximately 00:02, a light-colored SUV is driving the wrong way on the highway on-ramp, heading directly toward oncoming vehicles. The event persists until the end of the clip at 00:09. The other drivers swerve to avoid a collision. This constitutes a wrong-way driving violation."}
+      ]
+    }
+  ]
+}

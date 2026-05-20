@@ -1,0 +1,264 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://github.com/NVIDIA/nvidia-tao-daft/schemas/metropolis-v3.0/events.schema.json",
+  "title": "Event Detection Annotations Schema (metropolis-v3.0)",
+  "description": "Schema for events.json - Temporal event detection and description (TAO DAFT metropolis-v3.0)",
+  "type": "object",
+  "required": [
+    "version",
+    "events",
+    "metadata"
+  ],
+  "properties": {
+    "version": {
+      "type": "string",
+      "const": "metropolis-v3.0",
+      "description": "Schema version - must be '3.0' for this schema"
+    },
+    "events": {
+      "type": "array",
+      "description": "List of temporal events detected in the video",
+      "items": {
+        "type": "object",
+        "required": [
+          "event_id",
+          "start_time",
+          "end_time"
+        ],
+        "properties": {
+          "event_id": {
+            "type": "string",
+            "description": "Unique identifier for the event",
+            "examples": [
+              "event_000000",
+              "near_miss_001",
+              "evt_traffic_violation_003"
+            ]
+          },
+          "start_time": {
+            "type": "string",
+            "description": "Event start time as timecode: MM:SS or HH:MM:SS with optional fractional seconds (e.g. '00:02', '00:02.70', '00:01:30')",
+            "pattern": "^(\\d{2}:)?\\d{2}:\\d{2}(\\.\\d+)?$",
+            "examples": ["00:00", "00:02", "00:02.70"]
+          },
+          "end_time": {
+            "type": "string",
+            "description": "Event end time as timecode: MM:SS or HH:MM:SS with optional fractional seconds (e.g. '00:04', '00:04.50', '00:01:35')",
+            "pattern": "^(\\d{2}:)?\\d{2}:\\d{2}(\\.\\d+)?$",
+            "examples": ["00:02", "00:03.80", "00:04.50"]
+          },
+          "category": {
+            "type": "string",
+            "description": "Primary category/type of the event",
+            "examples": [
+              "near_miss",
+              "collision",
+              "traffic_violation",
+              "loading",
+              "unloading",
+              "person_fall",
+              "vehicle_stop"
+            ]
+          },
+          "sub_category": {
+            "type": "array",
+            "description": "List of sub-categories providing more specific classification",
+            "items": {
+              "type": "string"
+            },
+            "examples": [
+              [
+                "person_dodge",
+                "forklift_stop"
+              ],
+              [
+                "red_light_run",
+                "pedestrian_crossing"
+              ],
+              [
+                "safe_distance_maintained"
+              ]
+            ]
+          },
+          "instances": {
+            "type": "array",
+            "description": "List of object_ids (from instances.json) involved in the event",
+            "items": {
+              "type": "string"
+            },
+            "examples": [
+              [
+                "forklift_13",
+                "worker_01"
+              ],
+              [
+                "car_05",
+                "pedestrian_12"
+              ]
+            ]
+          },
+          "event_caption": {
+            "type": "string",
+            "description": "Natural language description of the event (may use templates with {object_id} placeholders)",
+            "examples": [
+              "Forklift {forklift_13} approaches worker {worker_01}, who steps aside to avoid collision",
+              "Vehicle {car_05} runs red light while pedestrian {pedestrian_12} is crossing",
+              "Pallet {pallet_a12} is loaded onto forklift {forklift_13}"
+            ]
+          },
+          "severity": {
+            "type": "string",
+            "description": "Severity level of the event",
+            "enum": [
+              "low",
+              "medium",
+              "high",
+              "critical"
+            ],
+            "examples": [
+              "high",
+              "medium"
+            ]
+          },
+          "group_id": {
+            "type": "string",
+            "description": "Reference to a group_id in the top-level groups array, for linking related events",
+            "examples": [
+              "collision_sequence_01",
+              "loading_operation_01"
+            ]
+          }
+        },
+        "additionalProperties": false
+      }
+    },
+    "metadata": {
+      "type": "object",
+      "description": "File metadata for identification and cataloging",
+      "required": [
+        "type"
+      ],
+      "properties": {
+        "type": {
+          "type": "string",
+          "description": "Annotation type identifier (must be 'events')",
+          "const": "events"
+        },
+        "date": {
+          "type": "string",
+          "description": "Creation date in ISO 8601 format (YYYY-MM-DD)",
+          "format": "date"
+        },
+        "description": {
+          "type": "string",
+          "description": "Human-readable description of this annotation file"
+        },
+        "license": {
+          "type": "string",
+          "description": "License under which this annotation is distributed"
+        },
+        "tags": {
+          "type": "array",
+          "description": "List of tags for categorization and search",
+          "items": {
+            "type": "string"
+          }
+        }
+      },
+      "additionalProperties": false
+    },
+    "groups": {
+      "type": "array",
+      "description": "Definitions of event groups for organizing related events",
+      "items": {
+        "type": "object",
+        "required": [
+          "group_id"
+        ],
+        "properties": {
+          "group_id": {
+            "type": "string",
+            "description": "Unique identifier for the event group",
+            "examples": [
+              "collision_sequence_01",
+              "loading_operation_01"
+            ]
+          },
+          "description": {
+            "type": "string",
+            "description": "Human-readable description of what this group represents",
+            "examples": [
+              "Sequence of events leading to a near-miss collision"
+            ]
+          }
+        },
+        "additionalProperties": false
+      }
+    },
+    "video_id": {
+      "type": "string",
+      "description": "Reference to video_id in the corresponding video annotation file",
+      "examples": [
+        "camera_01",
+        "camera_02"
+      ]
+    },
+    "instances_source": {
+      "type": "string",
+      "description": "Filename of the instances annotation file containing object definitions",
+      "examples": [
+        "instances_annot1.json",
+        "instances_human.json"
+      ]
+    }
+  },
+  "additionalProperties": false,
+  "examples": [
+    {
+      "version": "metropolis-v3.0",
+      "metadata": {
+        "type": "events",
+        "date": "2026-03-25",
+        "description": "Event annotations for warehouse scene",
+        "license": "Apache-2.0",
+        "tags": [
+          "warehouse",
+          "safety"
+        ]
+      },
+      "groups": [
+        {
+          "group_id": "near_miss_sequence_01",
+          "description": "Sequence of events around a forklift near-miss incident"
+        }
+      ],
+      "events": [
+        {
+          "event_id": "event_000000",
+          "start_time": "00:00.33",
+          "end_time": "00:00.53",
+          "category": "near_miss",
+          "group_id": "near_miss_sequence_01",
+          "instances": [
+            "forklift_13",
+            "worker_01"
+          ],
+          "event_caption": "Forklift {forklift_13} approaches worker {worker_01}, who steps aside to avoid collision",
+          "severity": "high"
+        },
+        {
+          "event_id": "event_000001",
+          "start_time": "00:00.57",
+          "end_time": "00:00.77",
+          "category": "loading",
+          "instances": [
+            "forklift_13",
+            "pallet_a12"
+          ],
+          "event_caption": "Forklift {forklift_13} picks up pallet {pallet_a12}",
+          "severity": "low"
+        }
+      ]
+    }
+  ]
+}

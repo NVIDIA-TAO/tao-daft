@@ -1,0 +1,127 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://developer.nvidia.com/tao-daft/schemas/metropolis-v3.0/temporal_description.schema.json",
+  "title": "Temporal Event Description Task Annotation",
+  "description": "Dense video captioning task: given a temporal segment defined by [t1, t2], describe in natural language what happened during that segment.",
+  "type": "object",
+  "required": [
+    "version",
+    "metadata",
+    "items"
+  ],
+  "additionalProperties": false,
+  "properties": {
+    "version": {
+      "type": "string",
+      "const": "metropolis-v3.0",
+      "description": "Schema version - must be '3.0' for this schema"
+    },
+    "items": {
+      "type": "array",
+      "description": "Array of temporal event description items, one per question-answer pair",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "required": [
+          "video_id",
+          "t1",
+          "t2",
+          "question",
+          "answer"
+        ],
+        "additionalProperties": false,
+        "properties": {
+          "video_id": {
+            "type": "string",
+            "description": "Reference to video ID (matches directory name in contextual/)"
+          },
+          "video_type": {
+            "type": "string",
+            "enum": [
+              "anomaly",
+              "normal"
+            ],
+            "description": "High-level content classification of the video"
+          },
+          "t1": {
+            "type": "string",
+            "pattern": "^(\\d{2}:)?\\d{2}:\\d{2}(\\.\\d+)?$",
+            "description": "Segment start time in flexible timecode: MM:SS or HH:MM:SS with optional fractional seconds (e.g. '01:30', '00:01:30', '01:30.5')"
+          },
+          "t2": {
+            "type": "string",
+            "pattern": "^(\\d{2}:)?\\d{2}:\\d{2}(\\.\\d+)?$",
+            "description": "Segment end time in flexible timecode: MM:SS or HH:MM:SS with optional fractional seconds (e.g. '01:30', '00:01:30', '01:30.5')"
+          },
+          "question": {
+            "type": "string",
+            "description": "Natural-language question asking what occurred in the video between t1 and t2 (e.g. 'What happened in the video between 00:00:02 and 00:00:08?')"
+          },
+          "answer": {
+            "type": "string",
+            "description": "Natural-language description of the events that occurred in the segment [t1, t2]"
+          },
+          "reasoning": {
+            "type": "string",
+            "description": "Optional step-by-step reasoning trace leading to the answer"
+          }
+        }
+      }
+    },
+    "metadata": {
+      "type": "object",
+      "description": "File metadata for identification and cataloging",
+      "required": [
+        "type"
+      ],
+      "properties": {
+        "type": {
+          "type": "string",
+          "description": "Task type identifier (must be 'temporal_description')",
+          "const": "temporal_description"
+        },
+        "date": {
+          "type": "string",
+          "description": "Creation date in ISO 8601 format (YYYY-MM-DD)",
+          "format": "date"
+        },
+        "description": {
+          "type": "string",
+          "description": "Human-readable description of this annotation file"
+        },
+        "license": {
+          "type": "string",
+          "description": "License under which this annotation is distributed"
+        },
+        "tags": {
+          "type": "array",
+          "description": "List of tags for categorization and search",
+          "items": {
+            "type": "string"
+          }
+        }
+      },
+      "additionalProperties": false
+    }
+  },
+  "examples": [
+    {
+      "version": "metropolis-v3.0",
+      "items": [
+        {
+          "video_id": "Accident-Bench/land_space/medium/videos/3KSHg1inZS8.mp4",
+          "video_type": "anomaly",
+          "t1": "00:00:02.00",
+          "t2": "00:00:06.00",
+          "question": "What happened in the video between 00:00:02 and 00:00:06?",
+          "answer": "A silver sedan initiates a left turn across oncoming traffic without yielding, causing a T-bone collision with a straight-moving vehicle. Simultaneously, a dark pickup truck is struck by a FedEx truck. By 00:00:06 the sedan has spun to a halt, the pickup has finished its clockwise rotation, and all surrounding traffic has come to a full stop.",
+          "reasoning": "Between 00:00:02 and 00:00:06 two simultaneous failures occur at the intersection: the silver sedan turns left without checking for oncoming traffic, and the pickup erratically exits the queue. The resulting collisions unfold rapidly over four seconds before the scene stabilises."
+        }
+      ],
+      "metadata": {
+        "type": "temporal_description",
+        "description": "Natural-language descriptions of anomalous traffic events within specified temporal segments"
+      }
+    }
+  ]
+}

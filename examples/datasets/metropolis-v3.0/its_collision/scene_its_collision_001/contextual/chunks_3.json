@@ -1,0 +1,56 @@
+{
+  "version": "metropolis-v3.0",
+  "metadata": {
+    "type": "chunks",
+    "date": "2026-03-27",
+    "description": "Dense temporal chunks for ITS collision clip 3",
+    "license": "Apache-2.0",
+    "tags": [
+      "its",
+      "collision",
+      "intersection"
+    ]
+  },
+  "video_id": "video_001",
+  "chunks": [
+    {
+      "chunk_id": "chunk_001",
+      "start": "00:00",
+      "end": "00:02",
+      "description": "Normal traffic flow at a signalized intersection. A white sedan at the top of the frame begins moving forward, while a maroon sedan behind it remains stationary. A red sedan approaches from the bottom right traveling straight through the intersection.",
+      "tags": [
+        "normal_flow"
+      ]
+    },
+    {
+      "chunk_id": "chunk_002",
+      "start": "00:02",
+      "end": "00:03.80",
+      "description": "The white sedan initiates a left-hand turn across oncoming traffic without yielding. The red sedan continues straight, closing the gap rapidly.",
+      "tags": [
+        "left_turn",
+        "failure_to_yield"
+      ]
+    },
+    {
+      "chunk_id": "chunk_003",
+      "start": "00:03.80",
+      "end": "00:04.90",
+      "description": "A T-bone collision occurs as the red sedan strikes the passenger side of the white sedan. Both vehicles lose momentum from the impact.",
+      "tags": [
+        "collision",
+        "t_bone"
+      ]
+    },
+    {
+      "chunk_id": "chunk_004",
+      "start": "00:04.90",
+      "end": "00:05.97",
+      "description": "Both vehicles come to rest in the intersection. The white sedan has been pushed across the crosswalk. The maroon sedan behind has stopped safely without involvement.",
+      "tags": [
+        "aftermath",
+        "vehicles_stalled"
+      ]
+    }
+  ]
+}

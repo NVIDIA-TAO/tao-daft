@@ -1,0 +1,39 @@
+{
+  "version": "cosmos-reason-v1.0",
+  "metadata": {
+    "type": "conversation",
+    "tags": [
+      "temporal_localization"
+    ]
+  },
+  "conversations": [
+    {
+      "role": "user",
+      "content": [
+        {
+          "type": "video",
+          "video": "video_0"
+        },
+        {
+          "type": "text",
+          "text": "When does the gray sedan collide with the white sedan?\n\nProvide the result in json format with 'mm:ss' for time depiction. Use keywords 'start', 'end' in the json output."
+        }
+      ]
+    },
+    {
+      "role": "assistant",
+      "reasoning_content": [
+        {
+          "type": "text",
+          "text": "At 2.7s the gray sedan initiates its left turn from the middle lane directly into the path of the white sedan. The side-impact occurs between 3.0-3.5s. By 4.5s the white sedan has been redirected toward the sidewalk."
+        }
+      ],
+      "content": [
+        {
+          "type": "text",
+          "text": "```json\n{\n  \"start\": \"00:00:02\",\n  \"end\": \"00:00:04\"\n}\n```"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,147 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://developer.nvidia.com/tao-daft/schemas/metropolis-v3.0/temporal_localization.schema.json",
+  "title": "Temporal Localization Task Annotation",
+  "description": "Temporal grounding task for videos: given a natural-language query describing an event, predict the start and end timestamps of that event within the video.",
+  "type": "object",
+  "required": [
+    "version",
+    "metadata",
+    "items"
+  ],
+  "additionalProperties": false,
+  "properties": {
+    "version": {
+      "type": "string",
+      "const": "metropolis-v3.0",
+      "description": "Schema version - must be '3.0' for this schema"
+    },
+    "items": {
+      "type": "array",
+      "description": "Array of temporal localization items, one per question-answer pair",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "required": [
+          "video_id",
+          "t1",
+          "t2",
+          "question",
+          "answer"
+        ],
+        "additionalProperties": false,
+        "properties": {
+          "video_id": {
+            "type": "string",
+            "description": "Reference to video ID (matches directory name in contextual/)"
+          },
+          "video_type": {
+            "type": "string",
+            "enum": [
+              "anomaly",
+              "normal"
+            ],
+            "description": "High-level content classification of the video"
+          },
+          "t1": {
+            "type": "string",
+            "pattern": "^(\\d{2}:)?\\d{2}:\\d{2}(\\.\\d+)?$",
+            "description": "Event start time in flexible timecode: MM:SS or HH:MM:SS with optional fractional seconds (e.g. '01:30', '00:01:30', '01:30.5')"
+          },
+          "t2": {
+            "type": "string",
+            "pattern": "^(\\d{2}:)?\\d{2}:\\d{2}(\\.\\d+)?$",
+            "description": "Event end time in flexible timecode: MM:SS or HH:MM:SS with optional fractional seconds (e.g. '01:30', '00:01:30', '01:30.5')"
+          },
+          "question": {
+            "type": "string",
+            "description": "Natural-language question asking when a specific event occurs in the video"
+          },
+          "answer": {
+            "type": "object",
+            "description": "Predicted temporal span as a structured object with start and end timecodes",
+            "required": [
+              "start",
+              "end"
+            ],
+            "additionalProperties": false,
+            "properties": {
+              "start": {
+                "type": "string",
+                "pattern": "^(\\d{2}:)?\\d{2}:\\d{2}(\\.\\d+)?$",
+                "description": "Predicted start time in flexible timecode: MM:SS or HH:MM:SS with optional fractional seconds"
+              },
+              "end": {
+                "type": "string",
+                "pattern": "^(\\d{2}:)?\\d{2}:\\d{2}(\\.\\d+)?$",
+                "description": "Predicted end time in flexible timecode: MM:SS or HH:MM:SS with optional fractional seconds"
+              }
+            }
+          },
+          "reasoning": {
+            "type": "string",
+            "description": "Optional step-by-step reasoning trace leading to the answer"
+          }
+        }
+      }
+    },
+    "metadata": {
+      "type": "object",
+      "description": "File metadata for identification and cataloging",
+      "required": [
+        "type"
+      ],
+      "properties": {
+        "type": {
+          "type": "string",
+          "description": "Task type identifier (must be 'temporal_localization')",
+          "const": "temporal_localization"
+        },
+        "date": {
+          "type": "string",
+          "description": "Creation date in ISO 8601 format (YYYY-MM-DD)",
+          "format": "date"
+        },
+        "description": {
+          "type": "string",
+          "description": "Human-readable description of this annotation file"
+        },
+        "license": {
+          "type": "string",
+          "description": "License under which this annotation is distributed"
+        },
+        "tags": {
+          "type": "array",
+          "description": "List of tags for categorization and search",
+          "items": {
+            "type": "string"
+          }
+        }
+      },
+      "additionalProperties": false
+    }
+  },
+  "examples": [
+    {
+      "version": "metropolis-v3.0",
+      "items": [
+        {
+          "video_id": "Accident-Bench_land_space_3KSHg1inZS8",
+          "video_type": "anomaly",
+          "question": "When does the side-impact collision between the dark pickup truck and the turning silver sedan occur? Please provide the result in json format with 'HH:MM:SS.ff' format for time depiction for the event. Use keywords 'start', 'end' in the json output.",
+          "answer": {
+            "start": "00:00:02",
+            "end": "00:00:06"
+          },
+          "reasoning": "The video begins with a stable baseline of urban traffic flow at a busy intersection. From 00:00:00 to 00:00:02, traffic on the main thoroughfare proceeds straight with the right-of-way...",
+          "t1": "00:00:02.00",
+          "t2": "00:00:06.00"
+        }
+      ],
+      "metadata": {
+        "type": "temporal_localization",
+        "description": "Temporal localization of anomalous traffic events (collisions, near-misses) in ITS videos"
+      }
+    }
+  ]
+}

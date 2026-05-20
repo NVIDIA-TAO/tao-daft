@@ -1,0 +1,24 @@
+{
+  "version": "metropolis-v3.0",
+  "metadata": {
+    "type": "bcq",
+    "date": "2026-03-26",
+    "description": "Test BCQ",
+    "license": "Apache-2.0",
+    "tags": [
+      "test"
+    ]
+  },
+  "items": [
+    {
+      "video_id": "cam1",
+      "question": "Does a car crash occur?",
+      "answer": "Yes"
+    },
+    {
+      "video_id": "cam1",
+      "question": "Does a pedestrian cross the road?",
+      "answer": "No"
+    }
+  ]
+}

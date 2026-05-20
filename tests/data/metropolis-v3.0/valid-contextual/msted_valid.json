@@ -1,0 +1,31 @@
+{
+  "version": "metropolis-v3.0",
+  "metadata": {
+    "type": "msted",
+    "date": "2026-04-01",
+    "description": "MSTED annotation for ITS collision scene"
+  },
+  "video_id": "main",
+  "sources": ["video_gemini3.json", "chunks_gemini3.json"],
+  "scene_description": "An urban arterial intersection filmed from an overhead traffic camera on a clear day. Light-to-moderate traffic in both directions. A two-way, four-lane road with marked crosswalks and overhead signal lights.",
+  "temporal_spatial_localization": [
+    {
+      "start": "00:00",
+      "end": "00:05",
+      "description": "Vehicles travel through the intersection uneventfully. A gray sedan is visible in the center lane heading northbound."
+    },
+    {
+      "start": "00:05",
+      "end": "00:09.50",
+      "description": "The gray sedan begins a left turn maneuver and collides with a white sedan traveling straight in the opposite direction.",
+      "spatial_region": "Center of intersection, lanes 2-3"
+    }
+  ],
+  "event_description": {
+    "category": "Collision",
+    "description": "A left-turn collision between a gray sedan and an oncoming white sedan at an unsignalized turn.",
+    "temporal_description": "The collision occurs between 00:05 and 00:09.50, with impact at approximately 00:06.",
+    "cause": "The gray sedan initiated a left turn without yielding to oncoming traffic.",
+    "consequence": "Both vehicles sustained damage. The white sedan was displaced onto the sidewalk."
+  }
+}

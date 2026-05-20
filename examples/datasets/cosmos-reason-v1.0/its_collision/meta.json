@@ -1,0 +1,147 @@
+{
+  "version": "cosmos-reason-v1.0",
+  "metadata": {
+    "type": "meta",
+    "date": "2026-04-24",
+    "description": "ITS collision training samples for Cosmos Reason fine-tuning. Converted from DAFT metropolis-v3.0 scene covering open QA, BCQ/MCQ (short + open-ended), scene/video/temporal descriptions, temporal localization, and causal linkage.",
+    "license": "Apache-2.0",
+    "tags": [
+      "transportation",
+      "collision",
+      "its",
+      "intersection"
+    ]
+  },
+  "samples": [
+    {
+      "id": "scene_its_collision_001__bcq__video_001__0000",
+      "conversation": "text/scene_its_collision_001__bcq__video_001__0000.json",
+      "media": "media/video_001.mp4"
+    },
+    {
+      "id": "scene_its_collision_001__bcq__video_001__0001",
+      "conversation": "text/scene_its_collision_001__bcq__video_001__0001.json",
+      "media": "media/video_001.mp4"
+    },
+    {
+      "id": "scene_its_collision_001__bcq__video_002__0002",
+      "conversation": "text/scene_its_collision_001__bcq__video_002__0002.json",
+      "media": "media/video_002.mp4"
+    },
+    {
+      "id": "scene_its_collision_001__bcq__video_002__0003",
+      "conversation": "text/scene_its_collision_001__bcq__video_002__0003.json",
+      "media": "media/video_002.mp4"
+    },
+    {
+      "id": "scene_its_collision_001__bcq_openended__video_001__0000",
+      "conversation": "text/scene_its_collision_001__bcq_openended__video_001__0000.json",
+      "media": "media/video_001.mp4"
+    },
+    {
+      "id": "scene_its_collision_001__bcq_openended__video_001__0001",
+      "conversation": "text/scene_its_collision_001__bcq_openended__video_001__0001.json",
+      "media": "media/video_001.mp4"
+    },
+    {
+      "id": "scene_its_collision_001__bcq_openended__video_002__0002",
+      "conversation": "text/scene_its_collision_001__bcq_openended__video_002__0002.json",
+      "media": "media/video_002.mp4"
+    },
+    {
+      "id": "scene_its_collision_001__bcq_openended__video_002__0003",
+      "conversation": "text/scene_its_collision_001__bcq_openended__video_002__0003.json",
+      "media": "media/video_002.mp4"
+    },
+    {
+      "id": "scene_its_collision_001__causal_linkage__video_001__0000",
+      "conversation": "text/scene_its_collision_001__causal_linkage__video_001__0000.json",
+      "media": "media/video_001.mp4"
+    },
+    {
+      "id": "scene_its_collision_001__causal_linkage__video_002__0001",
+      "conversation": "text/scene_its_collision_001__causal_linkage__video_002__0001.json",
+      "media": "media/video_002.mp4"
+    },
+    {
+      "id": "scene_its_collision_001__mcq__video_002__0000",
+      "conversation": "text/scene_its_collision_001__mcq__video_002__0000.json",
+      "media": "media/video_002.mp4"
+    },
+    {
+      "id": "scene_its_collision_001__mcq__video_001__0001",
+      "conversation": "text/scene_its_collision_001__mcq__video_001__0001.json",
+      "media": "media/video_001.mp4"
+    },
+    {
+      "id": "scene_its_collision_001__mcq_openended__video_002__0000",
+      "conversation": "text/scene_its_collision_001__mcq_openended__video_002__0000.json",
+      "media": "media/video_002.mp4"
+    },
+    {
+      "id": "scene_its_collision_001__mcq_openended__video_001__0001",
+      "conversation": "text/scene_its_collision_001__mcq_openended__video_001__0001.json",
+      "media": "media/video_001.mp4"
+    },
+    {
+      "id": "scene_its_collision_001__open_qa__video_002__0000",
+      "conversation": "text/scene_its_collision_001__open_qa__video_002__0000.json",
+      "media": "media/video_002.mp4"
+    },
+    {
+      "id": "scene_its_collision_001__open_qa__video_001__0001",
+      "conversation": "text/scene_its_collision_001__open_qa__video_001__0001.json",
+      "media": "media/video_001.mp4"
+    },
+    {
+      "id": "scene_its_collision_001__scene_description__video_001__0000",
+      "conversation": "text/scene_its_collision_001__scene_description__video_001__0000.json",
+      "media": "media/video_001.mp4"
+    },
+    {
+      "id": "scene_its_collision_001__scene_description__video_002__0001",
+      "conversation": "text/scene_its_collision_001__scene_description__video_002__0001.json",
+      "media": "media/video_002.mp4"
+    },
+    {
+      "id": "scene_its_collision_001__temporal_description__video_001__0000",
+      "conversation": "text/scene_its_collision_001__temporal_description__video_001__0000.json",
+      "media": "media/video_001.mp4"
+    },
+    {
+      "id": "scene_its_collision_001__temporal_description__video_001__0001",
+      "conversation": "text/scene_its_collision_001__temporal_description__video_001__0001.json",
+      "media": "media/video_001.mp4"
+    },
+    {
+      "id": "scene_its_collision_001__temporal_description__video_002__0002",
+      "conversation": "text/scene_its_collision_001__temporal_description__video_002__0002.json",
+      "media": "media/video_002.mp4"
+    },
+    {
+      "id": "scene_its_collision_001__temporal_description__video_002__0003",
+      "conversation": "text/scene_its_collision_001__temporal_description__video_002__0003.json",
+      "media": "media/video_002.mp4"
+    },
+    {
+      "id": "scene_its_collision_001__temporal_localization__video_001__0000",
+      "conversation": "text/scene_its_collision_001__temporal_localization__video_001__0000.json",
+      "media": "media/video_001.mp4"
+    },
+    {
+      "id": "scene_its_collision_001__temporal_localization__video_002__0001",
+      "conversation": "text/scene_its_collision_001__temporal_localization__video_002__0001.json",
+      "media": "media/video_002.mp4"
+    },
+    {
+      "id": "scene_its_collision_001__video_summarization__video_001__0000",
+      "conversation": "text/scene_its_collision_001__video_summarization__video_001__0000.json",
+      "media": "media/video_001.mp4"
+    },
+    {
+      "id": "scene_its_collision_001__video_summarization__video_002__0001",
+      "conversation": "text/scene_its_collision_001__video_summarization__video_002__0001.json",
+      "media": "media/video_002.mp4"
+    }
+  ]
+}

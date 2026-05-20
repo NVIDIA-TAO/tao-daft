@@ -1,0 +1,39 @@
+{
+  "version": "cosmos-reason-v1.0",
+  "metadata": {
+    "type": "conversation",
+    "tags": [
+      "causal_linkage"
+    ]
+  },
+  "conversations": [
+    {
+      "role": "user",
+      "content": [
+        {
+          "type": "video",
+          "video": "video_0"
+        },
+        {
+          "type": "text",
+          "text": "Explain the relationship between the event at 00:00:02 and the situation at 00:00:05."
+        }
+      ]
+    },
+    {
+      "role": "assistant",
+      "reasoning_content": [
+        {
+          "type": "text",
+          "text": "The causal chain begins with the white sedan's decision to turn left without adequate clearance. The red sedan, traveling straight with right-of-way, cannot stop in time. The momentum transfer from the collision pushes the white sedan sideways into the pedestrian crossing area."
+        }
+      ],
+      "content": [
+        {
+          "type": "text",
+          "text": "At 00:00:02, the white sedan begins a left-hand turn across oncoming traffic without yielding. By 00:00:05, this failure to yield has resulted in a T-bone collision with the red sedan, leaving both vehicles immobilized in the intersection \u2014 the white sedan pushed across the crosswalk and the red sedan stopped in the middle of the junction."
+        }
+      ]
+    }
+  ]
+}

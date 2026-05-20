@@ -1,0 +1,39 @@
+{
+  "version": "cosmos-reason-v1.0",
+  "metadata": {
+    "type": "conversation",
+    "tags": [
+      "bcq"
+    ]
+  },
+  "conversations": [
+    {
+      "role": "user",
+      "content": [
+        {
+          "type": "video",
+          "video": "video_0"
+        },
+        {
+          "type": "text",
+          "text": "Does the white sedan collide with a tree after being hit by the gray sedan?\n\nAnswer with only Yes or No."
+        }
+      ]
+    },
+    {
+      "role": "assistant",
+      "reasoning_content": [
+        {
+          "type": "text",
+          "text": "The video begins with a white sedan and a gray sedan traveling in the same direction on a multi-lane urban road. The white sedan is positioned in the fifth lane from the left, while the gray sedan is in the third lane. Around the 2.7-second mark, the gray sedan suddenly initiates a left-turn maneuver across the path of the white sedan. This results in a side-impact collision that redirects the white sedan's momentum toward the right-hand curb.\n\nAs the white sedan loses control due to the impact, it moves toward the sidewalk area lined with trees. Between 4.5 and 4.9 seconds, the front of the white sedan makes direct contact with one of the trees. The vehicle remains stalled against this tree for the remainder of the video. This secondary impact is a direct consequence of the initial collision caused by the gray sedan's improper turn. The clear daylight and high-angle view allow for a distinct observation of the white sedan's trajectory from the roadway to the tree."
+        }
+      ],
+      "content": [
+        {
+          "type": "text",
+          "text": "Yes"
+        }
+      ]
+    }
+  ]
+}
