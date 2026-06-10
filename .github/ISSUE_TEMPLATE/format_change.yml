@@ -1,0 +1,63 @@
+name: Format change request
+description: Request a change to an existing format's schema or lifecycle status.
+labels: [enhancement, format]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        For changes to an **existing** format. Per
+        [versioning.md](../blob/main/src/nvidia_tao_daft/formats/versioning.md) a
+        version string is opaque and immutable — if you want a *new version*
+        (e.g. `metropolis-v4.0`), that is a new format string; use
+        *Format / converter proposal* instead.
+
+  - type: dropdown
+    id: format
+    attributes:
+      label: Format
+      options:
+        - metropolis-v3.0
+        - cosmos-reason-v1.0
+        - tao-vl-reason-v1.0
+    validations:
+      required: true
+
+  - type: dropdown
+    id: change-type
+    attributes:
+      label: Change type
+      options:
+        - Add / relax field
+        - Tighten / fix constraint
+        - Lifecycle change (Active → Closed / Deprecated)
+        - Other
+    validations:
+      required: true
+
+  - type: textarea
+    id: change
+    attributes:
+      label: Proposed change
+      description: The concrete schema field or constraint affected, and the desired behavior.
+    validations:
+      required: true
+
+  - type: textarea
+    id: compat
+    attributes:
+      label: Backward-compatibility impact
+      description: >
+        Does existing data for this format still validate after the change?
+        Per versioning.md, all files of a given version must remain loadable.
+    validations:
+      required: false
+
+  - type: checkboxes
+    id: contribution
+    attributes:
+      label: Contribution
+      options:
+        - label: I understand contributions require a DCO sign-off (see CONTRIBUTING.md).
+          required: true
+        - label: I'm willing to open a PR for this.
+          required: false
