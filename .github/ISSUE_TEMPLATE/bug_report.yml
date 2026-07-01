@@ -8,7 +8,7 @@ body:
         Thanks for taking the time to file a bug.
 
         ⚠️ **Do not report security vulnerabilities here.** Per
-        [SECURITY.md](../blob/main/SECURITY.md), security issues must go to NVIDIA
+        [SECURITY.md](https://github.com/NVIDIA-TAO/tao-daft/blob/main/SECURITY.md), security issues must go to NVIDIA
         PSIRT (https://www.nvidia.com/object/submit-security-vulnerability.html),
         not GitHub.
 

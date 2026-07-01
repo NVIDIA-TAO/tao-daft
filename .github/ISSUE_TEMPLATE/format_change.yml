@@ -6,7 +6,7 @@ body:
     attributes:
       value: |
         For changes to an **existing** format. Per
-        [versioning.md](../blob/main/src/nvidia_tao_daft/formats/versioning.md) a
+        [versioning.md](https://github.com/NVIDIA-TAO/tao-daft/blob/main/src/nvidia_tao_daft/formats/versioning.md) a
         version string is opaque and immutable — if you want a *new version*
         (e.g. `metropolis-v4.0`), that is a new format string; use
         *Format / converter proposal* instead.
