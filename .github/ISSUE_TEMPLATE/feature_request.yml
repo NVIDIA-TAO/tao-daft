@@ -1,0 +1,46 @@
+name: Feature request
+description: Propose an enhancement to tao-daft (not a new format or converter — use the proposal template for those).
+labels: [enhancement]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        For a **new format or converter**, use *Format / converter proposal*.
+        For a **change to an existing format**, use *Format change request*.
+
+  - type: textarea
+    id: problem
+    attributes:
+      label: Problem / motivation
+      description: The use case or pain point this addresses — describe the need, not just the solution.
+    validations:
+      required: true
+
+  - type: textarea
+    id: solution
+    attributes:
+      label: Proposed solution
+      description: What you'd like tao-daft to do.
+    validations:
+      required: true
+
+  - type: dropdown
+    id: area
+    attributes:
+      label: Area
+      options:
+        - validate
+        - convert
+        - datasets
+        - CLI
+        - formats/schemas
+        - other
+    validations:
+      required: false
+
+  - type: textarea
+    id: alternatives
+    attributes:
+      label: Alternatives considered
+    validations:
+      required: false

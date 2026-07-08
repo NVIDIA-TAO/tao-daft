@@ -1,0 +1,7 @@
+blank_issues_enabled: false
+contact_links:
+  - name: Report a security vulnerability
+    url: https://www.nvidia.com/object/submit-security-vulnerability.html
+    about: >-
+      Do not file security issues on GitHub. Report them privately to NVIDIA
+      PSIRT (or email psirt@nvidia.com). See SECURITY.md for details.

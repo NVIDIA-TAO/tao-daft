@@ -1,0 +1,112 @@
+name: Format / converter proposal
+description: Propose a new annotation/training format, a new converter pair, or both.
+labels: [enhancement, format]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        In tao-daft a new format is rarely useful without a converter to/from an
+        existing format, so this one template covers both. Tick what applies and
+        fill only the matching section(s).
+
+        - Proposing **only a converter** between two existing formats? Tick
+          *New converter* and fill just the converter section.
+        - Proposing a **new version** of an existing format (e.g. `metropolis-v4.0`)?
+          That is a new format string — use this template, not *Format change request*.
+
+  - type: checkboxes
+    id: proposing
+    attributes:
+      label: What are you proposing?
+      options:
+        - label: New format
+        - label: New converter
+    validations:
+      required: true
+
+  - type: markdown
+    attributes:
+      value: "### New format (fill if proposing a format)"
+
+  - type: input
+    id: format-name
+    attributes:
+      label: Format name + version
+      placeholder: myformat-v1.0
+    validations:
+      required: false
+
+  - type: dropdown
+    id: role
+    attributes:
+      label: Role
+      options:
+        - Source annotation shape (producer)
+        - Training shape (consumer)
+    validations:
+      required: false
+
+  - type: textarea
+    id: purpose
+    attributes:
+      label: Purpose
+      description: What produces this format, and what tool / framework consumes it.
+    validations:
+      required: false
+
+  - type: textarea
+    id: schema-sketch
+    attributes:
+      label: Schema sketch / reference
+      description: An example record, or a link to an existing spec.
+      render: json
+    validations:
+      required: false
+
+  - type: markdown
+    attributes:
+      value: "### New converter (fill if proposing a converter)"
+
+  - type: dropdown
+    id: source-format
+    attributes:
+      label: Source format
+      options:
+        - metropolis-v3.0
+        - cosmos-reason-v1.0
+        - tao-vl-reason-v1.0
+        - other (proposed above / not yet registered)
+    validations:
+      required: false
+
+  - type: dropdown
+    id: target-format
+    attributes:
+      label: Target format
+      options:
+        - metropolis-v3.0
+        - cosmos-reason-v1.0
+        - tao-vl-reason-v1.0
+        - other (proposed above / not yet registered)
+    validations:
+      required: false
+
+  - type: textarea
+    id: mapping
+    attributes:
+      label: Field-mapping intent
+      description: >
+        Which source fields map to which target fields, and how media is handled
+        (copy vs reference, any flags needed).
+    validations:
+      required: false
+
+  - type: checkboxes
+    id: contribution
+    attributes:
+      label: Contribution
+      options:
+        - label: I understand contributions require a DCO sign-off (see CONTRIBUTING.md).
+          required: true
+        - label: I'm willing to open a PR for this.
+          required: false
