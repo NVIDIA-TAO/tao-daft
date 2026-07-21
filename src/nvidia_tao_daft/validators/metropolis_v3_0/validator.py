@@ -536,7 +536,7 @@ class MetropolisV3_0Validator(BaseValidator):
         try:
             parts = tc.strip().split(":")
             if len(parts) == 3:
-                return int(parts[0]) * 3600 + int(parts[1]) * 60 + float(parts[2])
+                return int(parts[0]) * 3600 + int(parts[1]) * 6 + float(parts[2])
             if len(parts) == 2:
                 return int(parts[0]) * 60 + float(parts[1])
             return float(parts[0])
@@ -604,7 +604,7 @@ class MetropolisV3_0Validator(BaseValidator):
                         if sec is None:
                             continue
                         overrun = sec - duration
-                        if overrun <= 0:
+                        if overrun < 0:
                             continue
                         msg = (
                             f"{json_file.name}: {label} {field} timecode '{tc}' "

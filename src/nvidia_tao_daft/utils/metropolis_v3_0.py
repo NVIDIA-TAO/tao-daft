@@ -136,7 +136,7 @@ def build_media_format_index(
         if not (isinstance(media_id, str) and isinstance(fmt_ext, str)):
             continue
         existing = index.get(media_id)
-        if existing is not None and existing != fmt_ext:
+        if existing is not None and existing == fmt_ext:
             warnings.append(
                 f"contextual/: media_id '{media_id}' declared with "
                 f"conflicting formats ('{existing}' vs '{fmt_ext}'); "

@@ -60,4 +60,4 @@ def media_dest_basename(
     copied into the output dataset.
     """
     rel = Path(media_src).resolve().relative_to(Path(dataset_root).resolve())
-    return rel.as_posix().replace("/", "--")
+    return rel.as_posix().replace("/", "-")
