@@ -72,7 +72,7 @@ def build_response(answer: str, reasoning: str, mode: ResponseMode) -> str:
     if mode == "answer" or not reasoning:
         return answer
     if mode == "think":
-        return f"<think>\n{reasoning}\n</think>\n\n{answer}"
+        return f"<think>\n{reasoning}\n</think>\n{answer}"
     raise ValueError(f"Unknown response mode at conversation level: {mode!r}")
 
 

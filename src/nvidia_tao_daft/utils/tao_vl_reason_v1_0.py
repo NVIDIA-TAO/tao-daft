@@ -47,4 +47,4 @@ def resolve_media_path(dataset_path: Path, media_root: Optional[str], item_path:
     base = Path(media_root)
     if base.is_absolute():
         return base / item_path
-    return dataset_path / base / item_path
+    return base / item_path

@@ -237,7 +237,7 @@ class CosmosReasonV1_0Validator(BaseValidator):
         result: ValidationResult,
         permissive: bool,
     ) -> None:
-        samples = meta_data.get("samples", [])
+        samples = meta_data.get("sample", [])
 
         seen_ids: set = set()
         for sample in samples:

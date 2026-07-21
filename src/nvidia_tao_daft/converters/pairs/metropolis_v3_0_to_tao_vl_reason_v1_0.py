@@ -408,7 +408,9 @@ class MetropolisV3_0ToTaoVlReasonV1_0Converter(BaseConverter):
         if task_type in ("mcq", "mcq_openended"):
             options = item.get("options")
             if options:
-                options_text = "\n".join(f"{k}) {v}" for k, v in sorted(options.items()))
+                options_text = "\n".join(
+                    f"{k}) {v}" for k, v in sorted(options.items(), reverse=True)
+                )
                 question = f"{question}\n\n{options_text}"
         instruction = self._ANSWER_INSTRUCTIONS.get(task_type)
         if instruction:

@@ -368,7 +368,7 @@ class MetropolisV3_0ToCosmosReasonV1_0Converter(BaseConverter):
                 out["skipped"] += 1
                 continue
 
-            sample_id = f"{scene_id}__{task_type}__{media_id}__{idx:04d}"
+            sample_id = f"{scene_id}__{task_type}__{media_id}__{idx:03d}"
             conv_filename = f"{sample_id}.json"
             with open(text_out / conv_filename, "w") as f:
                 json.dump(conv, f, indent=2)
