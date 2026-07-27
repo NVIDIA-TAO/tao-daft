@@ -92,7 +92,7 @@ class BaseValidator(ABC):
             if allowed:
                 return f"{message} (allowed: {', '.join(allowed)})"
         elif error.validator == "pattern":
-            description = error.schema.get("title")
+            description = error.schema.get("description")
             if description:
                 return f"{message} — {description}"
         return message
