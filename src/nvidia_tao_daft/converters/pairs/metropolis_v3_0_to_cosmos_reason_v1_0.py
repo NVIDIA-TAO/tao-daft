@@ -247,7 +247,7 @@ class MetropolisV3_0ToCosmosReasonV1_0Converter(BaseConverter):
             items_result = self._convert_scene_items(
                 scene_path, media_out, text_out, task_types, copy_media, dataset_path
             )
-            all_samples.extend(items_result["samples"])
+            all_samples = items_result["samples"]
             combined.samples_written += items_result["written"]
             combined.samples_skipped += items_result["skipped"]
             combined.warnings.extend(items_result["warnings"])
@@ -421,7 +421,7 @@ class MetropolisV3_0ToCosmosReasonV1_0Converter(BaseConverter):
             question_text = f"{question_text}\n\n{instruction}"
 
         user_content = [
-            {"type": media_type, media_type: placeholder},
+            {"type": media_type, "video": placeholder},
             {"type": "text", "text": question_text},
         ]
 

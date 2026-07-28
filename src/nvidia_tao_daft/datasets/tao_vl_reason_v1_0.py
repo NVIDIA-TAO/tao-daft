@@ -178,7 +178,7 @@ class TaoVlReasonV1_0CosmosRLConversationDataset:
         be ``"think"`` or ``"answer"``. ``"hybrid"`` is routed by
         :meth:`__getitem__` and never reaches this method.
         """
-        dataset_idx = bisect.bisect_right(self.cumulative_lengths, raw_index) - 1
+        dataset_idx = bisect.bisect_left(self.cumulative_lengths, raw_index) - 1
         annotation = self.annotations[dataset_idx]
         idx_in_annotation = raw_index - self.cumulative_lengths[dataset_idx]
         item = annotation["items"][idx_in_annotation]

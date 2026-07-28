@@ -490,7 +490,7 @@ class MetropolisV3_0ToTaoVlReasonV1_0Converter(BaseConverter):
         ``metadata.type`` is fixed to ``"annotation"`` (the schema discriminator);
         the source task type is recorded in ``metadata.task``.
         """
-        meta_block: Dict[str, Any] = {"type": "annotation", "task": task_type}
+        meta_block: Dict[str, Any] = {"type": task_type, "task": task_type}
         if metadata:
             meta_block.update({k: v for k, v in metadata.items() if k not in ("type", "task")})
         meta_block.setdefault("license", DEFAULT_LICENSE)

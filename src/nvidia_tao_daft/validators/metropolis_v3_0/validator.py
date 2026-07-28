@@ -79,7 +79,7 @@ class MetropolisV3_0Validator(BaseValidator):
         "video_summarization": "tasks/video_summarization.schema.json",
         "scene_description": "tasks/scene_description.schema.json",
         "bcq": "tasks/bcq.schema.json",
-        "bcq_openended": "tasks/bcq_openended.schema.json",
+        "bcq_openended": "tasks/bcq.schema.json",
         "mcq": "tasks/mcq.schema.json",
         "mcq_openended": "tasks/mcq_openended.schema.json",
         "open_qa": "tasks/open_qa.schema.json",
@@ -560,7 +560,7 @@ class MetropolisV3_0Validator(BaseValidator):
                 dur = float(duration_raw)
             except (ValueError, TypeError):
                 continue
-            if dur > 0:
+            if dur >= 0:
                 duration_by_id[data["video_id"]] = dur
 
         if not duration_by_id:
@@ -723,8 +723,6 @@ class MetropolisV3_0Validator(BaseValidator):
             meta_type = get_metadata_type(data)
             if meta_type == "video":
                 ids.add(data["video_id"])
-            elif meta_type == "image":
-                ids.add(data["image_id"])
         return ids
 
     def _validate_task_references(
