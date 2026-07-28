@@ -12,6 +12,13 @@ body:
         already reported this, add a 👍 and any new detail to that issue instead of
         opening a new one — it gets fixed faster that way.
 
+        You do not need to open an issue if you already have a fix ready — open a
+        pull request directly and describe the bug there.
+
+        Note that reporting a bug does not guarantee it will be fixed, and
+        maintainers cannot commit to timelines or ETAs. The fastest path to a fix is
+        a clear reproduction, or a pull request.
+
         **🔒 Do not report security vulnerabilities here.** Security issues must be
         reported privately to NVIDIA PSIRT — see `SECURITY.md`, or
         https://www.nvidia.com/object/submit-security-vulnerability.html. If a
@@ -107,17 +114,33 @@ body:
     attributes:
       label: Environment
       description: >
-        Run the commands below and paste the output. Remove anything sensitive first.
-        Include the container image tag instead if you are running in a container.
+        Fill in what applies and paste any command output. Remove anything sensitive
+        first. If you are using an official NVIDIA container image, the image tag is
+        usually enough — you can skip the driver and library versions.
       value: |
         <details>
         <summary>Environment details</summary>
 
         ```text
-        # python -c "import platform, sys; print(platform.platform()); print(sys.version)"
-        # pip list | grep -i nvidia
-        # nvidia-smi          (if GPU-related)
-        # Install method: pip / source / container image tag
+        Environment location: bare-metal / Docker / Kubernetes / cloud (which provider?)
+        Install method:       container / pip / from source  — give the exact commands used
+        If container:         the image tag, plus the `docker pull` and `docker run` commands
+
+        OS version:
+        Python version:
+        Package version:
+
+        # Useful commands:
+        #   python -c "import platform, sys; print(platform.platform()); print(sys.version)"
+        #   pip list | grep -i nvidia
+
+        GPU model / driver / CUDA / cuDNN / TensorRT   (if GPU-related — `nvidia-smi`):
+
+        # If deployed on Kubernetes, also attach:
+        #   kubectl get pods -A
+        #   kubectl get services
+        #   helm list -A
+        #   kubectl describe pod <pod> / kubectl logs <pod>   for the failing pod
 
         <paste output here>
         ```
@@ -142,15 +165,21 @@ body:
     attributes:
       label: Additional context
       description: >
-        Workarounds you found, how you are deploying, whether it reproduces on other
-        platforms or hardware, and links to related issues or PRs.
+        Workarounds you found, whether it reproduces on other platforms or hardware,
+        and links to related issues or PRs. Also useful: any spec or config values
+        you overrode, whether you are running multi-GPU or multi-node, and the
+        notebook, model, or dataset involved.
     validations:
       required: false
 
   - type: checkboxes
     id: contribution
     attributes:
-      label: Contribution
+      label: Are you willing to submit a PR?
+      description: >
+        Absolutely not required — but if you already understand the fix, maintainers
+        are happy to guide you through the contribution process. New contributors
+        are welcome.
       options:
-        - label: I'm willing to open a PR to fix this.
+        - label: Yes, I'm willing to submit a PR to fix this.
           required: false

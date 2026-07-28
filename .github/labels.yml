@@ -1,0 +1,103 @@
+# Label taxonomy — the single source of truth for this repository's labels.
+#
+# Labels are namespaced with a `prefix:` so they sort into groups in the label
+# picker and can be filtered as a set (`label:kind:bug`, `-label:status:blocked`).
+# Every issue should end up with at least a `kind:` and an `area:` label.
+#
+# Edit this file and run the "Sync labels" workflow to apply changes.
+# Renaming a label here creates a new one; delete the old one by hand.
+
+# --- kind: what sort of work is this? (exactly one) -------------------------
+- name: "kind:bug"
+  color: "d73a4a"
+  description: "Something is broken or behaves incorrectly"
+- name: "kind:feature"
+  color: "0e8a16"
+  description: "New capability or enhancement"
+- name: "kind:docs"
+  color: "0075ca"
+  description: "Documentation only"
+- name: "kind:cleanup"
+  color: "fef2c0"
+  description: "Refactor, tech debt, or code health"
+- name: "kind:ci"
+  color: "fef2c0"
+  description: "Build, release, or CI infrastructure"
+- name: "kind:dependencies"
+  color: "fef2c0"
+  description: "Dependency bumps and pins"
+- name: "kind:question"
+  color: "cc317c"
+  description: "Usage question — usually redirected to the forum"
+- name: "kind:regression"
+  color: "b60205"
+  description: "Worked in an earlier release, broken now"
+- name: "kind:api-change"
+  color: "5319e7"
+  description: "Changes a public API, CLI, schema, or config surface"
+
+# --- area: which part of the project? (one or more) -------------------------
+# Adjust this list to match the repository's actual components.
+- name: "area:cli"
+  color: "1d76db"
+  description: "Command-line interface"
+- name: "area:core"
+  color: "1d76db"
+  description: "Core library code"
+- name: "area:docs"
+  color: "1d76db"
+  description: "README, guides, docstrings, examples"
+- name: "area:tests"
+  color: "1d76db"
+  description: "Test suite and fixtures"
+- name: "area:packaging"
+  color: "1d76db"
+  description: "Packaging, distribution, and install"
+
+# --- priority: how urgent? (exactly one, maintainers only) ------------------
+- name: "priority:critical"
+  color: "b60205"
+  description: "Data loss, security, or a broken release — drop everything"
+- name: "priority:high"
+  color: "d93f0b"
+  description: "Blocks users with no reasonable workaround"
+- name: "priority:medium"
+  color: "fbca04"
+  description: "Should be fixed, workaround exists"
+- name: "priority:low"
+  color: "c2e0c6"
+  description: "Nice to have"
+
+# --- status: where is it in the pipeline? -----------------------------------
+- name: "needs triage"
+  color: "ededed"
+  description: "Awaiting maintainer review — applied automatically by the issue forms"
+- name: "status:needs-info"
+  color: "d876e3"
+  description: "Waiting on the reporter for details or a reproduction"
+- name: "status:confirmed"
+  color: "0e8a16"
+  description: "Reproduced by a maintainer"
+- name: "status:blocked"
+  color: "000000"
+  description: "Blocked on an external dependency or another issue"
+- name: "status:wontfix"
+  color: "ffffff"
+  description: "Working as intended, or out of scope"
+- name: "status:duplicate"
+  color: "cfd3d7"
+  description: "Already tracked elsewhere"
+- name: "status:stale"
+  color: "ededed"
+  description: "No activity — will be closed if it stays quiet"
+
+# --- community: contributor-facing signposts --------------------------------
+- name: "good first issue"
+  color: "7057ff"
+  description: "Well-scoped and self-contained — a good entry point"
+- name: "help wanted"
+  color: "008672"
+  description: "Maintainers would welcome a contributor picking this up"
+- name: "breaking-change"
+  color: "b60205"
+  description: "Requires users to change their code, data, or config"

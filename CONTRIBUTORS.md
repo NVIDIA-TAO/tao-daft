@@ -9,8 +9,8 @@ Maintainers review and merge pull requests, triage issues, and cut releases.
 
 | Name | GitHub |
 |------|--------|
-| Adrian Tran | [@hqtran-nv](https://github.com/hqtran-nv) |
 | ermu2001 | [@ermu2001](https://github.com/ermu2001) |
+| Adrian Tran | [@hqtran-nv](https://github.com/hqtran-nv) |
 
 ## Contributors
 

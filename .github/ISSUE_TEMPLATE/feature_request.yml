@@ -14,6 +14,10 @@ body:
         Large or cross-cutting changes are much more likely to be accepted if they
         are discussed here **before** you write the code.
 
+        Filing a request does not guarantee it will be built, and maintainers cannot
+        commit to timelines or ETAs. A well-argued use case — and an offer to
+        implement it — is what moves a proposal forward.
+
   - type: checkboxes
     id: preflight
     attributes:
@@ -98,9 +102,12 @@ body:
   - type: checkboxes
     id: contribution
     attributes:
-      label: Contribution
+      label: Are you willing to submit a PR?
+      description: >
+        Absolutely not required — but proposals with a contributor attached move
+        much faster, and maintainers are happy to guide you through the process.
       options:
         - label: I understand that contributions require a DCO sign-off (see `CONTRIBUTING.md`).
           required: true
-        - label: I'm willing to open a PR to implement this.
+        - label: Yes, I'm willing to submit a PR to implement this.
           required: false
