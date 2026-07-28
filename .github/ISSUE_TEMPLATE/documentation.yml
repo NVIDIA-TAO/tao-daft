@@ -1,0 +1,50 @@
+name: Documentation issue
+description: Report missing, unclear, outdated, or incorrect documentation.
+labels: ["documentation", "needs triage"]
+body:
+  - type: input
+    id: location
+    attributes:
+      label: Location
+      description: Link to the page, or the path of the file in this repository.
+      placeholder: "README.md, docs/..., or a docs.nvidia.com URL"
+    validations:
+      required: true
+
+  - type: dropdown
+    id: kind
+    attributes:
+      label: Kind of issue
+      options:
+        - Incorrect / outdated information
+        - Missing information
+        - Unclear or confusing wording
+        - Broken link or rendering
+        - Example / snippet does not work
+        - Other
+    validations:
+      required: true
+
+  - type: textarea
+    id: problem
+    attributes:
+      label: What is wrong?
+      description: Quote the passage if it helps, and explain what is misleading or missing.
+    validations:
+      required: true
+
+  - type: textarea
+    id: suggestion
+    attributes:
+      label: Suggested fix
+      description: What the docs should say instead.
+    validations:
+      required: false
+
+  - type: checkboxes
+    id: contribution
+    attributes:
+      label: Contribution
+      options:
+        - label: I'm willing to open a PR to fix this.
+          required: false

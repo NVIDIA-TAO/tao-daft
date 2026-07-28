@@ -1,83 +1,106 @@
 name: Bug report
-description: Report incorrect or unexpected behavior in tao-daft (validate, convert, datasets, CLI).
-labels: [bug]
+description: Report incorrect, unexpected, or broken behavior.
+labels: ["bug", "needs triage"]
 body:
   - type: markdown
     attributes:
       value: |
-        Thanks for taking the time to file a bug.
+        Thanks for taking the time to file a bug report.
 
-        ⚠️ **Do not report security vulnerabilities here.** Per
-        [SECURITY.md](https://github.com/NVIDIA-TAO/tao-daft/blob/main/SECURITY.md), security issues must go to NVIDIA
-        PSIRT (https://www.nvidia.com/object/submit-security-vulnerability.html),
-        not GitHub.
+        ⚠️ **Do not report security vulnerabilities here.** Security issues must be
+        reported privately to NVIDIA PSIRT — see `SECURITY.md` in this repository, or
+        https://www.nvidia.com/object/submit-security-vulnerability.html.
+
+        For usage questions ("how do I ...?"), please use the NVIDIA TAO developer
+        forum instead — see the links on the issue-type chooser.
+
+  - type: checkboxes
+    id: preflight
+    attributes:
+      label: Before submitting
+      options:
+        - label: I searched open and closed issues, and this is not a duplicate.
+          required: true
+        - label: I reproduced this on the latest released version (or on `main`).
+          required: true
 
   - type: input
     id: version
     attributes:
       label: Version
-      description: Output of `tao-daft --version`.
-      placeholder: nvidia-tao-daft 7.0.0
+      description: Release tag, package version, or commit SHA you are running.
+      placeholder: "7.0.0 (or commit abc1234)"
     validations:
       required: true
 
-  - type: dropdown
-    id: area
+  - type: input
+    id: component
     attributes:
-      label: Affected area
-      options:
-        - validate
-        - convert
-        - datasets
-        - CLI
-        - formats/schemas
-        - other
-    validations:
-      required: true
-
-  - type: dropdown
-    id: format
-    attributes:
-      label: Format (if applicable)
-      options:
-        - N/A
-        - metropolis-v3.0
-        - cosmos-reason-v1.0
-        - tao-vl-reason-v1.0
+      label: Component / area
+      description: The subcommand, module, model, or service where the problem occurs.
+      placeholder: "e.g. CLI, validator, converter, docs"
     validations:
       required: false
 
   - type: textarea
-    id: what-happened
+    id: description
     attributes:
       label: What happened?
-      description: Describe the actual behavior and what you expected instead.
+      description: Describe the actual behavior, and what you expected to happen instead.
     validations:
       required: true
 
   - type: textarea
     id: reproduction
     attributes:
-      label: Reproduction
+      label: Steps to reproduce
       description: >
-        The exact `tao-daft ...` command (or Python snippet) and a minimal
-        dataset / JSON sample that triggers the issue. Paste full error output.
+        The exact commands, config, and minimal input needed to reproduce this.
+        A smaller reproduction gets a faster fix — please reduce it as far as you can.
+      placeholder: |
+        1. Run `...`
+        2. With this input / config: `...`
+        3. Observe the failure
       render: shell
     validations:
       required: true
 
   - type: textarea
+    id: logs
+    attributes:
+      label: Logs / error output
+      description: Full traceback or error output. Long logs are fine — paste them here.
+      render: shell
+    validations:
+      required: false
+
+  - type: textarea
     id: environment
     attributes:
       label: Environment
-      description: OS, Python version (3.10–3.13), and install method (`pip install` vs `git+`).
+      description: >
+        OS and version, Python version, install method (pip / source / container image tag),
+        and hardware (GPU model, driver, CUDA) if relevant.
+      placeholder: |
+        OS: Ubuntu 22.04
+        Python: 3.10.14
+        Install: pip install <package>==<version>
+        GPU / driver / CUDA: (if relevant)
+    validations:
+      required: false
+
+  - type: textarea
+    id: context
+    attributes:
+      label: Additional context
+      description: Screenshots, workarounds you found, related issues or PRs.
     validations:
       required: false
 
   - type: checkboxes
-    id: checks
+    id: contribution
     attributes:
-      label: Before submitting
+      label: Contribution
       options:
-        - label: I searched existing issues and this is not a duplicate.
-          required: true
+        - label: I'm willing to open a PR to fix this.
+          required: false

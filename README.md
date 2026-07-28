@@ -90,7 +90,9 @@ Dev dependencies: see [`pyproject.toml`](pyproject.toml).
 
 ## Contributing
 
-See [`CONTRIBUTING.md`](CONTRIBUTING.md) for the DCO sign-off requirement.
+See [`CONTRIBUTING.md`](CONTRIBUTING.md) for the DCO sign-off requirement, and
+[`CONTRIBUTORS.md`](CONTRIBUTORS.md) for the people behind this project.
+
 ## License
 
 [Apache 2.0](LICENSE).

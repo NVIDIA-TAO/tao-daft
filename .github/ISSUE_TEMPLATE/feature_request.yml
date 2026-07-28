@@ -1,18 +1,28 @@
 name: Feature request
-description: Propose an enhancement to tao-daft (not a new format or converter — use the proposal template for those).
-labels: [enhancement]
+description: Propose a new capability or an enhancement to an existing one.
+labels: ["enhancement", "needs triage"]
 body:
   - type: markdown
     attributes:
       value: |
-        For a **new format or converter**, use *Format / converter proposal*.
-        For a **change to an existing format**, use *Format change request*.
+        Please describe the **problem** first. Understanding the use case lets
+        maintainers evaluate solutions you may not have considered.
+
+  - type: checkboxes
+    id: preflight
+    attributes:
+      label: Before submitting
+      options:
+        - label: I searched open and closed issues, and this is not a duplicate.
+          required: true
 
   - type: textarea
     id: problem
     attributes:
       label: Problem / motivation
-      description: The use case or pain point this addresses — describe the need, not just the solution.
+      description: >
+        What are you trying to do, and what is blocking or painful today?
+        Describe the need, not just the solution.
     validations:
       required: true
 
@@ -20,21 +30,16 @@ body:
     id: solution
     attributes:
       label: Proposed solution
-      description: What you'd like tao-daft to do.
+      description: What you would like this project to do. Include a sketch of the API, CLI, or config if applicable.
     validations:
       required: true
 
-  - type: dropdown
-    id: area
+  - type: input
+    id: component
     attributes:
-      label: Area
-      options:
-        - validate
-        - convert
-        - datasets
-        - CLI
-        - formats/schemas
-        - other
+      label: Component / area
+      description: The subcommand, module, model, or service this affects.
+      placeholder: "e.g. CLI, validator, converter, docs"
     validations:
       required: false
 
@@ -42,5 +47,24 @@ body:
     id: alternatives
     attributes:
       label: Alternatives considered
+      description: Other approaches you evaluated, and why they fall short.
     validations:
       required: false
+
+  - type: textarea
+    id: context
+    attributes:
+      label: Additional context
+      description: Prior art in other projects, links to specs, related issues or PRs.
+    validations:
+      required: false
+
+  - type: checkboxes
+    id: contribution
+    attributes:
+      label: Contribution
+      options:
+        - label: I understand contributions require a DCO sign-off (see `CONTRIBUTING.md`).
+          required: true
+        - label: I'm willing to open a PR to implement this.
+          required: false
