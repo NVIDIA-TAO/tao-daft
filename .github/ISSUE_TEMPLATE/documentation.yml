@@ -1,13 +1,20 @@
 name: Documentation issue
 description: Report missing, unclear, outdated, or incorrect documentation.
+title: "[Docs]: "
 labels: ["documentation", "needs triage"]
 body:
+  - type: markdown
+    attributes:
+      value: |
+        Documentation bugs are real bugs — thanks for reporting one. If you already
+        know what the text should say, a pull request is usually faster than an issue.
+
   - type: input
     id: location
     attributes:
       label: Location
-      description: Link to the page, or the path of the file in this repository.
-      placeholder: "README.md, docs/..., or a docs.nvidia.com URL"
+      description: Link to the page, or the path and heading of the file in this repository.
+      placeholder: "README.md § Quick start, docs/..., or a docs.nvidia.com URL"
     validations:
       required: true
 
@@ -16,11 +23,11 @@ body:
     attributes:
       label: Kind of issue
       options:
-        - Incorrect / outdated information
+        - Incorrect or outdated information
         - Missing information
         - Unclear or confusing wording
-        - Broken link or rendering
-        - Example / snippet does not work
+        - Example or snippet does not work
+        - Broken link, formatting, or rendering
         - Other
     validations:
       required: true
@@ -29,7 +36,10 @@ body:
     id: problem
     attributes:
       label: What is wrong?
-      description: Quote the passage if it helps, and explain what is misleading or missing.
+      description: >
+        Quote the passage if that helps, and explain what is misleading, missing, or
+        out of date. If an example does not work, paste the command you ran and the
+        error you got.
     validations:
       required: true
 
@@ -37,7 +47,7 @@ body:
     id: suggestion
     attributes:
       label: Suggested fix
-      description: What the docs should say instead.
+      description: What the documentation should say instead. A rough draft is fine.
     validations:
       required: false
 

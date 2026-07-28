@@ -1,19 +1,27 @@
 name: Feature request
 description: Propose a new capability or an enhancement to an existing one.
+title: "[Feature]: "
 labels: ["enhancement", "needs triage"]
 body:
   - type: markdown
     attributes:
       value: |
-        Please describe the **problem** first. Understanding the use case lets
-        maintainers evaluate solutions you may not have considered.
+        Please describe the **problem** before the solution. Understanding the
+        underlying use case lets maintainers evaluate approaches you may not have
+        considered, and is the difference between a proposal that gets built and one
+        that stalls.
+
+        Large or cross-cutting changes are much more likely to be accepted if they
+        are discussed here **before** you write the code.
 
   - type: checkboxes
     id: preflight
     attributes:
       label: Before submitting
       options:
-        - label: I searched open and closed issues, and this is not a duplicate.
+        - label: I searched open and closed issues and this is not a duplicate.
+          required: true
+        - label: This is not a bug report (bugs have their own template).
           required: true
 
   - type: textarea
@@ -21,8 +29,11 @@ body:
     attributes:
       label: Problem / motivation
       description: >
-        What are you trying to do, and what is blocking or painful today?
-        Describe the need, not just the solution.
+        What are you trying to accomplish, and what is blocking or painful today?
+        Concrete detail about your actual workflow is far more persuasive than a
+        general statement. Include what you do today to work around it.
+      placeholder: |
+        I'm trying to ..., but currently I have to ..., which means ...
     validations:
       required: true
 
@@ -30,7 +41,16 @@ body:
     id: solution
     attributes:
       label: Proposed solution
-      description: What you would like this project to do. Include a sketch of the API, CLI, or config if applicable.
+      description: >
+        What you would like this project to do. If it changes the public surface,
+        sketch the CLI invocation, API signature, or config as you would like it to
+        look — even a rough sketch makes the discussion concrete.
+      placeholder: |
+        Add a `--foo` flag that ...
+
+        ```
+        $ <command> --foo bar
+        ```
     validations:
       required: true
 
@@ -39,7 +59,7 @@ body:
     attributes:
       label: Component / area
       description: The subcommand, module, model, or service this affects.
-      placeholder: "e.g. CLI, validator, converter, docs"
+      placeholder: "e.g. CLI, validator, converter, docs, CI"
     validations:
       required: false
 
@@ -47,15 +67,31 @@ body:
     id: alternatives
     attributes:
       label: Alternatives considered
-      description: Other approaches you evaluated, and why they fall short.
+      description: >
+        Other approaches you evaluated and why they fall short — including doing this
+        outside the project, and doing nothing.
     validations:
       required: false
+
+  - type: dropdown
+    id: breaking
+    attributes:
+      label: Would this be a breaking change?
+      description: Does it change existing behavior, output, APIs, or config in a way that would affect current users?
+      options:
+        - "No — purely additive"
+        - "Yes — changes existing behavior"
+        - "Not sure"
+    validations:
+      required: true
 
   - type: textarea
     id: context
     attributes:
       label: Additional context
-      description: Prior art in other projects, links to specs, related issues or PRs.
+      description: >
+        Prior art in other projects, links to specs or papers, and related issues
+        or PRs.
     validations:
       required: false
 
@@ -64,7 +100,7 @@ body:
     attributes:
       label: Contribution
       options:
-        - label: I understand contributions require a DCO sign-off (see `CONTRIBUTING.md`).
+        - label: I understand that contributions require a DCO sign-off (see `CONTRIBUTING.md`).
           required: true
         - label: I'm willing to open a PR to implement this.
           required: false

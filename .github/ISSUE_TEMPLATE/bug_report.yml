@@ -1,5 +1,6 @@
 name: Bug report
 description: Report incorrect, unexpected, or broken behavior.
+title: "[Bug]: "
 labels: ["bug", "needs triage"]
 body:
   - type: markdown
@@ -7,29 +8,41 @@ body:
       value: |
         Thanks for taking the time to file a bug report.
 
-        ⚠️ **Do not report security vulnerabilities here.** Security issues must be
-        reported privately to NVIDIA PSIRT — see `SECURITY.md` in this repository, or
-        https://www.nvidia.com/object/submit-security-vulnerability.html.
+        Before you start, please search the open **and closed** issues. If someone
+        already reported this, add a 👍 and any new detail to that issue instead of
+        opening a new one — it gets fixed faster that way.
 
-        For usage questions ("how do I ...?"), please use the NVIDIA TAO developer
-        forum instead — see the links on the issue-type chooser.
+        **🔒 Do not report security vulnerabilities here.** Security issues must be
+        reported privately to NVIDIA PSIRT — see `SECURITY.md`, or
+        https://www.nvidia.com/object/submit-security-vulnerability.html. If a
+        vulnerability is filed publicly here, maintainers may limit discussion and
+        redirect you to the private channel.
+
+        **⚠️ Redact before you paste.** Logs, configs, and environment dumps often
+        contain API tokens, keys, passwords, internal hostnames, dataset paths, or
+        customer data. Replace them with placeholders such as `<REDACTED>`.
+
+        For "how do I ...?" questions, please use the developer forum linked on the
+        issue chooser — the tracker is for bugs and feature requests.
 
   - type: checkboxes
     id: preflight
     attributes:
       label: Before submitting
       options:
-        - label: I searched open and closed issues, and this is not a duplicate.
+        - label: I searched open and closed issues and this is not a duplicate.
           required: true
-        - label: I reproduced this on the latest released version (or on `main`).
+        - label: I reproduced this on the latest released version, or on `main`.
           required: true
+        - label: I checked the documentation and this behavior contradicts it (or is undocumented).
+          required: false
 
   - type: input
     id: version
     attributes:
       label: Version
-      description: Release tag, package version, or commit SHA you are running.
-      placeholder: "7.0.0 (or commit abc1234)"
+      description: Release tag, installed package version, or commit SHA you are running.
+      placeholder: "7.0.0, or commit abc1234"
     validations:
       required: true
 
@@ -38,7 +51,7 @@ body:
     attributes:
       label: Component / area
       description: The subcommand, module, model, or service where the problem occurs.
-      placeholder: "e.g. CLI, validator, converter, docs"
+      placeholder: "e.g. CLI, validator, converter, docs, CI"
     validations:
       required: false
 
@@ -46,21 +59,33 @@ body:
     id: description
     attributes:
       label: What happened?
-      description: Describe the actual behavior, and what you expected to happen instead.
+      description: >
+        A clear and concise description of the bug: what you observed, and what you
+        expected to happen instead. Screenshots are welcome.
+      placeholder: |
+        I ran ..., and expected A to happen. Instead, B happened.
     validations:
       required: true
 
   - type: textarea
     id: reproduction
     attributes:
-      label: Steps to reproduce
+      label: Minimal reproduction
       description: >
-        The exact commands, config, and minimal input needed to reproduce this.
-        A smaller reproduction gets a faster fix — please reduce it as far as you can.
+        The exact commands, config, and smallest possible input that trigger this.
+        Maintainers will copy-paste this and expect the same result, so please trim
+        anything irrelevant, avoid private data, and include the imports or file
+        layout needed to run it. If it is too long to inline, link a public gist or
+        repository.
+
+
+        **Reports without a reproduction usually cannot be acted on and may be closed.**
       placeholder: |
-        1. Run `...`
-        2. With this input / config: `...`
-        3. Observe the failure
+        1. Install with: ...
+        2. Run: <command>
+        3. With this input / config:
+           ...
+        4. Observe: ...
       render: shell
     validations:
       required: true
@@ -68,8 +93,11 @@ body:
   - type: textarea
     id: logs
     attributes:
-      label: Logs / error output
-      description: Full traceback or error output. Long logs are fine — paste them here.
+      label: Logs / full traceback
+      description: >
+        The complete error output, not just the last line. Enable verbose or debug
+        logging if the project supports it. Long output is fine — paste it all, or
+        attach it as a file.
       render: shell
     validations:
       required: false
@@ -79,13 +107,33 @@ body:
     attributes:
       label: Environment
       description: >
-        OS and version, Python version, install method (pip / source / container image tag),
-        and hardware (GPU model, driver, CUDA) if relevant.
-      placeholder: |
-        OS: Ubuntu 22.04
-        Python: 3.10.14
-        Install: pip install <package>==<version>
-        GPU / driver / CUDA: (if relevant)
+        Run the commands below and paste the output. Remove anything sensitive first.
+        Include the container image tag instead if you are running in a container.
+      value: |
+        <details>
+        <summary>Environment details</summary>
+
+        ```text
+        # python -c "import platform, sys; print(platform.platform()); print(sys.version)"
+        # pip list | grep -i nvidia
+        # nvidia-smi          (if GPU-related)
+        # Install method: pip / source / container image tag
+
+        <paste output here>
+        ```
+
+        </details>
+    validations:
+      required: true
+
+  - type: input
+    id: regression
+    attributes:
+      label: Last known working version
+      description: >
+        If this used to work, the last version where it did. Narrowing it to a single
+        release — or a single commit — is the single most useful thing you can add.
+      placeholder: "e.g. worked in 6.0.0, broke in 7.0.0 — or 'never worked'"
     validations:
       required: false
 
@@ -93,7 +141,9 @@ body:
     id: context
     attributes:
       label: Additional context
-      description: Screenshots, workarounds you found, related issues or PRs.
+      description: >
+        Workarounds you found, how you are deploying, whether it reproduces on other
+        platforms or hardware, and links to related issues or PRs.
     validations:
       required: false
 
