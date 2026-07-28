@@ -11,14 +11,14 @@ Maintainers review and merge pull requests, triage issues, and cut releases.
 |------|--------|
 | ermu2001 | [@ermu2001](https://github.com/ermu2001) |
 | Adrian Tran | [@hqtran-nv](https://github.com/hqtran-nv) |
+| Christina Wang | [@christinayyw](https://github.com/christinayyw) |
+| Tian | [@tzhengus](https://github.com/tzhengus) |
 
 ## Contributors
 
 Listed in order of first contribution.
 
-| Name | GitHub |
-|------|--------|
-| ermu2001 | [@ermu2001](https://github.com/ermu2001) |
+_None yet — be the first._
 
 ## How to be listed
 
