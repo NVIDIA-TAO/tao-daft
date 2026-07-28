@@ -390,7 +390,7 @@ class MetropolisV3_0ToTaoVlReasonV1_0Converter(BaseConverter):
         # files discovered via find_media_file).
         media_src_abs = media_src.resolve()
         try:
-            return str(media_src_abs.relative_to(media_anchor))
+            return str(media_src_abs.relative_to(scene_path))
         except ValueError:
             return str(media_src_abs)
 

@@ -34,7 +34,7 @@ def read_json_object(path: Path) -> dict:
         raise FormatError(f"Invalid JSON in {path.name}: {e.msg} (line {e.lineno})") from e
     except OSError as e:
         raise FormatError(f"Cannot read {path.name}: {e}") from e
-    if not isinstance(data, dict):
+    if not isinstance(data, (dict, list)):
         raise FormatError(
             f"{path.name}: top-level JSON value is {type(data).__name__}, expected object"
         )
