@@ -1,3 +1,6 @@
+# SPDX-FileCopyrightText: Copyright (c) 2026 NVIDIA CORPORATION & AFFILIATES. All rights reserved.
+# SPDX-License-Identifier: Apache-2.0
+
 # Label taxonomy — the single source of truth for this repository's labels.
 #
 # Labels are namespaced with a `prefix:` so they sort into groups in the label
