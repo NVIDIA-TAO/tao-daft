@@ -263,7 +263,7 @@ class CosmosReasonV1_0Validator(BaseValidator):
 
             media_rel = sample.get("media")
             if media_rel:
-                if not (dataset_path / "media" / media_rel).exists():
+                if not (dataset_path / media_rel).exists():
                     result.add_error(
                         f"meta.json: sample '{sid}': media file not found: {media_rel}"
                     )

@@ -79,7 +79,7 @@ class MetropolisV3_0Validator(BaseValidator):
         "video_summarization": "tasks/video_summarization.schema.json",
         "scene_description": "tasks/scene_description.schema.json",
         "bcq": "tasks/bcq.schema.json",
-        "bcq_openended": "tasks/bcq.schema.json",
+        "bcq_openended": "tasks/bcq_openended.schema.json",
         "mcq": "tasks/mcq.schema.json",
         "mcq_openended": "tasks/mcq_openended.schema.json",
         "open_qa": "tasks/open_qa.schema.json",
