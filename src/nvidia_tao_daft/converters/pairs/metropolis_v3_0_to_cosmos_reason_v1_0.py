@@ -497,7 +497,7 @@ class MetropolisV3_0ToCosmosReasonV1_0Converter(BaseConverter):
             meta_block.update({k: v for k, v in metadata.items() if k != "type"})
 
         meta = {
-            "version": self.source_format,
+            "version": "cosmos-reason-v1.0",
             "metadata": meta_block,
             "samples": samples,
         }
