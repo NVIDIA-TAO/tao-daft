@@ -274,4 +274,4 @@ class CosmosReasonV1_0Validator(BaseValidator):
                 rel_path = f"text/{conv_file.name}"
                 if rel_path not in referenced_conv_paths:
                     msg = f"text/{conv_file.name}: not referenced by any sample in meta.json"
-                    result.add_error(msg) if permissive else result.add_warning(msg)
+                    result.add_warning(msg) if permissive else result.add_error(msg)

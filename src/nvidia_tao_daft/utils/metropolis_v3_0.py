@@ -183,7 +183,7 @@ def iter_task_items(
         if task_filter is not None and task_type not in task_filter:
             continue
 
-        for idx, item in enumerate(task_data.get("items", []), 1):
+        for idx, item in enumerate(task_data.get("items", [])):
             yield task_file, task_type, idx, item
 
 
