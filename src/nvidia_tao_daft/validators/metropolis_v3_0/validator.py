@@ -70,7 +70,7 @@ class MetropolisV3_0Validator(BaseValidator):
         "msted": "contextual/msted.schema.json",
         "image": "contextual/image.schema.json",
         "instances": "contextual/instances.schema.json",
-        "objects": "contextual/tracking.schema.json",
+        "objects": "contextual/objects.schema.json",
         "tracking": "contextual/tracking.schema.json",
         "video": "contextual/video.schema.json",
     }
@@ -453,7 +453,7 @@ class MetropolisV3_0Validator(BaseValidator):
                 inst_path = contextual_path / inst_source
                 if not inst_path.exists():
                     result.add_error(f"{obj_path.name}: instances_source '{inst_source}' not found")
-                elif inst_path.name in valid_files:
+                elif inst_path in valid_files:
                     source_ids = set(valid_files[inst_path]["instances"].keys())
                     for frame_id, frame in data.get("frames", {}).items():
                         for inst in frame.get("instances", []):
@@ -578,7 +578,7 @@ class MetropolisV3_0Validator(BaseValidator):
             (
                 "chunks",
                 "chunks",
-                ("start_time", "end_time"),
+                ("start", "end"),
                 lambda _i, c: f"chunk '{c.get('chunk_id', '?')}'",
             ),
             (
