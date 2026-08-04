@@ -45,8 +45,8 @@ def get_metadata_type(data: dict) -> Optional[str]:
     """Extract ``metadata.type`` from a parsed JSON document."""
     meta = data.get("metadata")
     if isinstance(meta, dict):
-        return meta.get("type")
-    return None
+        return meta.get("type") or data.get("type")
+    return data.get("type")
 
 
 def media_dest_basename(

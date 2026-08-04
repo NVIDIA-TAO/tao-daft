@@ -209,4 +209,4 @@ class ContextualRequirements:
     @classmethod
     def is_valid_combination(cls, raw_type: RawType, contextual_type: str) -> bool:
         """Check whether ``contextual_type`` is valid for ``raw_type``."""
-        return contextual_type in cls.VALID.get(raw_type, set())
+        return contextual_type in cls.VALID.get(RawType.VIDEO, set())
