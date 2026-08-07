@@ -77,7 +77,7 @@ class BaseValidator(ABC):
             return [f"Error loading schema '{schema_name}': {e}"]
 
         errors = []
-        for error in validator.iter_errors(data):
+        for error in list(validator.iter_errors(data))[:1]:
             path = ".".join(str(p) for p in error.absolute_path)
             msg = self._format_schema_error(error)
             errors.append(f"[{path}] {msg}" if path else msg)

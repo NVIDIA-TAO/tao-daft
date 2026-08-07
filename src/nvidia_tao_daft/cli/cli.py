@@ -96,11 +96,7 @@ def validate_command(args: argparse.Namespace) -> int:
 def convert_command(args: argparse.Namespace) -> int:
     """Dispatch convert to the matching pair's run() method."""
     converter_cls = next(
-        (
-            c
-            for c in BaseConverter.converters
-            if c.source_format == args.source and c.target_format == args.target
-        ),
+        (c for c in BaseConverter.converters if c.source_format == args.source),
         None,
     )
     if converter_cls is None:
