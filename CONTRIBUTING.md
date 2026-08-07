@@ -51,3 +51,58 @@
         maintained indefinitely and may be redistributed consistent with
         this project or the open source license(s) involved.
   ```
+
+## Development setup
+
+Install the git hooks once per clone:
+
+```bash
+pip install pre-commit pylint pydocstyle flake8 && pre-commit install
+```
+
+That installs both the `pre-commit` and `commit-msg` hooks. The first commit
+afterwards takes a few minutes while the hook environments are built; later
+commits are fast.
+
+If you previously ran `git config core.hooksPath .github/hooks`, unset it first.
+It overrides the hooks installed above, and they will silently never run:
+
+```bash
+git config --unset core.hooksPath
+```
+
+## What runs on every commit
+
+| Check | Blocks on |
+|-------|-----------|
+| TruffleHog | a credential in the staged changes |
+| dependency guard | any change to a dependency manifest, lockfile or Dockerfile |
+| license header | a `.py` or `.sh` file without an SPDX header |
+| pylint, pydocstyle, flake8 | lint and docstring violations |
+| DCO sign-off | a commit message without a `Signed-off-by` trailer |
+
+Only the files you changed are checked, never the whole repository. To run them
+by hand:
+
+```bash
+# only what your branch changed vs main
+pre-commit run --from-ref origin/main --to-ref HEAD
+
+# or everything
+pre-commit run --all-files
+```
+
+## Dependency changes
+
+Changes to dependency manifests, lockfiles and Dockerfiles are blocked at commit
+time, in every language:
+
+```
+Dependency change blocked. This commit modifies:
+  requirements.txt
+
+Please reach out to TAO Infra team for dependency change
+```
+
+This is deliberate. Raise the change with the TAO Infra team rather than working
+around the hook.
