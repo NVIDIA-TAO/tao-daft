@@ -179,21 +179,24 @@ class TestSchemaViolations:
 
 
 class TestMediaReferences:
-    def test_missing_media_errors_in_lenient(self, tmp_path):
-        """A referenced media file that doesn't exist on disk is always an
-        error, even in permissive (default) mode. The annotation's
-        ``video_id`` / ``image_id`` is a claim that the file exists, so its
-        absence breaks the format contract regardless of ``--strict``."""
+    def test_missing_media_warns_in_lenient(self, tmp_path):
+        """A referenced media file that doesn't exist on disk is always a
+        warning, never an error, in permissive (default) mode. Local media
+        reachability depends on where the validator runs (no media checked
+        out, or a media_root: null file meant to be paired with an
+        out-of-band root) rather than on content correctness."""
         ds = _minimal_dataset(tmp_path, with_media=False)
         result = TaoVlReasonV1_0Validator().validate_dataset(ds, permissive=True)
-        assert not result.is_valid()
-        assert any("media not found" in e for e in result.errors)
+        assert result.is_valid()
+        assert any("media not found" in w for w in result.warnings)
 
-    def test_missing_media_errors_in_strict(self, tmp_path):
+    def test_missing_media_still_only_warns_in_strict(self, tmp_path):
+        """Independent of --strict: this check is never promoted to an error."""
         ds = _minimal_dataset(tmp_path, with_media=False)
         result = TaoVlReasonV1_0Validator().validate_dataset(ds, permissive=False)
-        assert not result.is_valid()
-        assert any("media not found" in e for e in result.errors)
+        assert result.is_valid()
+        assert any("media not found" in w for w in result.warnings)
+        assert not any("media not found" in e for e in result.errors)
 
     def test_media_root_relative_subdir(self, tmp_path):
         """Items reference filenames under the configured media_root subdir."""
@@ -340,11 +343,13 @@ class TestSchemaToCrossRefGating:
         )
         result = TaoVlReasonV1_0Validator().validate_dataset(ds)
         assert not result.is_valid()
-        joined = " ".join(result.errors)
         # Schema error for the bad ``metadata.type`` value is present.
-        assert "bad.json" in joined
-        # No media-reference error for the (would-be-missing) video file:
-        # the annotation file was skipped before the media phase.
+        assert "bad.json" in " ".join(result.errors)
+        # No media-reference complaint (error or warning) for the
+        # (would-be-missing) video file: the annotation file was skipped
+        # before the media phase, so it's absent from both lists, not just
+        # downgraded to a warning.
+        joined = " ".join(result.errors + result.warnings)
         assert "does_not_exist.mp4" not in joined
 
 

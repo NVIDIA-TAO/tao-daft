@@ -15,6 +15,7 @@ See also: [CLI reference](../cli/README.md) · [format specs](../formats/README.
 | `metropolis-v3.0` | `MetropolisV3_0Validator` | [`metropolis_v3_0/validator.py`](metropolis_v3_0/validator.py) | 🚧 Active |
 | `cosmos-reason-v1.0` | `CosmosReasonV1_0Validator` | [`cosmos_reason_v1_0/validator.py`](cosmos_reason_v1_0/validator.py) | 🔒 Closed |
 | `tao-vl-reason-v1.0` | `TaoVlReasonV1_0Validator` | [`tao_vl_reason_v1_0/validator.py`](tao_vl_reason_v1_0/validator.py) | 🔒 Closed |
+| `df-vlm-qa-v1.0` | `DfVlmQaV1_0Validator` | [`df_vlm_qa_v1_0/validator.py`](df_vlm_qa_v1_0/validator.py) | 🚧 Active |
 
 ---
 
@@ -42,20 +43,37 @@ toggleable; the exact set depends on the format.
 | structure | Required directories / files are present | all |
 | schema | Every JSON file validates against its Draft-7 JSON schema | all |
 | references | Cross-file ID consistency (`object_id`, `camera_id`, event instances) | metropolis-v3.0, cosmos-reason-v1.0 |
-| media | Every referenced media path resolves on disk | cosmos-reason-v1.0, tao-vl-reason-v1.0 |
+| media | Every referenced media path resolves on disk | cosmos-reason-v1.0, tao-vl-reason-v1.0, df-vlm-qa-v1.0 |
+| grid | Every `tracking` row lands on the annotation grid `tracking_meta` declares | df-vlm-qa-v1.0 |
+| markers | `<track>` references resolve, and in-text timestamps are canonical | df-vlm-qa-v1.0 |
 | tasks | Task files validate against their per-task-type schema and reference known media IDs | metropolis-v3.0 |
 | timestamps | Event / chunk / MSTED timecodes do not exceed the video's `duration` (1 s tolerance) | metropolis-v3.0 |
 
 ### Permissive vs strict mode
 
-| Mode | Missing optional file | Missing required file |
-|------|-----------------------|-----------------------|
+| Mode | Missing optional file/dir | Missing required file/dir |
+|------|----------------------------|----------------------------|
 | `permissive=True` (CLI default) | warning | error |
 | `permissive=False` (CLI `--strict`) | error | error |
 
 `--strict` additionally treats any warning as an error in the CLI exit code.
 Required-vs-optional is decided per format — see each format's README for
 the specific list.
+
+**Media-existence checks are the exception**, and differ per format:
+
+| Format | Missing media |
+|---|---|
+| `df-vlm-qa-v1.0` | always a warning, never an error — independent of `--strict` |
+| `tao-vl-reason-v1.0` | always a warning, never an error — independent of `--strict` |
+| `cosmos-reason-v1.0` | always an error |
+
+Local media reachability depends on where the validator happens to run (no
+media checked out, or a `media_root: null` file meant to be paired with an
+out-of-band root), not on content correctness, which is why the first two
+never fail on it alone. `--strict` still fails these formats' runs if *any*
+warning is present for another reason, since that's a CLI-level rule, not
+specific to media.
 
 ---
 

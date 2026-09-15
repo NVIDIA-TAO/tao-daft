@@ -60,7 +60,7 @@ For runnable examples, see [`examples/`](examples/README.md) and the
 
 | Area | What's there | Link |
 |------|--------------|------|
-| **Formats** | Format registry, per-format specs (metropolis-v3.0, cosmos-reason-v1.0, tao-vl-reason-v1.0), versioning policy | [formats](src/nvidia_tao_daft/formats/README.md) |
+| **Formats** | Format registry, per-format specs (metropolis-v3.0, cosmos-reason-v1.0, tao-vl-reason-v1.0, df-vlm-qa-v1.0), versioning policy | [formats](src/nvidia_tao_daft/formats/README.md) |
 | **CLI** | `tao-daft validate` / `convert` reference | [cli](src/nvidia_tao_daft/cli/README.md) |
 | **Validators** | Validation engine | [validators](src/nvidia_tao_daft/validators/README.md) |
 | **Converters** | Conversion pairs and pair-specific options | [converters](src/nvidia_tao_daft/converters/README.md) |

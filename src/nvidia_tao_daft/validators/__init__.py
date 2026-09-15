@@ -10,6 +10,7 @@ auto-registers via ``BaseValidator.__init_subclass__``. The CLI reads
 
 from nvidia_tao_daft.validators.base import BaseValidator
 from nvidia_tao_daft.validators.cosmos_reason_v1_0 import CosmosReasonV1_0Validator
+from nvidia_tao_daft.validators.df_vlm_qa_v1_0 import DfVlmQaV1_0Validator
 from nvidia_tao_daft.validators.metropolis_v3_0 import MetropolisV3_0Validator
 from nvidia_tao_daft.validators.tao_vl_reason_v1_0 import TaoVlReasonV1_0Validator
 
@@ -18,4 +19,5 @@ __all__ = [
     "MetropolisV3_0Validator",
     "CosmosReasonV1_0Validator",
     "TaoVlReasonV1_0Validator",
+    "DfVlmQaV1_0Validator",
 ]

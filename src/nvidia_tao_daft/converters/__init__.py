@@ -9,11 +9,17 @@ auto-registers via ``BaseConverter.__init_subclass__``. The CLI reads
 """
 
 from nvidia_tao_daft.converters.base import BaseConverter, ConversionResult
+from nvidia_tao_daft.converters.pairs.df_vlm_qa_v1_0_to_tao_vl_reason_v1_0 import (
+    DfVlmQaV1_0ToTaoVlReasonV1_0Converter,
+)
 from nvidia_tao_daft.converters.pairs.metropolis_v3_0_to_cosmos_reason_v1_0 import (
     MetropolisV3_0ToCosmosReasonV1_0Converter,
 )
 from nvidia_tao_daft.converters.pairs.metropolis_v3_0_to_tao_vl_reason_v1_0 import (
     MetropolisV3_0ToTaoVlReasonV1_0Converter,
+)
+from nvidia_tao_daft.converters.pairs.tao_vl_reason_v1_0_to_df_vlm_qa_v1_0 import (
+    TaoVlReasonV1_0ToDfVlmQaV1_0Converter,
 )
 
 __all__ = [
@@ -21,4 +27,6 @@ __all__ = [
     "ConversionResult",
     "MetropolisV3_0ToCosmosReasonV1_0Converter",
     "MetropolisV3_0ToTaoVlReasonV1_0Converter",
+    "DfVlmQaV1_0ToTaoVlReasonV1_0Converter",
+    "TaoVlReasonV1_0ToDfVlmQaV1_0Converter",
 ]

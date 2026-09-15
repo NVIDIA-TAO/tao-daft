@@ -36,7 +36,7 @@ See also: [validators](../validators/README.md) · [converters](../converters/RE
 ## validate
 
 ```
-tao-daft validate {metropolis-v3.0|cosmos-reason-v1.0|tao-vl-reason-v1.0}
+tao-daft validate {metropolis-v3.0|cosmos-reason-v1.0|tao-vl-reason-v1.0|df-vlm-qa-v1.0}
                   --path PATH
                   [--strict]
                   [format-specific options...]
@@ -79,7 +79,24 @@ per-sample `text/*.json` conversation files, and that every
 Only the common options apply. The validator schema-checks every annotation
 file (`*.json` with `format: "tao-vl-reason-v1.0"`) and verifies every
 referenced `video_id` / `image_id` resolves under each annotation's
-`media_root`.
+`media_root`. A missing media file is always a warning, never an error,
+independent of `--strict`.
+
+### `df-vlm-qa-v1.0` options
+
+Only the common options apply. `--path` accepts a flat batch or a
+`jsons/`+`videos/` bundle (only `jsons/` needs to hold documents). The
+validator schema-checks every per-clip document (`*.json` with
+`format: "df-vlm-qa-v1.0"`), then applies the checks JSON Schema cannot
+express: every `tracking` row lands on the annotation grid `tracking_meta`
+declares, box corner order and bounds, `<track>` marker resolution, in-text
+timestamp conventions, `<SKIP>` placement, and media agreement (`video_id`,
+`video_sha256`, duration, `video_url`).
+
+A `video_id` that doesn't resolve locally is always a warning, never an
+error, independent of `--strict` — local media reachability isn't a content
+problem. `video_sha256` and duration checks (a hash + `ffprobe` per clip) are
+skipped entirely by default and only run under `--strict`.
 
 ### Examples
 
@@ -97,6 +114,9 @@ tao-daft validate cosmos-reason-v1.0 --path examples/datasets/cosmos-reason-v1.0
 
 # tao-vl-reason-v1.0 dataset
 tao-daft validate tao-vl-reason-v1.0 --path examples/datasets/tao-vl-reason-v1.0/its_collision
+
+# df-vlm-qa-v1.0 batch
+tao-daft validate df-vlm-qa-v1.0 --path <batch>/
 ```
 
 ---
@@ -115,29 +135,63 @@ tao-daft convert {source} {target}
 |--------|--------|
 | `metropolis-v3.0` | `cosmos-reason-v1.0` |
 | `metropolis-v3.0` | `tao-vl-reason-v1.0` |
+| `df-vlm-qa-v1.0` | `tao-vl-reason-v1.0` |
+| `tao-vl-reason-v1.0` | `df-vlm-qa-v1.0` |
 
 ### Common options
+
+Every pair shares only these two; the rest of a pair's options are its own
+(see the pair-specific sections below).
 
 | Option | Default | Description |
 |--------|---------|-------------|
 | `--path PATH` | _(required)_ | Source scene or dataset root |
 | `--output OUT` | _(required)_ | Output directory for the converted dataset |
-| `--task TYPE ...` | all supported | Filter which source task types are emitted |
-| `--description STR` | _(unset)_ | Description written into the target metadata block |
-| `--license STR` | pair-specific | License written into the target metadata block. The `→ tao-vl-reason-v1.0` pair defaults to `CC BY-NC-ND 4.0`; the `→ cosmos-reason-v1.0` pair has no default. |
 
 ### `metropolis-v3.0 → cosmos-reason-v1.0` options
 
 | Option | Default | Description |
 |--------|---------|-------------|
+| `--task TYPE ...` | all supported | Task types to include |
 | `--no-copy-media` | off | Reference media in place under `raw/` instead of copying into `media/` |
+| `--description STR` | _(unset)_ | Description written into the target metadata block |
+| `--license STR` | _(unset)_ | License written into the target metadata block |
 
 ### `metropolis-v3.0 → tao-vl-reason-v1.0` options
 
 | Option | Default | Description |
 |--------|---------|-------------|
+| `--task TYPE ...` | all supported | Task types to include |
 | `--no-copy-media` | off | Reference media in place; `media_root` is set to the absolute source path |
 | `--emit-media-root` | off | With `--no-copy-media`, force `media_root` to `null` so the dataset is portable (consumer sets it at load time) |
+| `--description STR` | _(unset)_ | Description written into the target metadata block |
+| `--license STR` | `CC BY-NC-ND 4.0` | License written into the target metadata block |
+
+### `df-vlm-qa-v1.0 → tao-vl-reason-v1.0` options
+
+`--path` accepts a flat `df-vlm-qa-v1.0` batch, a `jsons/`+`videos/` bundle,
+or a raw correction-platform export — any mix, recursively. Output is staged
+into `{output}/df_vlm_qa/` (Stage 1: the input normalized into flat
+`df-vlm-qa-v1.0` documents) and `{output}/tao_vl_reason/` (Stage 2: one
+training file per `task_type`, `media_root: null`, items keep the source
+`video_id` verbatim).
+
+| Option | Default | Description |
+|--------|---------|-------------|
+| `--markers {keep,strip,drop}` | `drop` | How to handle `<track>` markers in question/answer/reasoning text. `drop` removes the marker and its contents; `strip` unwraps it to the bare `track_id`; `keep` leaves it intact |
+| `--exclude-task-type TYPE ...` | _(none)_ | Task types to leave out of the output — e.g. `tracking_description`, which is annotation scaffolding rather than a QA task |
+| `--description STR` | _(unset)_ | Description written into each Stage 2 file's metadata block |
+
+### `tao-vl-reason-v1.0 → df-vlm-qa-v1.0` options
+
+Writes one flat `df-vlm-qa-v1.0` document per `video_id` under `{output}/jsons/`.
+
+| Option | Default | Description |
+|--------|---------|-------------|
+| `--default-task-type TYPE` | _(unset)_ | `task_type` for items whose source file has no `metadata.task`. Required only when some source file omits it |
+| `--geometry-from PATH` | _(unset)_ | Path to an existing `df-vlm-qa-v1.0` batch. Re-attaches `tracking`/`tracking_meta`/`video_sha256` by `video_id`, backfills any donor `sub_tasks` for task types the source has no coverage of at all (e.g. `tracking_description`), and tags the source's own text with `<track>` wherever it names a recovered track (skipping spans already marked) |
+| `--place-videos {copy,symlink,hardlink}` | _(unset, no media touched)_ | Also place each clip's media under `{output}/videos/`, resolved from the source items' own `media_root`. A clip whose source media is unreachable is skipped with a warning; its document is still written |
+| `--s3-prefix PREFIX` | _(unset)_ | `s3://` batch prefix to build `video_url` as `{s3-prefix}/videos/{video_id}`. Only fills in documents whose source items carried no `video_url` at all |
 
 ### Examples
 
@@ -152,4 +206,15 @@ tao-daft convert metropolis-v3.0 tao-vl-reason-v1.0 \
   --path examples/datasets/metropolis-v3.0/its_collision \
   --output /tmp/its_collision_tvr \
   --task bcq mcq open_qa
+
+# df-vlm-qa-v1.0 → tao-vl-reason-v1.0
+tao-daft convert df-vlm-qa-v1.0 tao-vl-reason-v1.0 \
+  --path <batch>/ --output /tmp/batch_tvr \
+  --exclude-task-type tracking_description
+
+# tao-vl-reason-v1.0 → df-vlm-qa-v1.0, round-tripped against the original
+# batch's geometry and with media placed next to the output documents
+tao-daft convert tao-vl-reason-v1.0 df-vlm-qa-v1.0 \
+  --path /tmp/batch_tvr/tao_vl_reason --output /tmp/batch_roundtrip \
+  --geometry-from <original-batch>/ --place-videos symlink
 ```

@@ -10,6 +10,7 @@ for every annotation format TAO DAFT understands.
 | **metropolis-v3.0** | Source annotation format (flat contextual + task) | [overview](metropolis-v3.0/README.md) |
 | **cosmos-reason-v1.0** | VLM training format — paired `meta.json` + conversation files | [overview](cosmos-reason-v1.0/README.md) |
 | **tao-vl-reason-v1.0** | VLM training format — flat `(question, answer, reasoning)` items | [overview](tao-vl-reason-v1.0/README.md) |
+| **df-vlm-qa-v1.0** | HITL correction exchange — QA items plus the object tracks they reference | [overview](df-vlm-qa-v1.0/README.md) |
 
 See [versioning.md](versioning.md) for format lifecycle.
 

@@ -3,7 +3,8 @@
 ## Format version is an opaque label
 
 A format version is a self-contained string identifier — `metropolis-v3.0`,
-`cosmos-reason-v1.0`, `tao-vl-reason-v1.0`. It is **not** parsed as semver.
+`cosmos-reason-v1.0`, `tao-vl-reason-v1.0`, `df-vlm-qa-v1.0`. It is **not**
+parsed as semver.
 There is no implicit MAJOR/MINOR compatibility window between versions.
 Validators dispatch on **exact string match**.
 
@@ -14,6 +15,7 @@ Each file declares which format it conforms to via a top-level field:
 | metropolis-v3.0 | `"version": "metropolis-v3.0"` |
 | cosmos-reason-v1.0 | `"version": "cosmos-reason-v1.0"` |
 | tao-vl-reason-v1.0 | `"format": "tao-vl-reason-v1.0"` |
+| df-vlm-qa-v1.0 | `"format": "df-vlm-qa-v1.0"` |
 
 ## Uniform version within a dataset
 
@@ -29,6 +31,8 @@ version to another always requires an explicit, named conversion step:
 ```bash
 tao-daft convert metropolis-v3.0 cosmos-reason-v1.0 --path <src>/ --output <dst>/
 tao-daft convert metropolis-v3.0 tao-vl-reason-v1.0 --path <src>/ --output <dst>/
+tao-daft convert df-vlm-qa-v1.0 tao-vl-reason-v1.0 --path <batch>/ --output <dst>/
+tao-daft convert tao-vl-reason-v1.0 df-vlm-qa-v1.0 --path <dst>/ --output <batch>/
 ```
 
 See [`src/nvidia_tao_daft/converters/README.md`](../converters/README.md) for

@@ -1,0 +1,143 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://nvidia.com/schemas/df-vlm-qa-v1.0/df_vlm_qa.schema.json",
+  "title": "df-vlm-qa-v1.0 data-factory hand-in / hand-back file",
+  "description": "One JSON per video clip, used in BOTH directions: handed to the data factory for human bbox correction, and handed back after correction. The returned file validates against this same schema — corrections are applied by editing `tracking` in place, and are recovered by diffing the returned file against the sent one. `tracking[*]` is geometry-only — `track_id` and `track` and nothing else — with appearance carried by the 'tracking_description' sub_tasks instead. Tracks are cross-referenced from the QA text as <track>{track_id}</track>. `video_sha256` pins the media both sides annotated.",
+  "type": "object",
+  "required": ["format", "metadata", "video_id", "sub_tasks"],
+  "additionalProperties": false,
+  "properties": {
+    "format": {
+      "type": "string",
+      "const": "df-vlm-qa-v1.0"
+    },
+    "metadata": {
+      "type": "object",
+      "required": ["type", "license"],
+      "additionalProperties": true,
+      "properties": {
+        "type": {
+          "type": "string",
+          "const": "annotation",
+          "description": "Schema discriminator. Always 'annotation'."
+        },
+        "date": {"type": "string", "description": "ISO 8601 date string."},
+        "license": {"type": "string"},
+        "description": {"type": "string"},
+        "tags": {"type": "array", "items": {"type": "string"}}
+      }
+    },
+    "video_id": {
+      "type": "string",
+      "description": "Path to the clip relative to the batch media root. This is the clip's identity: a returned file is matched back on it, so it is never rewritten to point at wherever the media happens to be hosted — see `video_url` for that."
+    },
+    "video_url": {
+      "type": "string",
+      "description": "Fully-qualified location of the clip named by `video_id`, normally an s3:// URL under the batch prefix. Where `video_id` identifies the clip, this says where to fetch it, so a bundle can be re-hosted without changing any clip's identity."
+    },
+    "video_sha256": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{64}$",
+      "description": "SHA-256 of the clip named by `video_id`, lowercase hex. Lets both sides prove they annotated the same bytes; a re-encode or re-cut of the source invalidates the file loudly instead of silently shifting every box. Omitted when the media was not reachable at conversion time."
+    },
+
+    "tracking_meta": {
+      "type": "object",
+      "description": "Coordinate and time conventions that apply to every entry in `tracking`. Required whenever `tracking` is non-empty — without it the numbers in `track` are ambiguous.",
+      "required": ["time_unit", "box_order", "coordinate_space", "sample_fps"],
+      "additionalProperties": false,
+      "properties": {
+        "time_unit": {
+          "type": "string",
+          "enum": ["frame_index", "timestamp_s"],
+          "description": "Meaning of element 0 of each `track` row. 'frame_index' = 0-based frame index in the SOURCE video (at source_fps), 'timestamp_s' = seconds from the start of the clip."
+        },
+        "box_order": {
+          "type": "string",
+          "const": "t_x1_y1_x2_y2",
+          "description": "Layout of elements 1..4 of each `track` row: [t, x1, y1, x2, y2] — conventional xyxy corner order, with x1<x2 and y1<y2. Fixed as a const: the x-extent-then-y-extent variant 't_x1_x2_y1_y2' used by some internal tooling is not accepted, because a file read under the wrong convention keeps every box inside the frame, so the error is silent rather than loud."
+        },
+        "coordinate_space": {
+          "type": "string",
+          "enum": ["pixel", "normalized"],
+          "description": "'pixel' = absolute pixels in a `width` x `height` frame; 'normalized' = fractions of frame size in [0, 1]."
+        },
+        "width": {"type": "integer", "minimum": 1, "description": "Source frame width in pixels. Required when coordinate_space is 'pixel'."},
+        "height": {"type": "integer", "minimum": 1, "description": "Source frame height in pixels. Required when coordinate_space is 'pixel'."},
+        "source_fps": {"type": "number", "exclusiveMinimum": 0, "description": "Frame rate of the source video. Converts between frame_index and seconds, and with `sample_fps` sets the spacing of the annotation grid. Required when time_unit is 'frame_index', where `t` cannot be interpreted at all without it."},
+        "frame_count": {"type": "integer", "minimum": 0, "description": "Total frames in the source video. Sets where the annotation grid ends — see `sample_fps`. Required when time_unit is 'frame_index'."},
+        "duration_s": {"type": "number", "minimum": 0, "description": "Clip duration in seconds. Sets where the annotation grid ends when time_unit is 'timestamp_s' — see `sample_fps`. Required in that case."},
+        "sample_fps": {"type": "number", "exclusiveMinimum": 0, "description": "Rate at which boxes were sampled. With `source_fps` and `frame_count` (or `duration_s`) this defines the ANNOTATION GRID — the set of times the annotation covers. Grid spacing is `source_fps / sample_fps` source frames, which is expected to be a whole number; sampling starts at frame 0; the grid holds `ceil(frame_count / spacing)` times. Under 'timestamp_s' the equivalent grid is spacing `1 / sample_fps` seconds from 0.0 across `duration_s`. The grid matters because `tracking` is sparse in two different senses that must not be confused: rows exist only at grid times, and within the grid a track may have gaps where the object was absent. Only the second is a claim about the world — see `tracking[*].track`."},
+        "source": {"type": "string", "description": "Free-form provenance of the tracks (model / pipeline that produced them)."}
+      },
+      "allOf": [
+        {
+          "if": {"properties": {"coordinate_space": {"const": "pixel"}}, "required": ["coordinate_space"]},
+          "then": {"required": ["width", "height"]}
+        },
+        {
+          "if": {"properties": {"time_unit": {"const": "frame_index"}}, "required": ["time_unit"]},
+          "then": {"required": ["source_fps", "frame_count"]}
+        },
+        {
+          "if": {"properties": {"time_unit": {"const": "timestamp_s"}}, "required": ["time_unit"]},
+          "then": {"required": ["duration_s"]}
+        }
+      ]
+    },
+
+    "tracking": {
+      "type": "array",
+      "description": "Object tracks in this clip: geometry only. A track carries no label or appearance description of its own — what the object looks like is read from the `sub_tasks` entry of task_type 'tracking_description' whose question references <track>{track_id}</track>, and that is how an annotator identifies which object a bare track_id refers to. A track therefore needs such a sub_task to be correctable; a track created during correction (see `track_id`) needs one added. Otherwise independent of `sub_tasks`: a track may be listed here without being referenced by any QA item, and annotators may add, split, merge, or delete tracks. Deleting a track means removing its object from this array, not emptying its `track` rows.",
+      "items": {
+        "type": "object",
+        "required": ["track_id", "track"],
+        "additionalProperties": false,
+        "properties": {
+          "track_id": {
+            "type": "string",
+            "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]*$",
+            "description": "Clip-unique identifier for this track, e.g. 'person_T001'. This exact string is what appears inside <track>...</track> in the QA text. Must not contain '<', '>', or whitespace. Ids assigned by the pipeline are immutable; a track created during human correction (an object the model missed, or the later half of a split) takes a fresh id in the reserved human namespace 'H', e.g. 'person_H001', so that human-origin tracks are identifiable in a diff and cannot collide with pipeline ids."
+          },
+          "track": {
+            "type": "array",
+            "description": "Per-sample boxes, ordered by ascending time. Element 0 of each row is the time key (see tracking_meta.time_unit); elements 1..4 are the box (see tracking_meta.box_order). Every time key must fall on the annotation grid defined by tracking_meta — see `sample_fps`. Sparse: a grid time absent from this array means the object was not boxed there. In a corrected hand-back file that absence is authoritative — it asserts the annotator was shown that grid time and the object was not there — so false negatives must be fixed by adding rows, not left implicit. This is why the grid is declared rather than inferred: pooling the time keys of every track recovers it only when some track is boxed at every grid time, and fails silently on exactly the stretches where nothing is boxed at all.",
+            "minItems": 1,
+            "items": {
+              "type": "array",
+              "description": "[t, x1, y1, x2, y2].",
+              "minItems": 5,
+              "maxItems": 5,
+              "items": {"type": "number"}
+            }
+          }
+        }
+      }
+    },
+
+    "sub_tasks": {
+      "type": "array",
+      "description": "The QA items for this clip. Unchanged from the tao-vl-reason-v1.0 hand-in shape except that occurrences of a track are wrapped inline as <track>{track_id}</track> in `question`, `answer`, and `reasoning`. Those markers are the single source of truth for which tracks a sub_task references; there is no separate id list to keep in sync.",
+      "items": {
+        "type": "object",
+        "required": ["task_type", "question", "answer"],
+        "additionalProperties": false,
+        "properties": {
+          "task_type": {
+            "type": "string",
+            "description": "Task family. Free-form and evolves independently of this format; not checked by the validator against any fixed set. Values observed in production include 'bcq', 'bcq_openended', 'mcq', 'mcq_openended', 'open_qa', 'causal_linkage', 'scene_description', 'temporal_description', 'temporal_localization', 'video_summarization', 'tracking_description', 'grounded_spatial_temporal_description', 'event_verification', 'gun_verification', and 'safety_verification'."
+          },
+          "question": {"type": "string", "description": "Free-form prompt. May contain <track>{track_id}</track> markers."},
+          "answer": {"type": "string", "description": "Free-form expected answer. May contain <track>{track_id}</track> markers."},
+          "reasoning": {"type": "string", "description": "Optional rationale. May contain <track>{track_id}</track> markers."}
+        }
+      }
+    }
+  },
+  "allOf": [
+    {
+      "if": {"properties": {"tracking": {"type": "array", "minItems": 1}}, "required": ["tracking"]},
+      "then": {"required": ["tracking_meta"]}
+    }
+  ]
+}

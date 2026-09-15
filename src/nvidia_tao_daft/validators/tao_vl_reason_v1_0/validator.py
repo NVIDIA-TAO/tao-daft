@@ -38,6 +38,7 @@ class TaoVlReasonV1_0Validator(BaseValidator):
     # ------------------------------------------------------------------
     @classmethod
     def register_subparser(cls, subparsers: "argparse._SubParsersAction") -> None:
+        """Register this format's argparse subparser."""
         parser = subparsers.add_parser(
             cls.format,
             help=f"Validate a {cls.format} dataset",
@@ -58,6 +59,7 @@ class TaoVlReasonV1_0Validator(BaseValidator):
     # CLI execution loop
     # ------------------------------------------------------------------
     def run(self) -> int:
+        """Discover datasets under ``--path`` and validate each one."""
         from nvidia_tao_daft import __version__
 
         assert self.args is not None, "run() requires args; pass them at construction"
@@ -143,6 +145,7 @@ class TaoVlReasonV1_0Validator(BaseValidator):
         permissive: bool = False,
         **kwargs: Any,
     ) -> ValidationResult:
+        """Validate the schema and media references of every annotation file."""
         result = ValidationResult()
         dataset_id = dataset_path.name
 
@@ -206,17 +209,21 @@ class TaoVlReasonV1_0Validator(BaseValidator):
         ann_data: dict,
         result: ValidationResult,
     ) -> None:
-        """Resolve each item's media path and require the file to exist.
+        """Resolve each item's media path and check the file exists.
 
         ``ann_data`` is schema-validated (see ``_validate_schemas``), so
         every item has exactly one of ``video_id`` / ``image_id`` and the
-        value is a string. A missing media file is always an error: the
-        annotation claims the file exists, and that claim is part of the
-        format's contract.
+        value is a string. This is a stat call, so it always runs, and it
+        never fails the run on its own: a dataset validated on a machine
+        that hasn't checked out the media (or a ``media_root: null`` file
+        meant to be paired with an out-of-band media root, e.g. a
+        df-vlm-qa-v1.0 → tao-vl-reason-v1.0 conversion's output) is not a
+        content problem, so a miss is always a warning, independent of
+        ``--strict``.
         """
         media_root: Optional[str] = ann_data.get("media_root")
         for idx, item in enumerate(ann_data.get("items", [])):
             rel_path = item.get("video_id") or item.get("image_id")
             resolved = resolve_media_path(dataset_path, media_root, rel_path)
             if not resolved.exists():
-                result.add_error(f"{ann_path.name}: items[{idx}] media not found: {resolved}")
+                result.add_warning(f"{ann_path.name}: items[{idx}] media not found: {resolved}")
